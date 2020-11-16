@@ -22,6 +22,16 @@ mediaPrint =
     withMedia [ only print [] ]
 
 
+noOpener : Html.Styled.Attribute msg
+noOpener =
+    attribute "rel" "noopener noreferrer"
+
+
+targetBlank : Html.Styled.Attribute msg
+targetBlank =
+    Attributes.target "_blank"
+
+
 styles =
     { page =
         css
@@ -120,8 +130,12 @@ view =
 printableLink : String -> String -> Html msg
 printableLink title url =
     span []
-        [ span [ css [ marginRight (px 12), mediaPrint [ display none ] ] ] [ a [ styles.link, href url ] [ text title ] ]
-        , span [ css [ mediaScreen [ display none ] ] ] [ text <| title ++ ": ", a [ styles.link, href url ] [ text url ] ]
+        [ span [ css [ marginRight (px 12), mediaPrint [ display none ] ] ]
+            [ a [ styles.link, href url, targetBlank, noOpener ] [ text title ] ]
+        , span [ css [ mediaScreen [ display none ] ] ]
+            [ text <| title ++ ": "
+            , a [ styles.link, href url, targetBlank, noOpener ] [ text url ]
+            ]
         ]
 
 
@@ -151,7 +165,7 @@ heading =
                 [ p [] [ text "Fullstack developer, FP enthusiast." ]
                 , p [] [ text "Remote (Novosibirsk, Russia)" ]
                 ]
-            , a [ styles.link, href "mailto: logachev.dev@ya.ru" ] [ text "logachev.dev@ya.ru" ]
+            , a [ styles.link, href "mailto: logachev.dev@ya.ru", targetBlank, noOpener ] [ text "logachev.dev@ya.ru" ]
             , div [ css [ displayFlex, margin2 (px 12) zero, mediaPrint [ flexDirection column ] ] ]
                 [ span [ css [ mediaScreen [ display none ] ] ] [ printableLink "Site" "https://logachev.dev" ]
                 , printableLink "GitHub" "https://github.com/vladimirlogachev"
@@ -160,7 +174,7 @@ heading =
                 , printableLink "LinkedIn" "http://www.linkedin.com/in/vladimirlogachev"
                 ]
             , div [ css [ mediaPrint [ display none ] ] ]
-                [ a [ styles.link, href "https://logachev.dev/cv_vladimir_logachev.pdf" ] [ text "Download cv" ] ]
+                [ a [ styles.link, href "https://logachev.dev/cv_vladimir_logachev.pdf", targetBlank, noOpener ] [ text "Download cv" ] ]
             ]
         ]
 
