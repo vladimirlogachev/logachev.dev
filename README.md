@@ -15,6 +15,6 @@ elm-live "src/Main.elm" \
 
 ## Prod
 
-```fish
-bash build.sh
-```
+1. Save new PDF to `build/cv_vladimir_logachev.pdf`
+2. Run `bash build.sh`
+

@@ -7,6 +7,17 @@ import Html.Styled exposing (..)
 import Html.Styled.Attributes as Attributes exposing (alt, attribute, css, href, src, title)
 
 
+view : Html msg
+view =
+    div [ styles.page ]
+        [ heading
+        , aboutSection
+        , contributionsSection
+        , educationSection
+        , experienceSection
+        ]
+
+
 mediaMobile : List Style -> Style
 mediaMobile =
     withMedia [ only screen [ Media.maxWidth (px 600) ] ]
@@ -37,7 +48,7 @@ styles =
         css
             [ padding4 (px 32) (px 16) (px 16) (px 32)
             , margin2 zero auto
-            , withMedia [ only screen [] ] [ maxWidth (px 1000) ]
+            , withMedia [ only screen [] ] [ maxWidth (px 768) ]
             , fontFamilies [ "Source Sans Pro", "sans-serif" ]
             , fontStyle normal
             , color (hex "212121")
@@ -50,13 +61,12 @@ styles =
             [ displayFlex
             , flexDirection column
             , marginBottom (px 16)
+            , property "break-inside" "avoid"
             ]
     , section =
         css
             [ width (pct 100)
             , marginBottom (px 32)
-            , property "break-before" "always"
-            , property "break-inside" "avoid"
             ]
     , headerSection =
         css
@@ -91,6 +101,7 @@ styles =
             , fontSize (px 24)
             , lineHeight (px 30)
             , marginBottom (px 8)
+            , property "break-after" "avoid"
             ]
     , item =
         css
@@ -114,17 +125,6 @@ styles =
             ]
     , detail = css [ color (hex "707070") ]
     }
-
-
-view : Html msg
-view =
-    div [ styles.page ]
-        [ heading
-        , experienceSection
-        , otherSection
-        , aboutSection
-        , educationSection
-        ]
 
 
 printableLink : String -> String -> Html msg
@@ -171,7 +171,7 @@ heading =
                 , printableLink "GitHub" "https://github.com/vladimirlogachev"
                 , printableLink "Telegram" "https://t.me/vladimirlogachev"
                 , printableLink "Twitter" "https://twitter.com/logachev_dev"
-                , printableLink "LinkedIn" "http://www.linkedin.com/in/vladimirlogachev"
+                , printableLink "LinkedIn" "https://www.linkedin.com/in/vladimirlogachev"
                 ]
             , div [ css [ mediaPrint [ display none ] ] ]
                 [ a [ styles.link, href "https://logachev.dev/cv_vladimir_logachev.pdf", targetBlank, noOpener ] [ text "Download cv" ] ]
@@ -213,14 +213,14 @@ experienceRecords =
     , { companyAndTitle = "Eldis, software engineer"
       , startDate = Date 10 2019
       , endDate = Date 12 2019
-      , url = "http://eldis.ru"
+      , url = "https://eldis.ru"
       , roleDescription = "I developed a declarative decoder for the internal binary document format, covered it with tests, including property-based testing."
       , tags = "Scala, scodec, cats, fs2, decline, specs2, scalacheck"
       }
     , { companyAndTitle = "Neolab-Nsk, fullstack developer"
       , startDate = Date 1 2019
       , endDate = Date 9 2019
-      , url = "https://www.neolab.io"
+      , url = ""
       , roleDescription = "I've implemented new functionality in existing web applications, fixed defects and developed new applications, and microservices, covered them with unit tests and integration tests."
       , tags = """Frontend: TypeScript, React, Redux, Saga, RxJS, FP-TS
         Backend: TypeScript, Node, Redux, Saga, RxJS, Redis, Lua, Mongo, PostgreSQL, Clickhouse, Docker"""
@@ -254,7 +254,7 @@ showExperienceRecord : ExperienceRecord -> Html msg
 showExperienceRecord x =
     div [ styles.itemBox ]
         [ span [ styles.item ] [ text x.companyAndTitle, span [ styles.period ] [ text (showDate x.startDate ++ " — " ++ showDate x.endDate) ] ]
-        , span [ styles.link ] [ text x.url ]
+        , a [ styles.link, href x.url, targetBlank, noOpener ] [ text x.url ]
         , span [] [ text x.roleDescription ]
         , span [ styles.detail ] [ text x.tags ]
         ]
@@ -265,43 +265,62 @@ experienceSection =
     section [ styles.section ] (h2 [ styles.subheader ] [ text "Experience" ] :: List.map showExperienceRecord experienceRecords)
 
 
-type alias OtherRecord =
-    { url : String
-    , roleDescription : String
+type alias ContributionRecord =
+    { title : String
+    , url : String
+    , description : String
+    , tags : String
     }
 
 
-otherRecords : List OtherRecord
-otherRecords =
-    [ { url = "https://t.me/fpspecialty_ru"
-      , roleDescription = "I organize meetups with practice, code review and FP reading group"
+contributionRecords : List ContributionRecord
+contributionRecords =
+    [ { title = "FP Specialty"
+      , url = "https://t.me/fpspecialty_ru"
+      , description = "I run this FP reading group for russian-speaking users. During COVID lockdown we discuss PF books and courses remotely, on a weekly basis, but in the past it was an offline group."
+      , tags = "Reading group"
       }
-    , { url = "https://github.com/MostlyAdequate/mostly-adequate-guide-ru"
-      , roleDescription = "Translated Mostly Adequate Guide to Functional Programming in JavaScript into Russian"
+    , { title = "Russian translation of the Mostly Adequate Guide to Functional Programming in JavaScript"
+      , url = "https://github.com/MostlyAdequate/mostly-adequate-guide-ru"
+      , description = """The book introduces the reader to the functional programming paradigm and describes a functional approach to developing JavaScript applications.
+        The translation was initiated by Maxim Filippov and stopped at 60%. Then me and Sakayama joined the translation, refactored every chapter translated before us and then finished the translation."""
+      , tags = "JavaScript"
+      }
+    , { title = "higherkindness/mu-graphql-example-elm"
+      , url = "https://github.com/higherkindness/mu-graphql-example-elm"
+      , description = "I rebuilt an Elm example, which serves as an illustrative frontend for the mu-haskell library (demonstrating its GraphQL capabilities)."
+      , tags = "Elm, GraphQL"
+      }
+    , { title = "higherkindness/mu-haskell"
+      , url = "https://github.com/higherkindness/mu-haskell"
+      , description = "I made minor changes to the example project (which should be treated as a part of the documentation), and also helped to discover couple of bugs in the mu-haskell library itself."
+      , tags = "Haskell, GraphQL"
       }
     ]
 
 
-showOtherRecord : OtherRecord -> Html msg
-showOtherRecord x =
+showContributionRecord : ContributionRecord -> Html msg
+showContributionRecord x =
     div [ styles.itemBox ]
-        [ span [] [ text x.roleDescription ]
-        , span [ styles.link ] [ text x.url ]
+        [ a [ css [ mediaPrint [ color (hex "212121") ] ], styles.item, styles.link, href x.url, targetBlank, noOpener ] [ text x.title ]
+        , a [ css [ mediaScreen [ display none ] ], styles.item, styles.link, href x.url, targetBlank, noOpener ] [ text x.url ]
+        , span [] [ text x.description ]
+        , span [ styles.detail ] [ text x.tags ]
         ]
 
 
-otherSection : Html msg
-otherSection =
-    section [ styles.section ] (h2 [ styles.subheader ] [ text "Other" ] :: List.map showOtherRecord otherRecords)
+contributionsSection : Html msg
+contributionsSection =
+    section [ styles.section ] (h2 [ styles.subheader ] [ text "Notable contributions" ] :: List.map showContributionRecord contributionRecords)
 
 
 aboutSection : Html msg
 aboutSection =
     section [ styles.section ]
-        [ h2 [ styles.subheader ] [ text "About" ]
-        , p [] [ text "I see my future in working with functional languages that implement strict static typing. I actively use Scala, Haskell and Elm, but am also ready to take on any other typed functional language, for example: OCaml, Idris, F #, PureScript." ]
-        , p [] [ text "I associate the success in my career with FP, so I will invest a lot of my time and attention in ensuring that FP brings benefits to both companies and individual specialists." ]
-        , p [] [ text "I’m ready to regularly explain everything that I understand myself, and to pay time and attention not only to the code, but also to people. I consider pair programming and pair testing to be an effective practice." ]
+        [ h2 [ styles.subheader ] [ text "Bio" ]
+        , p [ css [ marginBottom (px 12) ] ] [ text "I prefer functional languages that implement strict static typing. I actively use Scala, Haskell and Elm, but am also ready to take on any other typed functional language." ]
+        , p [ css [ marginBottom (px 12) ] ] [ text "I associate the success in my career with FP, so I invest a lot of my time and attention not only to the code, but also to people. My intention is to make sure that FP brings benefits to both companies and individual specialists." ]
+        , p [ css [ marginBottom (px 12) ] ] [ text "I'm a great fan of meetups and reading groups, which I run at my workplaces from time to time, and also I consider pair programming and pair testing to be an effective practice." ]
         ]
 
 
@@ -318,12 +337,12 @@ educationRecords =
       , url = "https://www.udemy.com/certificate/UC-DRMAMOQ5"
       , details = "Packt, 2019"
       }
-    , { title = "Functional Programming in Haskell, part 2"
-      , url = "https://stepik.org/cert/207739 (certificate with distinction)"
+    , { title = "Functional Programming in Haskell, part 2 (certificate with distinction)"
+      , url = "https://stepik.org/cert/207739"
       , details = "Computer Science Center, 2019"
       }
-    , { title = "Functional Programming in Haskell, part 1"
-      , url = "https://stepik.org/cert/196007 (certificate with distinction)"
+    , { title = "Functional Programming in Haskell, part 1 (certificate with distinction)"
+      , url = "https://stepik.org/cert/196007"
       , details = "Computer Science Center, 2019"
       }
     , { title = "Computer Science Summer School, Theory of Programming Languages"
@@ -341,7 +360,7 @@ showEducationRecord : EducationRecord -> Html msg
 showEducationRecord x =
     div [ styles.itemBox ]
         [ span [] [ text x.title ]
-        , span [ styles.link ] [ text x.url ]
+        , a [ styles.link, href x.url, targetBlank, noOpener ] [ text x.url ]
         , span [ styles.detail ] [ text x.details ]
         ]
 
