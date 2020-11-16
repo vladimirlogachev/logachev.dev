@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Vladimir Logachev</title>
+    <meta
+      name="description"
+      content="Vladimir Logachev.
+    Fullstack developer. Functional programming, Haskell, Scala, Elm. 
+    Projects, books, collaborations."
+    />
+
+    <!-- Styles, icons, etc -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      inline
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link inline rel="stylesheet" href="./reset.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/icons/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/icons/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/icons/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/icons/site.webmanifest" />
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#121921" />
+    <link rel="shortcut icon" href="/icons/favicon.ico" />
+    <meta name="msapplication-TileColor" content="#121921" />
+    <meta name="msapplication-config" content="/icons/browserconfig.xml" />
+    <meta name="theme-color" content="#121921" />
+
+    <!-- Elm main bundle -->
+    <script inline type="text/javascript" src="./bundle.js"></script>
+    <!-- Yandex.Metrika counter init (subscribe counter Id to events) -->
+    <!-- <script
+      inline
+      type="text/javascript"
+      src="./yandex-metrika-init.js"
+    ></script> -->
+    <!-- Yandex.Metrika counter main bundle -->
+    <!-- <script
+      defer
+      type="text/javascript"
+      src="https://mc.yandex.ru/metrika/tag.js"
+    ></script> -->
+  </head>
+
+  <body>
+    <div id="elm-node"></div>
+    <!-- Elm init -->
+    <script>
+      Elm.Main.init({
+        node: document.getElementById("elm-node"),
+        flags: window.navigator.language,
+      });
+    </script>
+    <!-- Yandex.Metrika counter (via image) -->
+    <!-- <noscript>
+      <div>
+        <img
+          src="https://mc.yandex.ru/watch/40142970"
+          style="position:absolute; left:-9999px;"
+          alt=""
+        />
+      </div>
+    </noscript> -->
+  </body>
+</html>
