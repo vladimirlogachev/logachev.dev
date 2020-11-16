@@ -206,7 +206,7 @@ experienceRecords =
       , startDate = Date 5 2020
       , endDate = Date 2 2021
       , url = ""
-      , roleDescription = "Developed a web application, which utilizes server-side rendering and covered it with unit tests. Packaged everything in Docker and set up CI. I also mentored a second frontend developer who joined the team later."
+      , roleDescription = "Developed a web application, which utilizes server-side rendering and covered it with unit tests. Packaged everything in Docker and set up CI. I also mentored the second frontend developer who joined the team later."
       , tags = """Frontend: TypeScript, React, Next.js, GraphQL, Apollo, FP-TS, Emotion, Jest
         Infrastructure: Nginx, Docker, GitHub Actions"""
       }
@@ -221,7 +221,7 @@ experienceRecords =
       , startDate = Date 1 2019
       , endDate = Date 9 2019
       , url = ""
-      , roleDescription = "I've implemented new functionality in existing web applications, fixed defects and developed new applications, and microservices, covered them with unit tests and integration tests."
+      , roleDescription = "I implemented new functionality in existing web applications, fixed defects and developed new applications, and microservices, covered them with unit tests and integration tests."
       , tags = """Frontend: TypeScript, React, Redux, Saga, RxJS, FP-TS
         Backend: TypeScript, Node, Redux, Saga, RxJS, Redis, Lua, Mongo, PostgreSQL, Clickhouse, Docker"""
       }
@@ -277,7 +277,7 @@ contributionRecords : List ContributionRecord
 contributionRecords =
     [ { title = "FP Specialty"
       , url = "https://t.me/fpspecialty_ru"
-      , description = "I run this FP reading group for russian-speaking users. During COVID lockdown we discuss PF books and courses remotely, on a weekly basis, but in the past it was an offline group."
+      , description = "I run this FP reading group for russian-speaking users. During COVID lockdown we discuss PF books and courses remotely, on a weekly basis, but in the past it used to be an offline group."
       , tags = "Reading group"
       }
     , { title = "Russian translation of the Mostly Adequate Guide to Functional Programming in JavaScript"
@@ -337,11 +337,11 @@ educationRecords =
       , url = "https://www.udemy.com/certificate/UC-DRMAMOQ5"
       , details = "Packt, 2019"
       }
-    , { title = "Functional Programming in Haskell, part 2 (certificate with distinction)"
+    , { title = "Functional Programming in Haskell, part 2 (certificate with honors)"
       , url = "https://stepik.org/cert/207739"
       , details = "Computer Science Center, 2019"
       }
-    , { title = "Functional Programming in Haskell, part 1 (certificate with distinction)"
+    , { title = "Functional Programming in Haskell, part 1 (certificate with honors)"
       , url = "https://stepik.org/cert/196007"
       , details = "Computer Science Center, 2019"
       }
