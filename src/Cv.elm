@@ -316,7 +316,7 @@ contributionRecords =
       }
     , { title = "higherkindness/mu-haskell"
       , url = "https://github.com/higherkindness/mu-haskell"
-      , description = "I made minor changes to the example project (which should be treated as a part of the documentation), and also helped to discover couple of bugs in the mu-haskell library itself."
+      , description = "I made minor changes to the example project (which should be treated as a part of the documentation), and also helped to discover couple of bugs."
       , tags = "Haskell, GraphQL"
       }
     ]
