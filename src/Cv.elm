@@ -7,42 +7,6 @@ import Html.Styled exposing (..)
 import Html.Styled.Attributes as Attributes exposing (alt, attribute, css, href, src, title)
 
 
-view : Html msg
-view =
-    div [ styles.page ]
-        [ heading
-        , aboutSection
-        , contributionsSection
-        , educationSection
-        , experienceSection
-        ]
-
-
-mediaMobile : List Style -> Style
-mediaMobile =
-    withMedia [ only screen [ Media.maxWidth (px 600) ] ]
-
-
-mediaScreen : List Style -> Style
-mediaScreen =
-    withMedia [ only screen [] ]
-
-
-mediaPrint : List Style -> Style
-mediaPrint =
-    withMedia [ only print [] ]
-
-
-noOpener : Html.Styled.Attribute msg
-noOpener =
-    attribute "rel" "noopener noreferrer"
-
-
-targetBlank : Html.Styled.Attribute msg
-targetBlank =
-    Attributes.target "_blank"
-
-
 styles =
     { page =
         css
@@ -68,7 +32,7 @@ styles =
             [ width (pct 100)
             , marginBottom (px 32)
             ]
-    , headerSection =
+    , summary =
         css
             [ displayFlex
             , mediaMobile [ flexDirection column ]
@@ -85,6 +49,7 @@ styles =
             [ width (px 200)
             , height (px 200)
             , borderRadius (px 8)
+            , backgroundColor (hex "efefef")
             ]
 
     -- Text styles
@@ -127,6 +92,34 @@ styles =
     }
 
 
+
+{- TODO:
+   - showcase projects
+   - group everything by skill
+   - перенос тегов на новую строку
+   - явные height и width для изображений, мультисорс, alt
+   - пустые ссылки сделать maybe
+   - дрочкануть lighthouse
+   - длинные ссылки выбиваются за пределы мобильного холста
+-}
+
+
+view : Html msg
+view =
+    div [ styles.page ]
+        [ summarySection
+        , bioSection
+        , skillsSection
+        , contributionsSection
+        , educationSection
+        , experienceSection
+        ]
+
+
+
+-- Summary
+
+
 printableLink : String -> String -> Html msg
 printableLink title url =
     span []
@@ -139,6 +132,7 @@ printableLink title url =
         ]
 
 
+icon : String -> String -> Html msg
 icon filename altText =
     img
         [ css [ height (px 20), marginRight (px 12) ]
@@ -149,9 +143,9 @@ icon filename altText =
         []
 
 
-heading : Html msg
-heading =
-    div [ styles.section, styles.headerSection ]
+summarySection : Html msg
+summarySection =
+    div [ styles.section, styles.summary ]
         [ img [ styles.photo, src "https://avatars2.githubusercontent.com/u/17773003?s=400" ] []
         , div
             [ styles.headerTextContent ]
@@ -179,15 +173,223 @@ heading =
         ]
 
 
-type alias Date =
-    { month : Int, year : Int }
+
+-- Bio
 
 
-showDate : Date -> String
-showDate d =
-    (String.padLeft 2 '0' <| String.fromInt d.month)
-        ++ "/"
-        ++ (String.padLeft 4 '0' <| String.fromInt d.year)
+bioSection : Html msg
+bioSection =
+    section [ styles.section ]
+        [ h2 [ styles.subheader ] [ text "Bio" ]
+        , p [ css [ marginBottom (px 12) ] ] [ text "I prefer functional languages that implement strict static typing. I actively use Scala, Haskell, and Elm, but am also ready to tackle any other typed functional language." ]
+        , p [ css [ marginBottom (px 12) ] ] [ text "I associate the success in my career with FP, so I devote a lot of time and attention not only to code but also to people. My mission as a developer is to make functional programming deliver value to both companies and individual specialists." ]
+        , p [ css [ marginBottom (px 12) ] ] [ text "I'm a big fan of meetups and reading groups, which I run at my workplaces from time to time, and also I consider pair programming and pair testing to be an effective practice." ]
+        , p [ css [ marginBottom (px 12) ] ] [ text "In programming, I prefer not to rely on intuition (which, I believe, is usually based on previous experiences and tends to fail in unprecedented situations), but instead, read books well in advance." ]
+        , p [ css [ marginBottom (px 12) ] ] [ text "Although most of my commercial experience is in front-end development, I am looking for an opportunity to specialize in the backend and am not interested in job offers that involve doing tasks using JS / TS." ]
+        ]
+
+
+
+-- Skills
+
+
+type alias Detail =
+    { name : String, text : String }
+
+
+type alias SkillRecord =
+    { title : String
+    , description : String
+    , details : List Detail
+    }
+
+
+skillRecords : List SkillRecord
+skillRecords =
+    [ { title = "Haskell"
+      , description = ""
+      , details =
+            [ { name = "Concepts"
+              , text = "Monads, applicatives, monad transformers"
+              }
+            , { name = "Libraries"
+              , text = "mu-hakell, postgres-typed, aeson, parsec, transformers" -- mtl, time, split, wai, wai-extra, wai-cors, servant-options, servant, beam, postgres-simple
+              }
+            , { name = "Language options I'm familiar with 😄"
+              , text = "TypeApplications, TypeOperators, PartialTypeSignatures, TupleSections, DeriveFunctor, StandaloneDeriving, QuasiQuotes, OverloadedStrings, LambdaCase, MonomorphismRestriction" -- need moar!
+              }
+            ]
+      }
+    , { title = "Scala"
+      , description = ""
+      , details =
+            [ { name = "FP"
+              , text = "cats-core, cats-effect, fs2, scala-parser-combinators"
+              }
+            , { name = "Testing"
+              , text = "scalatest, scalacheck, specs2"
+              }
+            , { name = "Other libraries"
+              , text = "scodec, akka, akka-http, akka-stream, scala-parser-combinators"
+              }
+            ]
+      }
+    , { title = "Elm"
+      , description = ""
+      , details =
+            [ { name = "Concepts"
+              , text = "Tasks, Ports, JSON encoding/decoding, Browser API Interop (Websockets)"
+              }
+            , { name = "Libraries"
+              , text = "elm-css, elm-graphql, elm-ordering, elm-units, elm-dropbox, elm-crypto-string"
+              }
+            ]
+      }
+    , { title = "Other"
+      , description = ""
+      , details =
+            [ { name = "Databases"
+              , text = "PostgreSQL, Redis, Clickhouse, MongoDB" -- Kafka, Spark, Hazelcast
+              }
+            , { name = "Infrastructure and tooling"
+              , text = "Docker, Dhall, GitHub Actions" -- Nix, NixOS, AmazonAWS, K8s
+              }
+            , { name = "APIs"
+              , text = "GraphQL" -- gRPC, Auth0, OpenAPI, JWT, KeyCloak
+              }
+            ]
+      }
+    ]
+
+
+showDetail : Detail -> Html msg
+showDetail x =
+    div []
+        [ span [] [ text (x.name ++ ": ") ]
+        , span [ styles.detail ] [ text x.text ]
+        ]
+
+
+showSkillRecord : SkillRecord -> Html msg
+showSkillRecord x =
+    div [ styles.itemBox ]
+        [ h3 [ styles.item ] [ text x.title ]
+        , span [] [ text x.description ]
+        , div [] <| List.map showDetail x.details
+        ]
+
+
+skillsSection : Html msg
+skillsSection =
+    section [ styles.section ] (h2 [ styles.subheader ] [ text "Skills and usage experience" ] :: List.map showSkillRecord skillRecords)
+
+
+
+-- Contributions
+
+
+type alias ContributionRecord =
+    { title : String
+    , url : String
+    , description : String
+    , tags : String
+    }
+
+
+contributionRecords : List ContributionRecord
+contributionRecords =
+    [ { title = "FP Specialty"
+      , url = "https://t.me/fpspecialty_ru"
+      , description = "I run this FP reading group for russian-speaking users. During COVID lockdown we discuss PF books and courses remotely, on a weekly basis, but in the past it used to be an offline group."
+      , tags = "Reading group"
+      }
+    , { title = "Russian translation of the Mostly Adequate Guide to Functional Programming in JavaScript"
+      , url = "https://github.com/MostlyAdequate/mostly-adequate-guide-ru"
+      , description = """The book introduces the reader to the functional programming paradigm and describes a functional approach to developing JavaScript applications.
+        The translation was initiated by Maxim Filippov and stopped at 60%. Then me and Sakayama joined the translation, refactored every chapter translated before us and then finished the translation."""
+      , tags = "JavaScript"
+      }
+    , { title = "higherkindness/mu-graphql-example-elm"
+      , url = "https://github.com/higherkindness/mu-graphql-example-elm"
+      , description = "I rebuilt an Elm example, which serves as an illustrative frontend for the mu-haskell library (demonstrating its GraphQL capabilities)."
+      , tags = "Elm, GraphQL"
+      }
+    , { title = "higherkindness/mu-haskell"
+      , url = "https://github.com/higherkindness/mu-haskell"
+      , description = "I made minor changes to the example project (which should be treated as a part of the documentation), and also helped to discover couple of bugs in the mu-haskell library itself."
+      , tags = "Haskell, GraphQL"
+      }
+    ]
+
+
+showContributionRecord : ContributionRecord -> Html msg
+showContributionRecord x =
+    div [ styles.itemBox ]
+        [ a [ css [ mediaPrint [ color (hex "212121") ] ], styles.item, styles.link, href x.url, targetBlank, noOpener ] [ text x.title ]
+        , a [ css [ mediaScreen [ display none ] ], styles.item, styles.link, href x.url, targetBlank, noOpener ] [ text x.url ]
+        , span [] [ text x.description ]
+        , span [ styles.detail ] [ text x.tags ]
+        ]
+
+
+contributionsSection : Html msg
+contributionsSection =
+    section [ styles.section ] (h2 [ styles.subheader ] [ text "Notable contributions" ] :: List.map showContributionRecord contributionRecords)
+
+
+
+-- Education
+
+
+type alias EducationRecord =
+    { title : String
+    , url : String
+    , details : String
+    }
+
+
+educationRecords : List EducationRecord
+educationRecords =
+    [ { title = "Mastering Haskell Programming"
+      , url = "https://www.udemy.com/certificate/UC-DRMAMOQ5"
+      , details = "Packt, 2019"
+      }
+    , { title = "Functional Programming in Haskell, part 2 (certificate with honors)"
+      , url = "https://stepik.org/cert/207739"
+      , details = "Computer Science Center, 2019"
+      }
+    , { title = "Functional Programming in Haskell, part 1 (certificate with honors)"
+      , url = "https://stepik.org/cert/196007"
+      , details = "Computer Science Center, 2019"
+      }
+    , { title = "Computer Science Summer School, Theory of Programming Languages"
+      , url = ""
+      , details = "Novosibirsk State University, 2019"
+      }
+    , { title = "Maintenance of computer equipment and computer networks"
+      , url = ""
+      , details = "Novosibirsk Aviation Technical College, 2004 — 2008"
+      }
+    ]
+
+
+showEducationRecord : EducationRecord -> Html msg
+showEducationRecord x =
+    div [ styles.itemBox ]
+        [ span [ styles.item ] [ text x.title ]
+        , a [ styles.link, href x.url, targetBlank, noOpener ] [ text x.url ]
+        , span [ styles.detail ] [ text x.details ]
+        ]
+
+
+educationSection : Html msg
+educationSection =
+    section [ styles.section ]
+        (h2 [ styles.subheader ] [ text "Education and courses" ] :: List.map showEducationRecord educationRecords)
+
+
+
+-- Experience
 
 
 type alias ExperienceRecord =
@@ -198,6 +400,13 @@ type alias ExperienceRecord =
     , roleDescription : String
     , tags : String
     }
+
+
+showDate : Date -> String
+showDate d =
+    (String.padLeft 2 '0' <| String.fromInt d.month)
+        ++ "/"
+        ++ (String.padLeft 4 '0' <| String.fromInt d.year)
 
 
 experienceRecords : List ExperienceRecord
@@ -265,107 +474,34 @@ experienceSection =
     section [ styles.section ] (h2 [ styles.subheader ] [ text "Experience" ] :: List.map showExperienceRecord experienceRecords)
 
 
-type alias ContributionRecord =
-    { title : String
-    , url : String
-    , description : String
-    , tags : String
-    }
+
+-- Reusable stuff
 
 
-contributionRecords : List ContributionRecord
-contributionRecords =
-    [ { title = "FP Specialty"
-      , url = "https://t.me/fpspecialty_ru"
-      , description = "I run this FP reading group for russian-speaking users. During COVID lockdown we discuss PF books and courses remotely, on a weekly basis, but in the past it used to be an offline group."
-      , tags = "Reading group"
-      }
-    , { title = "Russian translation of the Mostly Adequate Guide to Functional Programming in JavaScript"
-      , url = "https://github.com/MostlyAdequate/mostly-adequate-guide-ru"
-      , description = """The book introduces the reader to the functional programming paradigm and describes a functional approach to developing JavaScript applications.
-        The translation was initiated by Maxim Filippov and stopped at 60%. Then me and Sakayama joined the translation, refactored every chapter translated before us and then finished the translation."""
-      , tags = "JavaScript"
-      }
-    , { title = "higherkindness/mu-graphql-example-elm"
-      , url = "https://github.com/higherkindness/mu-graphql-example-elm"
-      , description = "I rebuilt an Elm example, which serves as an illustrative frontend for the mu-haskell library (demonstrating its GraphQL capabilities)."
-      , tags = "Elm, GraphQL"
-      }
-    , { title = "higherkindness/mu-haskell"
-      , url = "https://github.com/higherkindness/mu-haskell"
-      , description = "I made minor changes to the example project (which should be treated as a part of the documentation), and also helped to discover couple of bugs in the mu-haskell library itself."
-      , tags = "Haskell, GraphQL"
-      }
-    ]
+type alias Date =
+    { month : Int, year : Int }
 
 
-showContributionRecord : ContributionRecord -> Html msg
-showContributionRecord x =
-    div [ styles.itemBox ]
-        [ a [ css [ mediaPrint [ color (hex "212121") ] ], styles.item, styles.link, href x.url, targetBlank, noOpener ] [ text x.title ]
-        , a [ css [ mediaScreen [ display none ] ], styles.item, styles.link, href x.url, targetBlank, noOpener ] [ text x.url ]
-        , span [] [ text x.description ]
-        , span [ styles.detail ] [ text x.tags ]
-        ]
+mediaMobile : List Style -> Style
+mediaMobile =
+    withMedia [ only screen [ Media.maxWidth (px 600) ] ]
 
 
-contributionsSection : Html msg
-contributionsSection =
-    section [ styles.section ] (h2 [ styles.subheader ] [ text "Notable contributions" ] :: List.map showContributionRecord contributionRecords)
+mediaScreen : List Style -> Style
+mediaScreen =
+    withMedia [ only screen [] ]
 
 
-aboutSection : Html msg
-aboutSection =
-    section [ styles.section ]
-        [ h2 [ styles.subheader ] [ text "Bio" ]
-        , p [ css [ marginBottom (px 12) ] ] [ text "I prefer functional languages that implement strict static typing. I actively use Scala, Haskell and Elm, but am also ready to take on any other typed functional language." ]
-        , p [ css [ marginBottom (px 12) ] ] [ text "I associate the success in my career with FP, so I invest a lot of my time and attention not only to the code, but also to people. My intention is to make sure that FP brings benefits to both companies and individual specialists." ]
-        , p [ css [ marginBottom (px 12) ] ] [ text "I'm a great fan of meetups and reading groups, which I run at my workplaces from time to time, and also I consider pair programming and pair testing to be an effective practice." ]
-        ]
+mediaPrint : List Style -> Style
+mediaPrint =
+    withMedia [ only print [] ]
 
 
-type alias EducationRecord =
-    { title : String
-    , url : String
-    , details : String
-    }
+noOpener : Html.Styled.Attribute msg
+noOpener =
+    attribute "rel" "noopener noreferrer"
 
 
-educationRecords : List EducationRecord
-educationRecords =
-    [ { title = "Mastering Haskell Programming"
-      , url = "https://www.udemy.com/certificate/UC-DRMAMOQ5"
-      , details = "Packt, 2019"
-      }
-    , { title = "Functional Programming in Haskell, part 2 (certificate with honors)"
-      , url = "https://stepik.org/cert/207739"
-      , details = "Computer Science Center, 2019"
-      }
-    , { title = "Functional Programming in Haskell, part 1 (certificate with honors)"
-      , url = "https://stepik.org/cert/196007"
-      , details = "Computer Science Center, 2019"
-      }
-    , { title = "Computer Science Summer School, Theory of Programming Languages"
-      , url = ""
-      , details = "Novosibirsk State University, 2019"
-      }
-    , { title = "Maintenance of computer equipment and computer networks"
-      , url = ""
-      , details = "Novosibirsk Aviation Technical College, 2004 — 2008"
-      }
-    ]
-
-
-showEducationRecord : EducationRecord -> Html msg
-showEducationRecord x =
-    div [ styles.itemBox ]
-        [ span [] [ text x.title ]
-        , a [ styles.link, href x.url, targetBlank, noOpener ] [ text x.url ]
-        , span [ styles.detail ] [ text x.details ]
-        ]
-
-
-educationSection : Html msg
-educationSection =
-    section [ styles.section ]
-        (h2 [ styles.subheader ] [ text "Education and courses" ] :: List.map showEducationRecord educationRecords)
+targetBlank : Html.Styled.Attribute msg
+targetBlank =
+    Attributes.target "_blank"

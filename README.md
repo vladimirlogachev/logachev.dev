@@ -2,19 +2,10 @@
 
 ## Dev
 
-```fish
-elm-live "src/Main.elm" \
-  --dir="./build" \
-  --open \
-  --port=8000 \
-  --pushstate \
-  --start-page "index.html" \
-  -- \
-  --output="./build/bundle.js"
-```
+- `bash start.sh`
 
 ## Prod
 
-1. Save new PDF to `build/cv_vladimir_logachev.pdf`
-2. Run `bash build.sh`
+1. Save a new PDF to `build/cv_vladimir_logachev.pdf`
+2. `bash build.sh`
 
