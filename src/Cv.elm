@@ -20,22 +20,24 @@ styles =
             , fontSize (px 16)
             , lineHeight (px 20)
             ]
-    , itemBox =
+    , itemBlock =
         css
             [ displayFlex
             , flexDirection column
-            , marginBottom (px 16)
+            , marginBottom (px 28)
             , property "break-inside" "avoid"
             ]
     , section =
         css
-            [ width (pct 100)
-            , marginBottom (px 32)
+            [ mediaScreen [ marginBottom (px 80) ]
+            , mediaPrint [ marginBottom (px 60) ]
             ]
     , summary =
         css
             [ displayFlex
             , mediaMobile [ flexDirection column ]
+            , mediaScreen [ marginBottom (px 60) ]
+            , mediaPrint [ marginBottom (px 60) ]
             ]
     , headerTextContent =
         css
@@ -65,7 +67,7 @@ styles =
             [ fontWeight bold
             , fontSize (px 24)
             , lineHeight (px 30)
-            , marginBottom (px 8)
+            , marginBottom (px 20)
             , property "break-after" "avoid"
             ]
     , item =
@@ -73,7 +75,7 @@ styles =
             [ fontWeight normal
             , fontSize (px 20)
             , lineHeight (px 25)
-            , marginBottom (px 4)
+            , marginBottom (px 8)
             ]
     , link =
         css
@@ -94,7 +96,6 @@ styles =
 
 
 {- TODO:
-   - showcase projects
    - group everything by skill
    - перенос тегов на новую строку
    - явные height и width для изображений, мультисорс, alt
@@ -110,6 +111,7 @@ view =
         [ summarySection
         , bioSection
         , skillsSection
+        , showcaseProjectsSection
         , contributionsSection
         , educationSection
         , experienceSection
@@ -135,7 +137,7 @@ printableLink title url =
 icon : String -> String -> Html msg
 icon filename altText =
     img
-        [ css [ height (px 20), marginRight (px 12) ]
+        [ css [ height (px 28), marginRight (px 10) ]
         , src <| "/logos/" ++ filename
         , alt altText
         , title altText
@@ -145,29 +147,24 @@ icon filename altText =
 
 summarySection : Html msg
 summarySection =
-    div [ styles.section, styles.summary ]
+    div [ styles.summary ]
         [ img [ styles.photo, src "https://avatars2.githubusercontent.com/u/17773003?s=400" ] []
         , div
             [ styles.headerTextContent ]
             [ h1 [ styles.headerPrimary ] [ text "Vladimir Logachev" ]
-            , div []
-                [ icon "haskell.svg" "Haskell"
-                , icon "elm.svg" "Elm"
-                , icon "scala.svg" "Scala"
-                ]
-            , div [ css [ margin2 (px 12) zero ] ]
+            , div [ css [ marginBottom (px 8) ] ]
                 [ p [] [ text "Fullstack developer, FP enthusiast." ]
                 , p [] [ text "Remote (Novosibirsk, Russia)" ]
                 ]
-            , a [ styles.link, href "mailto: logachev.dev@ya.ru", targetBlank, noOpener ] [ text "logachev.dev@ya.ru" ]
-            , div [ css [ displayFlex, margin2 (px 12) zero, mediaPrint [ flexDirection column ] ] ]
+            , a [ styles.link, css [ marginBottom (px 8) ], href "mailto: logachev.dev@ya.ru", targetBlank, noOpener ] [ text "logachev.dev@ya.ru" ]
+            , div [ css [ displayFlex, marginBottom (px 8), mediaPrint [ flexDirection column ] ] ]
                 [ span [ css [ mediaScreen [ display none ] ] ] [ printableLink "Site" "https://logachev.dev" ]
                 , printableLink "GitHub" "https://github.com/vladimirlogachev"
                 , printableLink "Telegram" "https://t.me/vladimirlogachev"
                 , printableLink "Twitter" "https://twitter.com/logachev_dev"
                 , printableLink "LinkedIn" "https://www.linkedin.com/in/vladimirlogachev"
                 ]
-            , div [ css [ mediaPrint [ display none ] ] ]
+            , div [ css [ marginBottom (px 8), mediaPrint [ display none ] ] ]
                 [ a [ styles.link, href "https://logachev.dev/cv_vladimir_logachev.pdf", targetBlank, noOpener ] [ text "Download cv" ] ]
             ]
         ]
@@ -181,7 +178,7 @@ bioSection : Html msg
 bioSection =
     section [ styles.section ]
         [ h2 [ styles.subheader ] [ text "Bio" ]
-        , p [ css [ marginBottom (px 12) ] ] [ text "I prefer functional languages that implement strict static typing. I actively use Scala, Haskell, and Elm, but am also ready to tackle any other typed functional language." ]
+        , p [ css [ marginBottom (px 12) ] ] [ text "I prefer functional languages that implement strict static typing. I use Haskell, Elm, and Scala, but am also ready to tackle any other typed functional language." ]
         , p [ css [ marginBottom (px 12) ] ] [ text "I associate the success in my career with FP, so I devote a lot of time and attention not only to code but also to people. My mission as a developer is to make functional programming deliver value to both companies and individual specialists." ]
         , p [ css [ marginBottom (px 12) ] ] [ text "I'm a big fan of meetups and reading groups, which I run at my workplaces from time to time, and also I consider pair programming and pair testing to be an effective practice." ]
         , p [ css [ marginBottom (px 12) ] ] [ text "In programming, I prefer not to rely on intuition (which, I believe, is usually based on previous experiences and tends to fail in unprecedented situations), but instead, read books well in advance." ]
@@ -198,7 +195,8 @@ type alias Detail =
 
 
 type alias SkillRecord =
-    { title : String
+    { icon : Maybe String
+    , title : String
     , description : String
     , details : List Detail
     }
@@ -206,7 +204,8 @@ type alias SkillRecord =
 
 skillRecords : List SkillRecord
 skillRecords =
-    [ { title = "Haskell"
+    [ { icon = Just "haskell.svg"
+      , title = "Haskell"
       , description = ""
       , details =
             [ { name = "Concepts"
@@ -215,12 +214,13 @@ skillRecords =
             , { name = "Libraries"
               , text = "mu-hakell, postgres-typed, aeson, parsec, transformers" -- mtl, time, split, wai, wai-extra, wai-cors, servant-options, servant, beam, postgres-simple
               }
-            , { name = "Language options I'm familiar with 😄"
-              , text = "TypeApplications, TypeOperators, PartialTypeSignatures, TupleSections, DeriveFunctor, StandaloneDeriving, QuasiQuotes, OverloadedStrings, LambdaCase, MonomorphismRestriction" -- need moar!
+            , { name = "Language extensions"
+              , text = "TypeApplications, TypeOperators, PartialTypeSignatures, DeriveFunctor, StandaloneDeriving, OverloadedStrings" -- need moar!
               }
             ]
       }
-    , { title = "Scala"
+    , { icon = Just "scala.svg"
+      , title = "Scala"
       , description = ""
       , details =
             [ { name = "FP"
@@ -234,7 +234,8 @@ skillRecords =
               }
             ]
       }
-    , { title = "Elm"
+    , { icon = Just "elm.svg"
+      , title = "Elm"
       , description = ""
       , details =
             [ { name = "Concepts"
@@ -245,7 +246,8 @@ skillRecords =
               }
             ]
       }
-    , { title = "Other"
+    , { icon = Nothing
+      , title = "Other"
       , description = ""
       , details =
             [ { name = "Databases"
@@ -272,8 +274,11 @@ showDetail x =
 
 showSkillRecord : SkillRecord -> Html msg
 showSkillRecord x =
-    div [ styles.itemBox ]
-        [ h3 [ styles.item ] [ text x.title ]
+    div [ styles.itemBlock ]
+        [ h3 [ styles.item, css [ displayFlex, alignItems center ] ]
+            [ Maybe.map (\iconFile -> icon iconFile x.title) x.icon |> Maybe.withDefault (text "")
+            , text x.title
+            ]
         , span [] [ text x.description ]
         , div [] <| List.map showDetail x.details
         ]
@@ -285,10 +290,10 @@ skillsSection =
 
 
 
--- Contributions
+-- Showcase Projects
 
 
-type alias ContributionRecord =
+type alias Project =
     { title : String
     , url : String
     , description : String
@@ -296,35 +301,9 @@ type alias ContributionRecord =
     }
 
 
-contributionRecords : List ContributionRecord
-contributionRecords =
-    [ { title = "FP Specialty"
-      , url = "https://t.me/fpspecialty_ru"
-      , description = "I run this FP reading group for russian-speaking users. During COVID lockdown we discuss PF books and courses remotely, on a weekly basis, but in the past it used to be an offline group."
-      , tags = "Reading group"
-      }
-    , { title = "Russian translation of the Mostly Adequate Guide to Functional Programming in JavaScript"
-      , url = "https://github.com/MostlyAdequate/mostly-adequate-guide-ru"
-      , description = """The book introduces the reader to the functional programming paradigm and describes a functional approach to developing JavaScript applications.
-        The translation was initiated by Maxim Filippov and stopped at 60%. Then me and Sakayama joined the translation, refactored every chapter translated before us and then finished the translation."""
-      , tags = "JavaScript"
-      }
-    , { title = "higherkindness/mu-graphql-example-elm"
-      , url = "https://github.com/higherkindness/mu-graphql-example-elm"
-      , description = "I rebuilt an Elm example, which serves as an illustrative frontend for the mu-haskell library (demonstrating its GraphQL capabilities)."
-      , tags = "Elm, GraphQL"
-      }
-    , { title = "higherkindness/mu-haskell"
-      , url = "https://github.com/higherkindness/mu-haskell"
-      , description = "I made minor changes to the example project (which should be treated as a part of the documentation), and also helped to discover couple of bugs."
-      , tags = "Haskell, GraphQL"
-      }
-    ]
-
-
-showContributionRecord : ContributionRecord -> Html msg
-showContributionRecord x =
-    div [ styles.itemBox ]
+showProject : Project -> Html msg
+showProject x =
+    div [ styles.itemBlock ]
         [ a [ css [ mediaPrint [ color (hex "212121") ] ], styles.item, styles.link, href x.url, targetBlank, noOpener ] [ text x.title ]
         , a [ css [ mediaScreen [ display none ] ], styles.item, styles.link, href x.url, targetBlank, noOpener ] [ text x.url ]
         , span [] [ text x.description ]
@@ -332,9 +311,66 @@ showContributionRecord x =
         ]
 
 
+showcaseProjects : List Project
+showcaseProjects =
+    [ -- { title = "Library CMS"
+      -- , url = "https://github.com/VladimirLogachev/library"
+      -- , description = "A GraphQL API and frontend for my personal offline library. Key feature: compile-time typecheck against both PostgreSQL and GraphQL schemas (both backend and frontend)."
+      -- , tags = "Haskell, Elm, GraphQL, Mu-Haskell, postgres-typed, elm-graphql"
+      -- }
+      { title = "Transitive Closure (assessment)"
+      , url = "https://github.com/VladimirLogachev/transitive_closure"
+      , description = "A function that accepts list of object ids and returns those objects and all objects which they refer to (directly or indirectly) from some Repository with monadic interface. The code is pretty abstract, but still well-tested (including tests for cases like very large referencing graphs and cyclic references)."
+      , tags = "Scala, Cats, ScalaTest"
+      }
+    , { title = "Web crawler microservice (assessment)"
+      , url = "https://github.com/VladimirLogachev/crawler"
+      , description = "A microservice that accepts a list of page urls and returns a list of page titles. It takes into account situations like bad urls, duplicate urls, redirects, concurrency and backpressure."
+      , tags = "Scala, Akka HTTP"
+      }
+
+    -- Meetup platform
+    -- Captain Million
+    -- Scalac-like assessment
+    -- DataWorks-like assessment with tables
+    -- CFT-like assessment
+    ]
+
+
+showcaseProjectsSection : Html msg
+showcaseProjectsSection =
+    section [ styles.section ]
+        (h2 [ styles.subheader ] [ text "Showcase projects and assessments" ] :: List.map showProject showcaseProjects)
+
+
+
+-- Contributions
+
+
+contributionRecords : List Project
+contributionRecords =
+    [ { title = "FP Specialty"
+      , url = "https://t.me/fpspecialty_ru"
+      , description = "I run this FP reading group for russian-speaking users. During COVID lockdown we discuss PF books and courses remotely, on a weekly basis, but in the past it used to be an offline group."
+      , tags = "Reading group"
+      }
+    , { title = "higherkindness/mu-graphql-example-elm"
+      , url = "https://github.com/higherkindness/mu-graphql-example-elm"
+      , description = "An example of how to implement both frontend and backend in a schema-first, typesafe, and functional way (for the mu-haskell library, demonstrating its GraphQL capabilities). I rebuilt its Elm frontend and made minor changes to Haskell backend (and also discovered a couple of bugs)."
+      , tags = "Elm, Haskell, GraphQL"
+      }
+    , { title = "Russian translation of the Mostly Adequate Guide to Functional Programming in JavaScript"
+      , url = "https://github.com/MostlyAdequate/mostly-adequate-guide-ru"
+      , description = """The book introduces the reader to the functional programming paradigm and describes a functional approach to developing JavaScript applications.
+        The translation was initiated by Maxim Filippov and stopped at 60%. Then me and Sakayama joined the translation, refactored every chapter translated before us and then finished the translation."""
+      , tags = "JavaScript"
+      }
+    ]
+
+
 contributionsSection : Html msg
 contributionsSection =
-    section [ styles.section ] (h2 [ styles.subheader ] [ text "Notable contributions" ] :: List.map showContributionRecord contributionRecords)
+    section [ styles.section ] (h2 [ styles.subheader ] [ text "Notable contributions" ] :: List.map showProject contributionRecords)
 
 
 
@@ -375,7 +411,7 @@ educationRecords =
 
 showEducationRecord : EducationRecord -> Html msg
 showEducationRecord x =
-    div [ styles.itemBox ]
+    div [ styles.itemBlock ]
         [ span [ styles.item ] [ text x.title ]
         , a [ styles.link, href x.url, targetBlank, noOpener ] [ text x.url ]
         , span [ styles.detail ] [ text x.details ]
@@ -413,10 +449,10 @@ experienceRecords : List ExperienceRecord
 experienceRecords =
     [ { companyAndTitle = "Pamir, frontend developer"
       , startDate = Date 5 2020
-      , endDate = Date 2 2021
+      , endDate = Date 12 2020
       , url = ""
       , roleDescription = "Developed a web application, which utilizes server-side rendering and covered it with unit tests. Packaged everything in Docker and set up CI. I also mentored the second frontend developer who joined the team later."
-      , tags = """Frontend: TypeScript, React, Next.js, GraphQL, Apollo, FP-TS, Emotion, Jest
+      , tags = """Frontend: TypeScript, React, Next.js, GraphQL, Apollo, FP-TS, Emotion, Jest;
         Infrastructure: Nginx, Docker, GitHub Actions"""
       }
     , { companyAndTitle = "Eldis, software engineer"
@@ -431,7 +467,7 @@ experienceRecords =
       , endDate = Date 9 2019
       , url = ""
       , roleDescription = "I implemented new functionality in existing web applications, fixed defects and developed new applications, and microservices, covered them with unit tests and integration tests."
-      , tags = """Frontend: TypeScript, React, Redux, Saga, RxJS, FP-TS
+      , tags = """Frontend: TypeScript, React, Redux, Saga, RxJS, FP-TS;
         Backend: TypeScript, Node, Redux, Saga, RxJS, Redis, Lua, Mongo, PostgreSQL, Clickhouse, Docker"""
       }
     , { companyAndTitle = "SocialSweet Inc, frontend developer"
@@ -447,7 +483,7 @@ experienceRecords =
     , { companyAndTitle = "Allmax, frontend developer"
       , startDate = Date 11 2017
       , endDate = Date 8 2018
-      , url = "https://apps.apple.com/ru/app/savl/id1369912925"
+      , url = "https://savl.com/"
       , roleDescription = """I worked in the Savl project — this is a mobile application, wallet with support for 6 cryptocurrencies.
         I was responsible for the data layer in the mobile application. I applied everything that I learned from books
         about functional programming and software design, and also completely covered the business logic with tests,
@@ -461,7 +497,7 @@ experienceRecords =
 
 showExperienceRecord : ExperienceRecord -> Html msg
 showExperienceRecord x =
-    div [ styles.itemBox ]
+    div [ styles.itemBlock ]
         [ span [ styles.item ] [ text x.companyAndTitle, span [ styles.period ] [ text (showDate x.startDate ++ " — " ++ showDate x.endDate) ] ]
         , a [ styles.link, href x.url, targetBlank, noOpener ] [ text x.url ]
         , span [] [ text x.roleDescription ]
