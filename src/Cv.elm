@@ -5,20 +5,21 @@ import Css.Media as Media exposing (only, orientation, portrait, print, screen, 
 import Css.Transitions exposing (marginLeft3)
 import Html.Styled exposing (..)
 import Html.Styled.Attributes as Attributes exposing (alt, attribute, css, href, src, title)
+import Typography exposing (text__)
 
 
 styles =
     { page =
         css
-            [ padding4 (px 32) (px 16) (px 16) (px 32)
-            , margin2 zero auto
-            , withMedia [ only screen [] ] [ maxWidth (px 768) ]
+            [ margin2 zero auto
             , fontFamilies [ "Source Sans Pro", "sans-serif" ]
             , fontStyle normal
             , color (hex "212121")
             , fontWeight normal
-            , fontSize (px 16)
-            , lineHeight (px 20)
+            , fromPx fontSize 16
+            , fromPx lineHeight 20
+            , mediaScreen [ maxWidth (px 768), padding4 (px 40) (px 16) (px 40) (px 16) ]
+            , mediaPrint [ padding zero ]
             ]
     , itemBlock =
         css
@@ -26,30 +27,29 @@ styles =
             , flexDirection column
             , marginBottom (px 28)
             , property "break-inside" "avoid"
+            , firstOfType [ property "break-before" "avoid" ]
             ]
     , section =
         css
-            [ mediaScreen [ marginBottom (px 80) ]
-            , mediaPrint [ marginBottom (px 60) ]
+            [ marginBottom (px 60)
             ]
     , summary =
         css
             [ displayFlex
             , mediaMobile [ flexDirection column ]
-            , mediaScreen [ marginBottom (px 60) ]
-            , mediaPrint [ marginBottom (px 60) ]
+            , marginBottom (px 40)
             ]
     , headerTextContent =
         css
             [ displayFlex
             , flexDirection column
-            , marginLeft (px 32)
+            , fromPx marginLeft 32
             , mediaMobile [ marginLeft zero, marginTop (px 24) ]
             ]
     , photo =
         css
-            [ width (px 200)
-            , height (px 200)
+            [ fromPx width 200
+            , fromPx height 200
             , borderRadius (px 8)
             , backgroundColor (hex "efefef")
             ]
@@ -58,23 +58,23 @@ styles =
     , headerPrimary =
         css
             [ fontWeight bold
-            , fontSize (px 32)
-            , lineHeight (px 40)
+            , fromPx fontSize 32
+            , fromPx lineHeight 40
             , marginBottom (px 12)
             ]
     , subheader =
         css
             [ fontWeight bold
-            , fontSize (px 24)
-            , lineHeight (px 30)
+            , fromPx fontSize 24
+            , fromPx lineHeight 30
             , marginBottom (px 20)
             , property "break-after" "avoid"
             ]
     , item =
         css
             [ fontWeight normal
-            , fontSize (px 20)
-            , lineHeight (px 25)
+            , fromPx fontSize 20
+            , fromPx lineHeight 25
             , marginBottom (px 8)
             ]
     , link =
@@ -85,8 +85,8 @@ styles =
     , period =
         css
             [ fontWeight normal
-            , fontSize (px 20)
-            , lineHeight (px 25)
+            , fromPx fontSize 20
+            , fromPx lineHeight 25
             , color (hex "707070")
             , marginLeft (px 12)
             ]
@@ -96,7 +96,7 @@ styles =
 
 
 {- TODO:
-   - group everything by skill
+   - typo, nbsp
    - перенос тегов на новую строку
    - явные height и width для изображений, мультисорс, alt
    - пустые ссылки сделать maybe
@@ -126,10 +126,10 @@ printableLink : String -> String -> Html msg
 printableLink title url =
     span []
         [ span [ css [ marginRight (px 12), mediaPrint [ display none ] ] ]
-            [ a [ styles.link, href url, targetBlank, noOpener ] [ text title ] ]
+            [ a [ styles.link, href url, targetBlank, noOpener ] [ text__ title ] ]
         , span [ css [ mediaScreen [ display none ] ] ]
-            [ text <| title ++ ": "
-            , a [ styles.link, href url, targetBlank, noOpener ] [ text url ]
+            [ text__ <| title ++ ": "
+            , a [ styles.link, href url, targetBlank, noOpener ] [ text__ url ]
             ]
         ]
 
@@ -151,12 +151,12 @@ summarySection =
         [ img [ styles.photo, src "https://avatars2.githubusercontent.com/u/17773003?s=400" ] []
         , div
             [ styles.headerTextContent ]
-            [ h1 [ styles.headerPrimary ] [ text "Vladimir Logachev" ]
+            [ h1 [ styles.headerPrimary ] [ text__ "Vladimir Logachev" ]
             , div [ css [ marginBottom (px 8) ] ]
-                [ p [] [ text "Fullstack developer, FP enthusiast." ]
-                , p [] [ text "Remote (Novosibirsk, Russia)" ]
+                [ p [] [ text__ "Fullstack developer, FP enthusiast." ]
+                , p [] [ text__ "Remote (Novosibirsk, Russia)" ]
                 ]
-            , a [ styles.link, css [ marginBottom (px 8) ], href "mailto: logachev.dev@ya.ru", targetBlank, noOpener ] [ text "logachev.dev@ya.ru" ]
+            , a [ styles.link, css [ marginBottom (px 8) ], href "mailto: logachev.dev@ya.ru", targetBlank, noOpener ] [ text__ "logachev.dev@ya.ru" ]
             , div [ css [ displayFlex, marginBottom (px 8), mediaPrint [ flexDirection column ] ] ]
                 [ span [ css [ mediaScreen [ display none ] ] ] [ printableLink "Site" "https://logachev.dev" ]
                 , printableLink "GitHub" "https://github.com/vladimirlogachev"
@@ -165,7 +165,7 @@ summarySection =
                 , printableLink "LinkedIn" "https://www.linkedin.com/in/vladimirlogachev"
                 ]
             , div [ css [ marginBottom (px 8), mediaPrint [ display none ] ] ]
-                [ a [ styles.link, href "https://logachev.dev/cv_vladimir_logachev.pdf", targetBlank, noOpener ] [ text "Download cv" ] ]
+                [ a [ styles.link, href "https://logachev.dev/cv_vladimir_logachev.pdf", targetBlank, noOpener ] [ text__ "Download cv" ] ]
             ]
         ]
 
@@ -177,12 +177,12 @@ summarySection =
 bioSection : Html msg
 bioSection =
     section [ styles.section ]
-        [ h2 [ styles.subheader ] [ text "Bio" ]
-        , p [ css [ marginBottom (px 12) ] ] [ text "I prefer functional languages that implement strict static typing. I use Haskell, Elm, and Scala, but am also ready to tackle any other typed functional language." ]
-        , p [ css [ marginBottom (px 12) ] ] [ text "I associate the success in my career with FP, so I devote a lot of time and attention not only to code but also to people. My mission as a developer is to make functional programming deliver value to both companies and individual specialists." ]
-        , p [ css [ marginBottom (px 12) ] ] [ text "I'm a big fan of meetups and reading groups, which I run at my workplaces from time to time, and also I consider pair programming and pair testing to be an effective practice." ]
-        , p [ css [ marginBottom (px 12) ] ] [ text "In programming, I prefer not to rely on intuition (which, I believe, is usually based on previous experiences and tends to fail in unprecedented situations), but instead, read books well in advance." ]
-        , p [ css [ marginBottom (px 12) ] ] [ text "Although most of my commercial experience is in front-end development, I am looking for an opportunity to specialize in the backend and am not interested in job offers that involve doing tasks using JS / TS." ]
+        [ h2 [ styles.subheader ] [ text__ "About me" ]
+        , p [ css [ marginBottom (px 12) ] ] [ text__ "I prefer functional languages that implement strict static typing. I use Haskell, Elm, and Scala, but am also ready to tackle any other typed functional language." ]
+        , p [ css [ marginBottom (px 12) ] ] [ text__ "I associate the success in my career with FP, so I devote a lot of time and attention not only to code but also to people. My mission as a developer is to make functional programming deliver value to both companies and individual specialists." ]
+        , p [ css [ marginBottom (px 12) ] ] [ text__ "I'm a big fan of meetups and reading groups, which I run at my workplaces from time to time, and also I consider pair programming and pair testing to be an effective practice." ]
+        , p [ css [ marginBottom (px 12) ] ] [ text__ "In programming, I prefer not to rely on intuition (which, I believe, is usually based on previous experiences and tends to fail in unprecedented situations), but instead, read books well in advance." ]
+        , p [ css [ marginBottom (px 12) ] ] [ text__ "Although most of my commercial experience is in front-end development, I am looking for an opportunity to specialize in the backend and am not interested in job offers that involve doing tasks using JS / TS." ]
         ]
 
 
@@ -191,7 +191,7 @@ bioSection =
 
 
 type alias Detail =
-    { name : String, text : String }
+    { name : String, text__ : String }
 
 
 type alias SkillRecord =
@@ -209,13 +209,13 @@ skillRecords =
       , description = ""
       , details =
             [ { name = "Concepts"
-              , text = "Monads, applicatives, monad transformers"
+              , text__ = "Monads, applicatives, monad transformers"
               }
             , { name = "Libraries"
-              , text = "mu-hakell, postgres-typed, aeson, parsec, transformers" -- mtl, time, split, wai, wai-extra, wai-cors, servant-options, servant, beam, postgres-simple
+              , text__ = "mu-hakell, postgres-typed, aeson, parsec, transformers" -- mtl, time, split, wai, wai-extra, wai-cors, servant-options, servant, beam, postgres-simple
               }
             , { name = "Language extensions"
-              , text = "TypeApplications, TypeOperators, PartialTypeSignatures, DeriveFunctor, StandaloneDeriving, OverloadedStrings" -- need moar!
+              , text__ = "TypeApplications, TypeOperators, PartialTypeSignatures, DeriveFunctor, StandaloneDeriving, OverloadedStrings" -- need moar!
               }
             ]
       }
@@ -224,13 +224,13 @@ skillRecords =
       , description = ""
       , details =
             [ { name = "FP"
-              , text = "cats-core, cats-effect, fs2, scala-parser-combinators"
+              , text__ = "cats-core, cats-effect, fs2, scala-parser-combinators"
               }
             , { name = "Testing"
-              , text = "scalatest, scalacheck, specs2"
+              , text__ = "scalatest, scalacheck, specs2"
               }
             , { name = "Other libraries"
-              , text = "scodec, akka, akka-http, akka-stream, scala-parser-combinators"
+              , text__ = "scodec, akka, akka-http, akka-stream, scala-parser-combinators"
               }
             ]
       }
@@ -239,10 +239,10 @@ skillRecords =
       , description = ""
       , details =
             [ { name = "Concepts"
-              , text = "Tasks, Ports, JSON encoding/decoding, Browser API Interop (Websockets)"
+              , text__ = "Tasks, Ports, JSON encoding/decoding, Browser API Interop (Websockets)"
               }
             , { name = "Libraries"
-              , text = "elm-css, elm-graphql, elm-ordering, elm-units, elm-dropbox, elm-crypto-string"
+              , text__ = "elm-css, elm-graphql, elm-ordering, elm-units, elm-dropbox, elm-crypto-string"
               }
             ]
       }
@@ -251,13 +251,13 @@ skillRecords =
       , description = ""
       , details =
             [ { name = "Databases"
-              , text = "PostgreSQL, Redis, Clickhouse, MongoDB" -- Kafka, Spark, Hazelcast
+              , text__ = "PostgreSQL, Redis, Clickhouse, MongoDB" -- Kafka, Spark, Hazelcast
               }
             , { name = "Infrastructure and tooling"
-              , text = "Docker, Dhall, GitHub Actions" -- Nix, NixOS, AmazonAWS, K8s
+              , text__ = "Docker, Dhall, GitHub Actions" -- Nix, NixOS, AmazonAWS, K8s
               }
             , { name = "APIs"
-              , text = "GraphQL" -- gRPC, Auth0, OpenAPI, JWT, KeyCloak
+              , text__ = "GraphQL" -- gRPC, Auth0, OpenAPI, JWT, KeyCloak
               }
             ]
       }
@@ -267,8 +267,8 @@ skillRecords =
 showDetail : Detail -> Html msg
 showDetail x =
     div []
-        [ span [] [ text (x.name ++ ": ") ]
-        , span [ styles.detail ] [ text x.text ]
+        [ span [] [ text__ (x.name ++ ": ") ]
+        , span [ styles.detail ] [ text__ x.text__ ]
         ]
 
 
@@ -276,17 +276,17 @@ showSkillRecord : SkillRecord -> Html msg
 showSkillRecord x =
     div [ styles.itemBlock ]
         [ h3 [ styles.item, css [ displayFlex, alignItems center ] ]
-            [ Maybe.map (\iconFile -> icon iconFile x.title) x.icon |> Maybe.withDefault (text "")
-            , text x.title
+            [ Maybe.map (\iconFile -> icon iconFile x.title) x.icon |> Maybe.withDefault (text__ "")
+            , text__ x.title
             ]
-        , span [] [ text x.description ]
+        , span [] [ text__ x.description ]
         , div [] <| List.map showDetail x.details
         ]
 
 
 skillsSection : Html msg
 skillsSection =
-    section [ styles.section ] (h2 [ styles.subheader ] [ text "Skills and usage experience" ] :: List.map showSkillRecord skillRecords)
+    section [ styles.section ] (h2 [ styles.subheader ] [ text__ "Skills and usage experience" ] :: List.map showSkillRecord skillRecords)
 
 
 
@@ -304,10 +304,10 @@ type alias Project =
 showProject : Project -> Html msg
 showProject x =
     div [ styles.itemBlock ]
-        [ a [ css [ mediaPrint [ color (hex "212121") ] ], styles.item, styles.link, href x.url, targetBlank, noOpener ] [ text x.title ]
-        , a [ css [ mediaScreen [ display none ] ], styles.item, styles.link, href x.url, targetBlank, noOpener ] [ text x.url ]
-        , span [] [ text x.description ]
-        , span [ styles.detail ] [ text x.tags ]
+        [ a [ css [ mediaPrint [ color (hex "212121") ] ], styles.item, styles.link, href x.url, targetBlank, noOpener ] [ text__ x.title ]
+        , a [ css [ mediaScreen [ display none ] ], styles.item, styles.link, href x.url, targetBlank, noOpener ] [ text__ x.url ]
+        , span [] [ text__ x.description ]
+        , span [ styles.detail ] [ text__ x.tags ]
         ]
 
 
@@ -340,7 +340,7 @@ showcaseProjects =
 showcaseProjectsSection : Html msg
 showcaseProjectsSection =
     section [ styles.section ]
-        (h2 [ styles.subheader ] [ text "Showcase projects and assessments" ] :: List.map showProject showcaseProjects)
+        (h2 [ styles.subheader ] [ text__ "Showcase projects and assessments" ] :: List.map showProject showcaseProjects)
 
 
 
@@ -370,7 +370,7 @@ contributionRecords =
 
 contributionsSection : Html msg
 contributionsSection =
-    section [ styles.section ] (h2 [ styles.subheader ] [ text "Notable contributions" ] :: List.map showProject contributionRecords)
+    section [ styles.section ] (h2 [ styles.subheader ] [ text__ "Notable contributions" ] :: List.map showProject contributionRecords)
 
 
 
@@ -412,16 +412,16 @@ educationRecords =
 showEducationRecord : EducationRecord -> Html msg
 showEducationRecord x =
     div [ styles.itemBlock ]
-        [ span [ styles.item ] [ text x.title ]
-        , a [ styles.link, href x.url, targetBlank, noOpener ] [ text x.url ]
-        , span [ styles.detail ] [ text x.details ]
+        [ span [ styles.item ] [ text__ x.title ]
+        , a [ styles.link, href x.url, targetBlank, noOpener ] [ text__ x.url ]
+        , span [ styles.detail ] [ text__ x.details ]
         ]
 
 
 educationSection : Html msg
 educationSection =
     section [ styles.section ]
-        (h2 [ styles.subheader ] [ text "Education and courses" ] :: List.map showEducationRecord educationRecords)
+        (h2 [ styles.subheader ] [ text__ "Education and courses" ] :: List.map showEducationRecord educationRecords)
 
 
 
@@ -498,16 +498,16 @@ experienceRecords =
 showExperienceRecord : ExperienceRecord -> Html msg
 showExperienceRecord x =
     div [ styles.itemBlock ]
-        [ span [ styles.item ] [ text x.companyAndTitle, span [ styles.period ] [ text (showDate x.startDate ++ " — " ++ showDate x.endDate) ] ]
-        , a [ styles.link, href x.url, targetBlank, noOpener ] [ text x.url ]
-        , span [] [ text x.roleDescription ]
-        , span [ styles.detail ] [ text x.tags ]
+        [ span [ styles.item ] [ text__ x.companyAndTitle, span [ styles.period ] [ text__ (showDate x.startDate ++ " — " ++ showDate x.endDate) ] ]
+        , a [ styles.link, href x.url, targetBlank, noOpener ] [ text__ x.url ]
+        , span [] [ text__ x.roleDescription ]
+        , span [ styles.detail ] [ text__ x.tags ]
         ]
 
 
 experienceSection : Html msg
 experienceSection =
-    section [ styles.section ] (h2 [ styles.subheader ] [ text "Experience" ] :: List.map showExperienceRecord experienceRecords)
+    section [ styles.section ] (h2 [ styles.subheader ] [ text__ "Experience" ] :: List.map showExperienceRecord experienceRecords)
 
 
 
@@ -541,3 +541,27 @@ noOpener =
 targetBlank : Html.Styled.Attribute msg
 targetBlank =
     Attributes.target "_blank"
+
+
+
+-- Print specific
+
+
+screenMultiplier : Float
+screenMultiplier =
+    0.75
+
+
+printMultiplier : Float
+printMultiplier =
+    1.18
+
+
+{-| Convert pixels (like in figma) to both screen- and print-friendly units
+-}
+fromPx : (Pt -> Style) -> Int -> Style
+fromPx f pixels =
+    batch
+        [ mediaScreen [ f <| pt (toFloat pixels * screenMultiplier) ]
+        , mediaPrint [ f <| pt (toFloat pixels * printMultiplier) ]
+        ]
