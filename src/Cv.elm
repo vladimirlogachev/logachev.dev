@@ -128,7 +128,7 @@ printableLink title url =
         [ span [ css [ marginRight (px 12), mediaPrint [ display none ] ] ]
             [ a [ styles.link, href url, targetBlank, noOpener ] [ text__ title ] ]
         , span [ css [ mediaScreen [ display none ] ] ]
-            [ text__ <| title ++ ": "
+            [ span [ css [ fromPx marginRight 6 ] ] [ text__ <| title ++ ":" ]
             , a [ styles.link, href url, targetBlank, noOpener ] [ text__ url ]
             ]
         ]
@@ -267,7 +267,7 @@ skillRecords =
 showDetail : Detail -> Html msg
 showDetail x =
     div []
-        [ span [] [ text__ (x.name ++ ": ") ]
+        [ span [ css [ fromPx marginRight 6 ] ] [ text__ (x.name ++ ": ") ]
         , span [ styles.detail ] [ text__ x.text__ ]
         ]
 
