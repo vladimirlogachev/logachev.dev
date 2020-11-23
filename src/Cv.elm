@@ -2,7 +2,6 @@ module Cv exposing (view)
 
 import Css exposing (..)
 import Css.Media as Media exposing (only, orientation, portrait, print, screen, withMedia)
-import Css.Transitions exposing (marginLeft3)
 import Html.Styled exposing (..)
 import Html.Styled.Attributes as Attributes exposing (alt, attribute, css, href, src, title)
 import Typography exposing (text__)
@@ -39,12 +38,12 @@ styles =
             , mediaMobile [ flexDirection column ]
             , marginBottom (px 40)
             ]
-    , headerTextContent =
+    , summaryTextContent =
         css
             [ displayFlex
             , flexDirection column
-            , fromPx marginLeft 32
-            , mediaMobile [ marginLeft zero, marginTop (px 24) ]
+            , mediaDesktop [ fromPx marginLeft 32 ]
+            , mediaMobile [ important <| marginLeft zero, marginTop (px 24) ]
             ]
     , photo =
         css
@@ -96,7 +95,11 @@ styles =
 
 
 {- TODO:
-   - typo, nbsp
+   - выпилить все размеры в px, поресёрчить способ фиксирования размера поинта для разных медиа.
+     Цель - просто задавать число в поинтах, желательно равное числу пикселей на десктопе,
+     и получать абсолютно такой же выход на печати.
+     Альтернативный вариант - возвращать record (но это сильно замарает код).
+   - убрать important
    - перенос тегов на новую строку
    - явные height и width для изображений, мультисорс, alt
    - пустые ссылки сделать maybe
@@ -150,7 +153,7 @@ summarySection =
     div [ styles.summary ]
         [ img [ styles.photo, src "https://avatars2.githubusercontent.com/u/17773003?s=400" ] []
         , div
-            [ styles.headerTextContent ]
+            [ styles.summaryTextContent ]
             [ h1 [ styles.headerPrimary ] [ text__ "Vladimir Logachev" ]
             , div [ css [ marginBottom (px 8) ] ]
                 [ p [] [ text__ "Fullstack developer, FP enthusiast." ]
@@ -191,7 +194,7 @@ bioSection =
 
 
 type alias Detail =
-    { name : String, text__ : String }
+    { name : String, text : String }
 
 
 type alias SkillRecord =
@@ -209,13 +212,13 @@ skillRecords =
       , description = ""
       , details =
             [ { name = "Concepts"
-              , text__ = "Monads, applicatives, monad transformers"
+              , text = "Monads, applicatives, monad transformers"
               }
             , { name = "Libraries"
-              , text__ = "mu-hakell, postgres-typed, aeson, parsec, transformers" -- mtl, time, split, wai, wai-extra, wai-cors, servant-options, servant, beam, postgres-simple
+              , text = "mu-hakell, postgres-typed, aeson, parsec, transformers" -- mtl, time, split, wai, wai-extra, wai-cors, servant-options, servant, beam, postgres-simple
               }
             , { name = "Language extensions"
-              , text__ = "TypeApplications, TypeOperators, PartialTypeSignatures, DeriveFunctor, StandaloneDeriving, OverloadedStrings" -- need moar!
+              , text = "TypeApplications, TypeOperators, PartialTypeSignatures, DeriveFunctor, StandaloneDeriving, OverloadedStrings" -- need moar!
               }
             ]
       }
@@ -224,13 +227,13 @@ skillRecords =
       , description = ""
       , details =
             [ { name = "FP"
-              , text__ = "cats-core, cats-effect, fs2, scala-parser-combinators"
+              , text = "cats-core, cats-effect, fs2, scala-parser-combinators"
               }
             , { name = "Testing"
-              , text__ = "scalatest, scalacheck, specs2"
+              , text = "scalatest, scalacheck, specs2"
               }
             , { name = "Other libraries"
-              , text__ = "scodec, akka, akka-http, akka-stream, scala-parser-combinators"
+              , text = "scodec, akka, akka-http, akka-stream, scala-parser-combinators"
               }
             ]
       }
@@ -239,10 +242,10 @@ skillRecords =
       , description = ""
       , details =
             [ { name = "Concepts"
-              , text__ = "Tasks, Ports, JSON encoding/decoding, Browser API Interop (Websockets)"
+              , text = "Tasks, Ports, JSON encoding/decoding, Browser API Interop (Websockets)"
               }
             , { name = "Libraries"
-              , text__ = "elm-css, elm-graphql, elm-ordering, elm-units, elm-dropbox, elm-crypto-string"
+              , text = "elm-css, elm-graphql, elm-ordering, elm-units, elm-dropbox, elm-crypto-string"
               }
             ]
       }
@@ -251,13 +254,13 @@ skillRecords =
       , description = ""
       , details =
             [ { name = "Databases"
-              , text__ = "PostgreSQL, Redis, Clickhouse, MongoDB" -- Kafka, Spark, Hazelcast
+              , text = "PostgreSQL, Redis, Clickhouse, MongoDB" -- Kafka, Spark, Hazelcast
               }
             , { name = "Infrastructure and tooling"
-              , text__ = "Docker, Dhall, GitHub Actions" -- Nix, NixOS, AmazonAWS, K8s
+              , text = "Docker, Dhall, GitHub Actions" -- Nix, NixOS, AmazonAWS, K8s
               }
             , { name = "APIs"
-              , text__ = "GraphQL" -- gRPC, Auth0, OpenAPI, JWT, KeyCloak
+              , text = "GraphQL" -- gRPC, Auth0, OpenAPI, JWT, KeyCloak
               }
             ]
       }
@@ -268,7 +271,7 @@ showDetail : Detail -> Html msg
 showDetail x =
     div []
         [ span [ css [ fromPx marginRight 6 ] ] [ text__ (x.name ++ ": ") ]
-        , span [ styles.detail ] [ text__ x.text__ ]
+        , span [ styles.detail ] [ text__ x.text ]
         ]
 
 
@@ -349,12 +352,7 @@ showcaseProjectsSection =
 
 contributionRecords : List Project
 contributionRecords =
-    [ { title = "FP Specialty"
-      , url = "https://t.me/fpspecialty_ru"
-      , description = "I run this FP reading group for russian-speaking users. During COVID lockdown we discuss PF books and courses remotely, on a weekly basis, but in the past it used to be an offline group."
-      , tags = "Reading group"
-      }
-    , { title = "higherkindness/mu-graphql-example-elm"
+    [ { title = "higherkindness/mu-graphql-example-elm"
       , url = "https://github.com/higherkindness/mu-graphql-example-elm"
       , description = "An example of how to implement both frontend and backend in a schema-first, typesafe, and functional way (for the mu-haskell library, demonstrating its GraphQL capabilities). I rebuilt its Elm frontend and made minor changes to Haskell backend (and also discovered a couple of bugs)."
       , tags = "Elm, Haskell, GraphQL"
@@ -364,6 +362,11 @@ contributionRecords =
       , description = """The book introduces the reader to the functional programming paradigm and describes a functional approach to developing JavaScript applications.
         The translation was initiated by Maxim Filippov and stopped at 60%. Then me and Sakayama joined the translation, refactored every chapter translated before us and then finished the translation."""
       , tags = "JavaScript"
+      }
+    , { title = "FP Specialty"
+      , url = "https://t.me/fpspecialty_ru"
+      , description = "I run this FP reading group for russian-speaking users. During COVID lockdown we discuss PF books and courses remotely, on a weekly basis, but in the past it used to be an offline group."
+      , tags = "Reading group"
       }
     ]
 
@@ -518,9 +521,19 @@ type alias Date =
     { month : Int, year : Int }
 
 
+mobileBreakpoint : Float
+mobileBreakpoint =
+    600
+
+
 mediaMobile : List Style -> Style
 mediaMobile =
-    withMedia [ only screen [ Media.maxWidth (px 600) ] ]
+    withMedia [ only screen [ Media.maxWidth (px (mobileBreakpoint - 1)) ] ]
+
+
+mediaDesktop : List Style -> Style
+mediaDesktop =
+    withMedia [ only screen [ Media.minWidth (px mobileBreakpoint) ] ]
 
 
 mediaScreen : List Style -> Style
