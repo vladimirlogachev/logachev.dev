@@ -1,7 +1,7 @@
 module Cv exposing (view)
 
 import Css exposing (..)
-import Css.Media as Media exposing (only, orientation, portrait, print, screen, withMedia)
+import Css.Media as Media exposing (only, print, screen, withMedia)
 import Html.Styled exposing (..)
 import Html.Styled.Attributes as Attributes exposing (alt, attribute, css, href, src, title)
 import Typography exposing (text__)
@@ -105,6 +105,8 @@ styles =
    - пустые ссылки сделать maybe
    - дрочкануть lighthouse
    - длинные ссылки выбиваются за пределы мобильного холста
+   - обозначить софт скиллы
+   - обозначить долгосрочные профессиональные цели
 -}
 
 
@@ -185,7 +187,8 @@ bioSection =
         , p [ css [ marginBottom (px 12) ] ] [ text__ "I associate the success in my career with FP, so I devote a lot of time and attention not only to code but also to people. My mission as a developer is to make functional programming deliver value to both companies and individual specialists." ]
         , p [ css [ marginBottom (px 12) ] ] [ text__ "I'm a big fan of meetups and reading groups, which I run at my workplaces from time to time, and also I consider pair programming and pair testing to be an effective practice." ]
         , p [ css [ marginBottom (px 12) ] ] [ text__ "In programming, I prefer not to rely on intuition (which, I believe, is usually based on previous experiences and tends to fail in unprecedented situations), but instead, read books well in advance." ]
-        , p [ css [ marginBottom (px 12) ] ] [ text__ "Although most of my commercial experience is in front-end development, I am looking for an opportunity to specialize in the backend and am not interested in job offers that involve doing tasks using JS / TS." ]
+
+        -- , p [ css [ marginBottom (px 12) ] ] [ text__ "Although most of my commercial experience is in front-end development, I am looking for an opportunity to specialize in the backend and am not interested in job offers that involve doing tasks using JS / TS." ]
         ]
 
 
@@ -215,10 +218,10 @@ skillRecords =
               , text = "Monads, applicatives, monad transformers"
               }
             , { name = "Libraries"
-              , text = "mu-hakell, postgres-typed, aeson, parsec, transformers" -- mtl, time, split, wai, wai-extra, wai-cors, servant-options, servant, beam, postgres-simple
+              , text = "mu-hakell, postgres-typed, aeson, parsec, transformers, mtl, wai, servant"
               }
             , { name = "Language extensions"
-              , text = "TypeApplications, TypeOperators, PartialTypeSignatures, DeriveFunctor, StandaloneDeriving, OverloadedStrings" -- need moar!
+              , text = "TypeApplications, TypeOperators, PartialTypeSignatures, DeriveFunctor, StandaloneDeriving, OverloadedStrings"
               }
             ]
       }
@@ -264,6 +267,16 @@ skillRecords =
               }
             ]
       }
+
+    -- , { icon = Nothing
+    --   , title = "Soft skills"
+    --   , description = ""
+    --   , details =
+    --         [ { name = ""
+    --           , text = ""
+    --           }
+    --         ]
+    --   }
     ]
 
 
@@ -289,7 +302,8 @@ showSkillRecord x =
 
 skillsSection : Html msg
 skillsSection =
-    section [ styles.section ] (h2 [ styles.subheader ] [ text__ "Skills and usage experience" ] :: List.map showSkillRecord skillRecords)
+    section [ styles.section ]
+        (h2 [ styles.subheader ] [ text__ "Skills and usage experience" ] :: List.map showSkillRecord skillRecords)
 
 
 
@@ -307,8 +321,24 @@ type alias Project =
 showProject : Project -> Html msg
 showProject x =
     div [ styles.itemBlock ]
-        [ a [ css [ mediaPrint [ color (hex "212121") ] ], styles.item, styles.link, href x.url, targetBlank, noOpener ] [ text__ x.title ]
-        , a [ css [ mediaScreen [ display none ] ], styles.item, styles.link, href x.url, targetBlank, noOpener ] [ text__ x.url ]
+        [ a
+            [ css [ mediaPrint [ color (hex "212121") ] ]
+            , styles.item
+            , styles.link
+            , href x.url
+            , targetBlank
+            , noOpener
+            ]
+            [ text__ x.title ]
+        , a
+            [ css [ mediaScreen [ display none ] ]
+            , styles.item
+            , styles.link
+            , href x.url
+            , targetBlank
+            , noOpener
+            ]
+            [ text__ x.url ]
         , span [] [ text__ x.description ]
         , span [ styles.detail ] [ text__ x.tags ]
         ]
@@ -321,14 +351,29 @@ showcaseProjects =
       -- , description = "A GraphQL API and frontend for my personal offline library. Key feature: compile-time typecheck against both PostgreSQL and GraphQL schemas (both backend and frontend)."
       -- , tags = "Haskell, Elm, GraphQL, Mu-Haskell, postgres-typed, elm-graphql"
       -- }
-      { title = "Transitive Closure (assessment)"
+      { title = "servant-to-elm example"
+      , url = "https://github.com/VladimirLogachev/servant-to-elm-example"
+      , description = """An example full-stack web application, built in a typesafe functional way. 
+      What's cool there is that servant-to-elm does the job of generating types and decoders/encoders 
+      from Haskell types and Servant definition to Elm, which not only catches regressions 
+      in the compile-time but also provides ready (and highly configurable) Elm functions 
+      to fetch necessary data from the server."""
+      , tags = "Elm, Haskell, Servant, SQLite"
+      }
+    , { title = "Transitive Closure (assessment)"
       , url = "https://github.com/VladimirLogachev/transitive_closure"
-      , description = "A function that accepts list of object ids and returns those objects and all objects which they refer to (directly or indirectly) from some Repository with monadic interface. The code is pretty abstract, but still well-tested (including tests for cases like very large referencing graphs and cyclic references)."
+      , description = """A function that accepts list of object ids and returns those objects 
+      and all objects which they refer to (directly or indirectly) from some Repository 
+      with monadic interface. The code is pretty abstract, 
+      but still well-tested (including tests
+      for cases like very large referencing graphs and cyclic references)."""
       , tags = "Scala, Cats, ScalaTest"
       }
     , { title = "Web crawler microservice (assessment)"
       , url = "https://github.com/VladimirLogachev/crawler"
-      , description = "A microservice that accepts a list of page urls and returns a list of page titles. It takes into account situations like bad urls, duplicate urls, redirects, concurrency and backpressure."
+      , description = """A microservice that accepts a list of page urls and returns 
+      a list of page titles. It takes into account situations like bad urls, 
+      duplicate urls, redirects, concurrency and backpressure."""
       , tags = "Scala, Akka HTTP"
       }
 
@@ -364,8 +409,8 @@ contributionRecords =
       , tags = "JavaScript"
       }
     , { title = "FP Specialty"
-      , url = "https://t.me/fpspecialty_ru"
-      , description = "I run this FP reading group for russian-speaking users. During COVID lockdown we discuss PF books and courses remotely, on a weekly basis, but in the past it used to be an offline group."
+      , url = "https://fpspecialty.github.io"
+      , description = "I lead a functional programming reading group for English speaking users of all functional programming skills."
       , tags = "Reading group"
       }
     ]
@@ -434,7 +479,7 @@ educationSection =
 type alias ExperienceRecord =
     { companyAndTitle : String
     , startDate : Date
-    , endDate : Date
+    , endDate : Maybe Date
     , url : String
     , roleDescription : String
     , tags : String
@@ -450,9 +495,17 @@ showDate d =
 
 experienceRecords : List ExperienceRecord
 experienceRecords =
-    [ { companyAndTitle = "Pamir, frontend developer"
+    [ { companyAndTitle = "ElectroNeek Robotics, Inc, frontend developer"
+      , startDate = Date 1 2021
+      , endDate = Nothing
+      , url = "https://electroneek.com"
+      , roleDescription = ""
+      , tags = """Backend: TypeScript, MongoDB, Nest.js, Jest;
+        Infrastructure: Gitlab CI"""
+      }
+    , { companyAndTitle = "Pamir, frontend developer"
       , startDate = Date 5 2020
-      , endDate = Date 12 2020
+      , endDate = Just <| Date 12 2020
       , url = ""
       , roleDescription = "Developed a web application, which utilizes server-side rendering and covered it with unit tests. Packaged everything in Docker and set up CI. I also mentored the second frontend developer who joined the team later."
       , tags = """Frontend: TypeScript, React, Next.js, GraphQL, Apollo, FP-TS, Emotion, Jest;
@@ -460,14 +513,14 @@ experienceRecords =
       }
     , { companyAndTitle = "Eldis, software engineer"
       , startDate = Date 10 2019
-      , endDate = Date 12 2019
+      , endDate = Just <| Date 12 2019
       , url = "https://eldis.ru"
       , roleDescription = "I developed a declarative decoder for the internal binary document format, covered it with tests, including property-based testing."
       , tags = "Scala, scodec, cats, fs2, decline, specs2, scalacheck"
       }
     , { companyAndTitle = "Neolab-Nsk, fullstack developer"
       , startDate = Date 1 2019
-      , endDate = Date 9 2019
+      , endDate = Just <| Date 9 2019
       , url = ""
       , roleDescription = "I implemented new functionality in existing web applications, fixed defects and developed new applications, and microservices, covered them with unit tests and integration tests."
       , tags = """Frontend: TypeScript, React, Redux, Saga, RxJS, FP-TS;
@@ -475,7 +528,7 @@ experienceRecords =
       }
     , { companyAndTitle = "SocialSweet Inc, frontend developer"
       , startDate = Date 8 2018
-      , endDate = Date 1 2019
+      , endDate = Just <| Date 1 2019
       , url = "https://sweet.io"
       , roleDescription = """Sweet's product is a loyalty platform, social network and online store.
         I performed tasks related to business logic at the front end and was engaged in covering the existing code
@@ -485,7 +538,7 @@ experienceRecords =
       }
     , { companyAndTitle = "Allmax, frontend developer"
       , startDate = Date 11 2017
-      , endDate = Date 8 2018
+      , endDate = Just <| Date 8 2018
       , url = "https://savl.com/"
       , roleDescription = """I worked in the Savl project — this is a mobile application, wallet with support for 6 cryptocurrencies.
         I was responsible for the data layer in the mobile application. I applied everything that I learned from books
@@ -501,7 +554,16 @@ experienceRecords =
 showExperienceRecord : ExperienceRecord -> Html msg
 showExperienceRecord x =
     div [ styles.itemBlock ]
-        [ span [ styles.item ] [ text__ x.companyAndTitle, span [ styles.period ] [ text__ (showDate x.startDate ++ " — " ++ showDate x.endDate) ] ]
+        [ span [ styles.item ]
+            [ text__ x.companyAndTitle
+            , span [ styles.period ]
+                [ text__
+                    (showDate x.startDate
+                        ++ " — "
+                        ++ (x.endDate |> Maybe.map showDate |> Maybe.withDefault "present")
+                    )
+                ]
+            ]
         , a [ styles.link, href x.url, targetBlank, noOpener ] [ text__ x.url ]
         , span [] [ text__ x.roleDescription ]
         , span [ styles.detail ] [ text__ x.tags ]
@@ -510,7 +572,11 @@ showExperienceRecord x =
 
 experienceSection : Html msg
 experienceSection =
-    section [ styles.section ] (h2 [ styles.subheader ] [ text__ "Experience" ] :: List.map showExperienceRecord experienceRecords)
+    section [ styles.section ]
+        (h2 [ styles.subheader ]
+            [ text__ "Experience" ]
+            :: List.map showExperienceRecord experienceRecords
+        )
 
 
 
