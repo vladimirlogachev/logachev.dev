@@ -495,15 +495,7 @@ showDate d =
 
 experienceRecords : List ExperienceRecord
 experienceRecords =
-    [ { companyAndTitle = "ElectroNeek Robotics, Inc, frontend developer"
-      , startDate = Date 1 2021
-      , endDate = Nothing
-      , url = "https://electroneek.com"
-      , roleDescription = ""
-      , tags = """Backend: TypeScript, MongoDB, Nest.js, Jest;
-        Infrastructure: Gitlab CI"""
-      }
-    , { companyAndTitle = "Pamir, frontend developer"
+    [ { companyAndTitle = "Pamir, frontend developer"
       , startDate = Date 5 2020
       , endDate = Just <| Date 12 2020
       , url = ""
