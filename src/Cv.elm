@@ -93,23 +93,6 @@ styles =
     }
 
 
-
-{- TODO:
-   - выпилить все размеры в px, поресёрчить способ фиксирования размера поинта для разных медиа.
-     Цель - просто задавать число в поинтах, желательно равное числу пикселей на десктопе,
-     и получать абсолютно такой же выход на печати.
-     Альтернативный вариант - возвращать record (но это сильно замарает код).
-   - убрать important
-   - перенос тегов на новую строку
-   - явные height и width для изображений, мультисорс, alt
-   - пустые ссылки сделать maybe
-   - дрочкануть lighthouse
-   - длинные ссылки выбиваются за пределы мобильного холста
-   - обозначить софт скиллы
-   - обозначить долгосрочные профессиональные цели
--}
-
-
 view : Html msg
 view =
     div [ styles.page ]
@@ -183,12 +166,10 @@ bioSection : Html msg
 bioSection =
     section [ styles.section ]
         [ h2 [ styles.subheader ] [ text__ "About me" ]
-        , p [ css [ marginBottom (px 12) ] ] [ text__ "I prefer functional languages that implement strict static typing. I use Haskell, Elm, and Scala, but am also ready to tackle any other typed functional language." ]
+        , p [ css [ marginBottom (px 12) ] ] [ text__ "I prefer functional languages that implement strict static typing, such as Haskell and Elm." ]
         , p [ css [ marginBottom (px 12) ] ] [ text__ "I associate the success in my career with FP, so I devote a lot of time and attention not only to code but also to people. My mission as a developer is to make functional programming deliver value to both companies and individual specialists." ]
         , p [ css [ marginBottom (px 12) ] ] [ text__ "I'm a big fan of meetups and reading groups, which I run at my workplaces from time to time, and also I consider pair programming and pair testing to be an effective practice." ]
         , p [ css [ marginBottom (px 12) ] ] [ text__ "In programming, I prefer not to rely on intuition (which, I believe, is usually based on previous experiences and tends to fail in unprecedented situations), but instead, read books well in advance." ]
-
-        -- , p [ css [ marginBottom (px 12) ] ] [ text__ "Although most of my commercial experience is in front-end development, I am looking for an opportunity to specialize in the backend and am not interested in job offers that involve doing tasks using JS / TS." ]
         ]
 
 
@@ -214,29 +195,33 @@ skillRecords =
       , title = "Haskell"
       , description = ""
       , details =
-            [ { name = "Concepts"
-              , text = "Monads, applicatives, monad transformers"
-              }
-            , { name = "Libraries"
-              , text = "mu-hakell, postgres-typed, aeson, parsec, transformers, mtl, wai, servant"
-              }
-            , { name = "Language extensions"
-              , text = "TypeApplications, TypeOperators, PartialTypeSignatures, DeriveFunctor, StandaloneDeriving, OverloadedStrings"
-              }
-            ]
-      }
-    , { icon = Just "scala.svg"
-      , title = "Scala"
-      , description = ""
-      , details =
-            [ { name = "FP"
-              , text = "cats-core, cats-effect, fs2, scala-parser-combinators"
-              }
-            , { name = "Testing"
-              , text = "scalatest, scalacheck, specs2"
-              }
-            , { name = "Other libraries"
-              , text = "scodec, akka, akka-http, akka-stream, scala-parser-combinators"
+            [ { name = "Libraries I'm familiar with"
+              , text =
+                    [ "aeson"
+                    , "Decimal"
+                    , "fmt"
+                    , "generic-random"
+                    , "haskell-to-elm"
+                    , "hspec-golden"
+                    , "hspec"
+                    , "http-conduit"
+                    , "lens"
+                    , "mtl"
+                    , "mu-graphql"
+                    , "nonempty-containers"
+                    , "parsec"
+                    , "persistent"
+                    , "postgresql-typed"
+                    , "QuickCheck"
+                    , "relude"
+                    , "retry"
+                    , "servant-server"
+                    , "time"
+                    , "transformers"
+                    , "wai"
+                    ]
+                        |> List.sort
+                        |> String.join ", "
               }
             ]
       }
@@ -245,10 +230,52 @@ skillRecords =
       , description = ""
       , details =
             [ { name = "Concepts"
-              , text = "Tasks, Ports, JSON encoding/decoding, Browser API Interop (Websockets)"
+              , text = "Tasks, Ports, JSON encoding/decoding, Browser API Interop (Websockets, LocalStorage)"
               }
             , { name = "Libraries"
-              , text = "elm-css, elm-graphql, elm-ordering, elm-units, elm-dropbox, elm-crypto-string"
+              , text =
+                    [ "elm-all-set"
+                    , "elm-charts"
+                    , "elm-crypto-string"
+                    , "elm-css"
+                    , "elm-dropbox"
+                    , "elm-graphql"
+                    , "elm-ordering"
+                    , "elm-review"
+                    , "elm-round"
+                    , "elm-ui"
+                    , "elm-units"
+                    , "random"
+                    , "remotedata"
+                    , "svg"
+                    , "test"
+                    ]
+                        |> List.sort
+                        |> String.join ", "
+              }
+            ]
+      }
+    , { icon = Just "scala.svg"
+      , title = "Scala"
+      , description = ""
+      , details =
+            [ { name = "Libraries"
+              , text =
+                    [ "cats-core"
+                    , "cats-effect"
+                    , "fs2"
+                    , "scala-parser-combinators"
+                    , "scalatest"
+                    , "scalacheck"
+                    , "specs2"
+                    , "scodec"
+                    , "akka"
+                    , "akka-http"
+                    , "akka-stream"
+                    , "scala-parser-combinators"
+                    ]
+                        |> List.sort
+                        |> String.join ", "
               }
             ]
       }
@@ -257,26 +284,22 @@ skillRecords =
       , description = ""
       , details =
             [ { name = "Databases"
-              , text = "PostgreSQL, Redis, Clickhouse, MongoDB" -- Kafka, Spark, Hazelcast
+              , text = "PostgreSQL, Redis, Clickhouse, MongoDB"
               }
             , { name = "Infrastructure and tooling"
-              , text = "Docker, Dhall, GitHub Actions" -- Nix, NixOS, AmazonAWS, K8s
+              , text = "Docker, GitHub Actions, Dhall"
               }
             , { name = "APIs"
-              , text = "GraphQL" -- gRPC, Auth0, OpenAPI, JWT, KeyCloak
+              , text = "GraphQL"
+              }
+            , { name = "Other tools"
+              , text =
+                    [ "GitHub Projects", "Miro", "Figma" ]
+                        |> List.sort
+                        |> String.join ", "
               }
             ]
       }
-
-    -- , { icon = Nothing
-    --   , title = "Soft skills"
-    --   , description = ""
-    --   , details =
-    --         [ { name = ""
-    --           , text = ""
-    --           }
-    --         ]
-    --   }
     ]
 
 
@@ -346,12 +369,7 @@ showProject x =
 
 showcaseProjects : List Project
 showcaseProjects =
-    [ -- { title = "Library CMS"
-      -- , url = "https://github.com/VladimirLogachev/library"
-      -- , description = "A GraphQL API and frontend for my personal offline library. Key feature: compile-time typecheck against both PostgreSQL and GraphQL schemas (both backend and frontend)."
-      -- , tags = "Haskell, Elm, GraphQL, Mu-Haskell, postgres-typed, elm-graphql"
-      -- }
-      { title = "servant-to-elm example"
+    [ { title = "servant-to-elm example"
       , url = "https://github.com/VladimirLogachev/servant-to-elm-example"
       , description = """An example full-stack web application, built in a typesafe functional way. 
       What's cool there is that servant-to-elm does the job of generating types and decoders/encoders 
@@ -376,12 +394,6 @@ showcaseProjects =
       duplicate urls, redirects, concurrency and backpressure."""
       , tags = "Scala, Akka HTTP"
       }
-
-    -- Meetup platform
-    -- Captain Million
-    -- Scalac-like assessment
-    -- DataWorks-like assessment with tables
-    -- CFT-like assessment
     ]
 
 
@@ -477,7 +489,8 @@ educationSection =
 
 
 type alias ExperienceRecord =
-    { companyAndTitle : String
+    { company : String
+    , title : String
     , startDate : Date
     , endDate : Maybe Date
     , url : String
@@ -495,7 +508,32 @@ showDate d =
 
 experienceRecords : List ExperienceRecord
 experienceRecords =
-    [ { companyAndTitle = "Pamir, frontend developer"
+    [ { company = "Wolf, private trading platform"
+      , title = "Principal engineer, founder"
+      , startDate = Date 8 2021
+      , endDate = Nothing
+      , url = ""
+      , roleDescription = """
+      Role:
+      - design and implement features
+      - manage the project
+      - mentor new developers
+
+      Implementation details: 
+      - Docker containers are built with GithubActions and pushed to GitHub container registry 
+      - Frontend code is generated from the backend code
+      - Postgres queries are typechecked against a real DB at compile time
+      - Every algorithm can be run in real environment or simulated
+      - Unit tests, snapshot tests, property-based tests
+
+      """
+      , tags = """
+        Backend: Haskell, Servant, lens, mtl, Decimal, Relude, HSpec, Quickcheck, Haskell-to-Elm, PostgreSQL Typed;
+        Frontend: Elm, elm-ui, elm-charts, remotedata, elm-revew, elm-test;
+        Infrastructure: Nginx, Docker, GitHub Actions"""
+      }
+    , { company = "Pamir"
+      , title = "Frontend developer"
       , startDate = Date 5 2020
       , endDate = Just <| Date 12 2020
       , url = ""
@@ -503,14 +541,16 @@ experienceRecords =
       , tags = """Frontend: TypeScript, React, Next.js, GraphQL, Apollo, FP-TS, Emotion, Jest;
         Infrastructure: Nginx, Docker, GitHub Actions"""
       }
-    , { companyAndTitle = "Eldis, software engineer"
+    , { company = "Eldis"
+      , title = "Software engineer"
       , startDate = Date 10 2019
       , endDate = Just <| Date 12 2019
       , url = "https://eldis.ru"
       , roleDescription = "I developed a declarative decoder for the internal binary document format, covered it with tests, including property-based testing."
       , tags = "Scala, scodec, cats, fs2, decline, specs2, scalacheck"
       }
-    , { companyAndTitle = "Neolab-Nsk, fullstack developer"
+    , { company = "Neolab-Nsk"
+      , title = "Fullstack developer"
       , startDate = Date 1 2019
       , endDate = Just <| Date 9 2019
       , url = ""
@@ -518,7 +558,8 @@ experienceRecords =
       , tags = """Frontend: TypeScript, React, Redux, Saga, RxJS, FP-TS;
         Backend: TypeScript, Node, Redux, Saga, RxJS, Redis, Lua, Mongo, PostgreSQL, Clickhouse, Docker"""
       }
-    , { companyAndTitle = "SocialSweet Inc, frontend developer"
+    , { company = "SocialSweet Inc"
+      , title = "Frontend developer"
       , startDate = Date 8 2018
       , endDate = Just <| Date 1 2019
       , url = "https://sweet.io"
@@ -528,7 +569,8 @@ experienceRecords =
         associated with an unsuccessful merging of Git branches in a huge codebase really began to be prevented."""
       , tags = "TypeScript, Angular, RxJS"
       }
-    , { companyAndTitle = "Allmax, frontend developer"
+    , { company = "Allmax"
+      , title = "Frontend developer"
       , startDate = Date 11 2017
       , endDate = Just <| Date 8 2018
       , url = "https://savl.com/"
@@ -547,7 +589,8 @@ showExperienceRecord : ExperienceRecord -> Html msg
 showExperienceRecord x =
     div [ styles.itemBlock ]
         [ span [ styles.item ]
-            [ text__ x.companyAndTitle
+            [ p [] [ text__ x.company ]
+            , text__ x.title
             , span [ styles.period ]
                 [ text__
                     (showDate x.startDate
