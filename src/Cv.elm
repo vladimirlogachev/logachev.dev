@@ -326,7 +326,7 @@ showSkillRecord x =
 skillsSection : Html msg
 skillsSection =
     section [ styles.section ]
-        (h2 [ styles.subheader ] [ text__ "Skills and usage experience" ] :: List.map showSkillRecord skillRecords)
+        (h2 [ styles.subheader ] [ text__ "Skills" ] :: List.map showSkillRecord skillRecords)
 
 
 
