@@ -120,7 +120,7 @@ haskellSkillGroup =
                   , "The project has a strong focus on the absence of partial functions"
                   , "In general the whole system is reliabile, stabile, and behaves correct, despite the fact that the domain and external APIs have lots of edge cases, and are sensitive even to small deviations from valid values and ranges."
                   , "Tested with different kinds of tests: unit tests, snapshot tests, property-based tests"
-                  , "The entry threshold for the Haskell codebase is relatively low – it doesn't require understanding of advanced concepts for everyday work"
+                  , "The entry threshold for the Haskell codebase is relatively low – it doesn't require an understanding of advanced concepts for everyday work"
                   , "The project has documentation, and the development tasks are well described and tagged GitHub Projects"
                   ]
                     |> List.map (\t -> preparedParagraph ("• " ++ t))
@@ -142,7 +142,7 @@ haskellSkillGroup =
                         , "QuickCheck"
                         ]
                   }
-                , { name = "Frontend", tags = [ "Elm", "elm-ui", "elm-charts", "remotedata", "elm-revew", "elm-test" ] }
+                , { name = "Frontend", tags = [ "Elm", "elm-ui", "elm-charts", "remotedata", "elm-review", "elm-test" ] }
                 , { name = "Infrastructure", tags = [ "Nginx", "Docker", "GitHub Actions" ] }
                 , { name = "Project management", tags = [ "GitHub Projects" ] }
                 ]
