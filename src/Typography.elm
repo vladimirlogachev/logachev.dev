@@ -1,6 +1,6 @@
-module Typography exposing (text__)
+module Typography exposing (nbsp, preparedParagraph, preparedText)
 
-import Html.Styled exposing (text)
+import Element exposing (..)
 import Set exposing (Set)
 
 
@@ -15,12 +15,22 @@ Ideally it should be stored in both clean and processed forms in database.
 But I don't have one, so why not process everything in real time? :D
 
 -}
-text__ : String -> Html.Styled.Html msg
-text__ =
-    String.lines
-        >> List.map processLine
-        >> String.join "\n"
-        >> text
+preparedParagraph : String -> Element msg
+preparedParagraph x =
+    paragraph []
+        [ String.lines x
+            |> List.map processLine
+            |> String.join "\n"
+            |> text
+        ]
+
+
+preparedText : String -> Element msg
+preparedText x =
+    String.lines x
+        |> List.map processLine
+        |> String.join "\n"
+        |> text
 
 
 processLine : String -> String

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Vladimir Logachev</title>
+    <meta
+      name="description"
+      content="Vladimir Logachev. Haskell, Elm, Functional programming"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      inline
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml" />
+    <link inline rel="stylesheet" href="/assets/inline/reset.css" />
+    <!-- Elm main bundle -->
+    <script
+      inline
+      type="text/javascript"
+      src="/assets/inline/bundle.js"
+    ></script>
+    <!-- Yandex.Metrika counter init (subscribe counter Id to events) -->
+    <script
+      inline
+      type="text/javascript"
+      src="/assets/inline/yandex-metrika-init.js"
+    ></script>
+    <!-- Yandex.Metrika counter main bundle -->
+    <script
+      defer
+      type="text/javascript"
+      src="https://mc.yandex.ru/metrika/tag.js"
+    ></script>
+  </head>
+
+  <body>
+    <noscript> You need to enable JavaScript to run this app. </noscript>
+    <div id="elm-node"></div>
+    <script>
+      const app = Elm.Main.init({
+        node: document.getElementById('elm-node'),
+        flags: {
+          windowSize: {
+            height: window.innerHeight,
+            width: window.innerWidth,
+          },
+        },
+      })
+    </script>
+
+    <!-- Yandex.Metrika counter (via image, when JS is disabled) -->
+    <noscript>
+      <div>
+        <img
+          src="https://mc.yandex.ru/watch/40142970"
+          style="position: absolute; left: -9999px"
+          alt=""
+        />
+      </div>
+    </noscript>
+  </body>
+</html>
