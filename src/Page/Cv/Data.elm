@@ -118,14 +118,14 @@ haskellSkillGroup =
                   , "Docker containers are built with Github Actions and pushed to GitHub container registry"
                   , "Every algorithm can be run in a real environment or simulated (with heavy use of Haskell parallelism and concurrency)"
                   , "The project has a strong focus on the absence of partial functions"
-                  , "In general the whole system is reliabile, stabile, and behaves correct, despite the fact that the domain and external APIs have lots of edge cases, and are sensitive even to small deviations from valid values and ranges."
+                  , "In general the whole system is reliable, stable, and behaves correctly, despite the fact that the domain and external APIs have lots of edge cases, and are sensitive even to small deviations from valid values and ranges."
                   , "Tested with different kinds of tests: unit tests, snapshot tests, property-based tests"
                   , "The entry threshold for the Haskell codebase is relatively low – it doesn't require an understanding of advanced concepts for everyday work"
-                  , "The project has documentation, and the development tasks are well described and tagged GitHub Projects"
+                  , "The project has documentation, and the development tasks are well-described and tagged in GitHub Projects"
                   ]
                     |> List.map (\t -> preparedParagraph ("• " ++ t))
                     |> column [ width fill, spacing 10 ]
-                , preparedParagraph "All these points lead to the ease of development – refactors are fast and do not cause regressions, creating tasks and updating their status does not require much effort, no unnecessary/routine actions are required from the developer. Relatively little time is spent on fixing technical issues – therefore, there is a lot of time left for substantive things and implementing new features."
+                , preparedParagraph "All these points lead to ease of development – refactors are fast and do not cause regressions, creating tasks and updating their status does not require much effort, no unnecessary/routine actions are required from the developer. Relatively little time is spent on fixing technical issues – therefore, there is a lot of time left for substantive things and implementing new features."
                 , preparedParagraph "Although the source code of this project isn't publicly available, I can demonstrate and discuss it during the technical interview."
                 ]
           , details =
