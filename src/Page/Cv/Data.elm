@@ -142,7 +142,16 @@ haskellSkillGroup =
                         , "QuickCheck"
                         ]
                   }
-                , { name = "Frontend", tags = [ "Elm", "elm-ui", "elm-charts", "remotedata", "elm-review", "elm-test" ] }
+                , { name = "Frontend"
+                  , tags =
+                        [ "Elm"
+                        , "elm-ui"
+                        , "elm-charts"
+                        , "remotedata"
+                        , "elm-review"
+                        , "elm-test"
+                        ]
+                  }
                 , { name = "Infrastructure", tags = [ "Nginx", "Docker", "GitHub Actions" ] }
                 , { name = "Project management", tags = [ "GitHub Projects" ] }
                 ]
