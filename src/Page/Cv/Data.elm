@@ -95,7 +95,19 @@ haskellSkillGroup =
           }
         ]
     , commercialExperience =
-        [ { company = "Wolf, private trading platform"
+        [ { company = "Fourier Labs"
+          , positionTitle = "Software Engineer"
+          , startDate = Date 3 2022
+          , endDate = Nothing
+          , url = Just "https://fourierlabs.io"
+          , roleDescription = []
+          , details =
+                [ { name = "Backend", tags = [ "Haskell", "Plutus" ] }
+                , { name = "Infrastructure", tags = [ "Nix" ] }
+                , { name = "Blockchain", tags = [ "Cardano", "Ethereum" ] }
+                ]
+          }
+        , { company = "Wolf, private trading platform"
           , positionTitle = "Principal engineer and founder"
           , startDate = Date 8 2021
           , endDate = Just <| Date 1 2022

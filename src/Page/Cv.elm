@@ -71,7 +71,7 @@ summarySection deviceClass =
         links : Element msg
         links =
             linksContainer
-                [ printableLinkHorizontal deviceClass { labelText = "Mail", url = "mailto:logachev.dev@ya.ru" }
+                [ printableLinkHorizontal deviceClass { labelText = "Mail", url = "mailto:vladimir@logachev.dev" }
                 , printableLinkHorizontal deviceClass { labelText = "Telegram", url = "https://t.me/vladimirlogachev" }
                 , printableLinkHorizontal deviceClass { labelText = "GitHub", url = "https://github.com/vladimirlogachev" }
                 , printableLinkHorizontal deviceClass { labelText = "Twitter", url = "https://twitter.com/logachev_dev" }
