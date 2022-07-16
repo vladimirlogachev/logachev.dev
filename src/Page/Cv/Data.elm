@@ -110,7 +110,7 @@ haskellSkillGroup =
         , { company = "Wolf, private trading platform"
           , positionTitle = "Principal engineer and founder"
           , startDate = Date 8 2021
-          , endDate = Just <| Date 1 2022
+          , endDate = Just <| Date 7 2022
           , url = Nothing
           , roleDescription =
                 [ el [ Font.semiBold ] <| preparedParagraph "My role:"
