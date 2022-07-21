@@ -25,7 +25,7 @@ view toMsg global _ { title, content } =
             [ Background.color Color.white
             , Font.color Color.gray800
             , width fill
-            , Font.size 15
+            , Font.size 16
             , fontFamilyGeneral
             ]
             (column [ width fill, height fill ]

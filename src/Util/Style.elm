@@ -22,7 +22,7 @@ fontFamilyGeneral =
 
 maxDesktopInnerWidth : Int
 maxDesktopInnerWidth =
-    1200
+    900
 
 
 pageHeading : List (Attribute msg)
