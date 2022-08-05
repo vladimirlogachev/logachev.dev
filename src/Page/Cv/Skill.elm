@@ -28,7 +28,7 @@ viewSkill deviceClass x =
     container [ width fill, spacing 30 ]
         [ column
             [ alignTop
-            , width (px 120)
+            , width (px 80)
             ]
             [ case x.icon of
                 Just src ->

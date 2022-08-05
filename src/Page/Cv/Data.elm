@@ -72,9 +72,13 @@ haskellSkillGroup =
                         ]
                   }
                 , { name = "Concepts"
-                  , tags = [ "Browser API interop (Websockets, LocalStorage), Ports, Tasks" ]
+                  , tags = [ "Browser API interop (Websockets, LocalStorage)", "Ports", "Tasks" ]
                   }
                 ]
+          }
+        , { icon = Just "/assets/images/purescript.svg"
+          , title = "PureScript"
+          , details = []
           }
         , { icon = Nothing
           , title = "Other"

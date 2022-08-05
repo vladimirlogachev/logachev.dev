@@ -47,8 +47,8 @@ summarySection deviceClass =
             column [ width fill, spacing 20, alignTop ]
                 [ el pageHeading <| preparedParagraph "Vladimir Logachev"
                 , column [ width fill, spacing 10 ]
-                    [ preparedParagraph "Haskell, Elm, Functional programming"
-                    , preparedParagraph "Remote"
+                    [ preparedParagraph "Haskell, Elm, PureScript, Scala, functional programming, crypto"
+                    , preparedParagraph "Location: Remote"
                     , links
                     ]
                 ]
