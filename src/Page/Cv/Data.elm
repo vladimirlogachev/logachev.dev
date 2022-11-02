@@ -9,8 +9,8 @@ import Typography exposing (preparedParagraph)
 
 skillGroups : List (SkillGroup msg)
 skillGroups =
-    [ haskellSkillGroup
-    , scalaSkillGroup
+    [ scalaSkillGroup
+    , haskellSkillGroup
     , jsSkillGroup
     ]
 
@@ -79,23 +79,6 @@ haskellSkillGroup =
         , { icon = Just "/assets/images/purescript.svg"
           , title = "PureScript"
           , details = []
-          }
-        , { icon = Nothing
-          , title = "Other"
-          , details =
-                [ { name = "Databases"
-                  , tags = [ "PostgreSQL", "Redis", "Clickhouse", "MongoDB" ]
-                  }
-                , { name = "Infrastructure and tooling"
-                  , tags = [ "Docker", "GitHub Actions" ]
-                  }
-                , { name = "APIs"
-                  , tags = [ "GraphQL" ]
-                  }
-                , { name = "Misc"
-                  , tags = [ "GitHub Projects", "Figma", "Miro" ]
-                  }
-                ]
           }
         ]
     , commercialExperience =
@@ -230,10 +213,10 @@ scalaSkillGroup =
           , details =
                 [ { name = "Libraries"
                   , tags =
-                        [ "cats-core"
+                        [ "zio"
+                        , "cats"
                         , "cats-effect"
                         , "fs2"
-                        , "scala-parser-combinators"
                         , "scalatest"
                         , "scalacheck"
                         , "specs2"
@@ -241,14 +224,42 @@ scalaSkillGroup =
                         , "akka"
                         , "akka-http"
                         , "akka-stream"
+                        , "finagle"
                         , "scala-parser-combinators"
                         ]
                   }
                 ]
           }
+        , { icon = Nothing
+          , title = "Other"
+          , details =
+                [ { name = "Databases"
+                  , tags = [ "PostgreSQL", "Redis", "Clickhouse", "MySQL", "MongoDB" ]
+                  }
+                , { name = "Infrastructure and tooling"
+                  , tags = [ "Docker", "GitHub Actions" ]
+                  }
+                , { name = "APIs"
+                  , tags = [ "GraphQL" ]
+                  }
+                , { name = "Misc"
+                  , tags = [ "GitHub Projects", "Figma" ]
+                  }
+                ]
+          }
         ]
     , commercialExperience =
-        [ { company = "Eldis"
+        [ { company = "Swift Invention"
+          , positionTitle = "Software engineer"
+          , startDate = Date 8 2022
+          , endDate = Nothing
+          , url = Just "https://www.swiftinvention.com"
+          , roleDescription = [ preparedParagraph "I maintain existing projects (implement new features and fix bugs) and help new developers to get on board with Scala." ]
+          , details =
+                [ { name = "Backend", tags = [ "Scala", "zio", "finagle", "scalatest", "MySQL", "Redis", "Docker" ] }
+                ]
+          }
+        , { company = "Eldis"
           , positionTitle = "Software engineer"
           , startDate = Date 10 2019
           , endDate = Just <| Date 12 2019
