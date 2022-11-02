@@ -11,5 +11,12 @@
 
 ## Prod
 
-1. Save a new PDF to `assets-root/cv_vladimir_logachev.pdf` (Print settings: no headers, no footers, default margins, scale 100%, and check line breaks)
+1. Save a new PDF to `assets-root/cv_vladimir_logachev.pdf`
+
+   - no headers
+   - no footers
+   - default margins
+   - scale 100%
+   - when set, check line breaks (visually)
+
 2. `npm run build-publish`
