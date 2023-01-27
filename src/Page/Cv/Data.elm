@@ -214,9 +214,15 @@ scalaSkillGroup =
                 [ { name = "Libraries"
                   , tags =
                         [ "zio"
+                        , "zio-http"
+                        , "zio-test"
                         , "cats"
                         , "cats-effect"
+                        , "tapir"
+                        , "circe"
+                        , "chimney"
                         , "fs2"
+                        , "testcontainers"
                         , "scalatest"
                         , "scalacheck"
                         , "specs2"
@@ -225,6 +231,8 @@ scalaSkillGroup =
                         , "akka-http"
                         , "akka-stream"
                         , "finagle"
+                        , "flyway"
+                        , "enumeratum"
                         , "scala-parser-combinators"
                         ]
                   }
@@ -250,13 +258,16 @@ scalaSkillGroup =
         ]
     , commercialExperience =
         [ { company = "Swift Invention"
-          , positionTitle = "Software engineer"
+          , positionTitle = "Backend Team Lead"
           , startDate = Date 8 2022
           , endDate = Nothing
           , url = Just "https://www.swiftinvention.com"
-          , roleDescription = [ preparedParagraph "I maintain existing projects (implement new features and fix bugs) and help new developers to get on board with Scala." ]
+          , roleDescription =
+                [ preparedParagraph "I maintain two projects as a team lead, including implementing new features and fixing bugs."
+                , preparedParagraph "Also, I mentor new developers to get on board with Scala (usually, from a Java background), and run a weekly Scala book reading club."
+                ]
           , details =
-                [ { name = "Backend", tags = [ "Scala", "zio", "finagle", "scalatest", "MySQL", "Redis", "Docker" ] }
+                [ { name = "Backend", tags = [ "Scala", "zio", "zio-http", "zio-test", "tapir", "circe", "chimney", "enumeratum", "flyway", "testcontainers", "finagle", "scalatest", "MySQL", "Redis", "Docker" ] }
                 ]
           }
         , { company = "Eldis"
