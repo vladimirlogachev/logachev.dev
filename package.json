@@ -24,9 +24,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "elm-format": "^0.8.7",
     "elm-live": "^4.0.2",
-    "elm-review": "^2.7.0",
-    "elm-test": "^0.19.1-revision7",
+    "elm-review": "^2.10.1",
+    "elm-test": "^0.19.1-revision9",
     "uglify-js": "3.7.6",
     "inline-source-cli": "2.0.0"
   }
