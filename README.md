@@ -13,6 +13,7 @@
 
 1. Save a new PDF to `assets-root/cv_vladimir_logachev.pdf`
 
+   - paper size: A4
    - no headers
    - no footers
    - default margins

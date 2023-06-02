@@ -260,11 +260,11 @@ scalaSkillGroup =
         [ { company = "Swift Invention"
           , positionTitle = "Backend Team Lead"
           , startDate = Date 8 2022
-          , endDate = Nothing
+          , endDate = Just <| Date 6 2023
           , url = Just "https://www.swiftinvention.com"
           , roleDescription =
-                [ preparedParagraph "I maintain two projects as a team lead, including implementing new features and fixing bugs."
-                , preparedParagraph "Also, I mentor new developers to get on board with Scala (usually, from a Java background), and run a weekly Scala book reading club."
+                [ preparedParagraph "I maintained two projects as a team lead, including implementing new features, writing tests, and fixing bugs."
+                , preparedParagraph "Also, I mentored new developers to get on board with Scala (mostly, from a Java background), and run a weekly Scala book reading club."
                 ]
           , details =
                 [ { name = "Backend", tags = [ "Scala", "zio", "zio-http", "zio-test", "tapir", "circe", "chimney", "enumeratum", "flyway", "testcontainers", "finagle", "scalatest", "MySQL", "Redis", "Docker" ] }
