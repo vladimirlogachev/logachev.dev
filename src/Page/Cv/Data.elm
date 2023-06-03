@@ -151,7 +151,7 @@ haskellSkillGroup =
                         , "elm-test"
                         ]
                   }
-                , { name = "Infrastructure", tags = [ "Nginx", "Docker", "GitHub Actions" ] }
+                , { name = "Infrastructure", tags = [ "Docker", "Nginx", "GitHub Actions" ] }
                 , { name = "Project management", tags = [ "GitHub Projects" ] }
                 ]
           }
@@ -245,7 +245,7 @@ scalaSkillGroup =
                   , tags = [ "PostgreSQL", "Redis", "Clickhouse", "MySQL", "MongoDB" ]
                   }
                 , { name = "Infrastructure and tooling"
-                  , tags = [ "Docker", "GitHub Actions" ]
+                  , tags = [ "Kubernetes", "Docker", "GitHub Actions" ]
                   }
                 , { name = "APIs"
                   , tags = [ "GraphQL" ]
