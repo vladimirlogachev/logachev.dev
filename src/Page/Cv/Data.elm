@@ -150,7 +150,7 @@ commercialExperience =
     [ { company = "Swift Invention"
       , positionTitle = "Backend Team Lead"
       , startDate = Date 8 2022
-      , endDate = Just <| Date 6 2023
+      , endDate = Just <| Date 5 2023
       , url = Just "https://www.swiftinvention.com"
       , roleDescription =
             [ preparedParagraph "I maintained two projects as a team lead, including implementing new features, writing tests, and fixing bugs."
