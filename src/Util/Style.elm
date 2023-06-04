@@ -32,7 +32,7 @@ pageHeading =
 
 sectionHeading : List (Attribute msg)
 sectionHeading =
-    [ Region.heading 3, Font.semiBold, Font.size 32 ]
+    [ Region.heading 3, Font.semiBold, Font.size 28 ]
 
 
 itemHeading : List (Attribute msg)

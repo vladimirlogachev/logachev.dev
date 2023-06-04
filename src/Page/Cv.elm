@@ -3,8 +3,12 @@ module Page.Cv exposing (view)
 import Element exposing (..)
 import Element.Border as Border
 import Page exposing (ElementDocument)
-import Page.Cv.Data exposing (skillGroups)
-import Page.Cv.SkillGroup exposing (viewSkillGroup)
+import Page.Cv.CommercialExperience exposing (viewCommercialExperience)
+import Page.Cv.Data as Data
+import Page.Cv.Education exposing (viewEducation)
+import Page.Cv.Project exposing (viewProject)
+import Page.Cv.Skill exposing (viewSkill)
+import Page.Cv.SkillGroup exposing (viewIfNonEmpty)
 import Typography exposing (preparedParagraph)
 import Util.Style exposing (pageHeading, printableLinkHorizontal, sectionHeading)
 
@@ -47,7 +51,10 @@ summarySection deviceClass =
             column [ width fill, spacing 20, alignTop ]
                 [ el pageHeading <| preparedParagraph "Vladimir Logachev"
                 , column [ width fill, spacing 10 ]
-                    [ preparedParagraph "Haskell, Elm, PureScript, Scala, functional programming, crypto"
+                    [ preparedParagraph "🚀 Functional programming, #Haskell, #Elm, #PureScript, #Scala."
+                    , preparedParagraph "🌱 Fostering and leading performant teams."
+                    , preparedParagraph "💼 Open to software engineering opportunities."
+                    , preparedParagraph ""
                     , preparedParagraph "Location: Remote"
                     , links
                     ]
@@ -101,6 +108,10 @@ view deviceClass =
         column [ spacing 30, width fill, height fill ]
             [ summarySection deviceClass
             , bioSection
-            , column [ spacing 60 ] <| List.map (viewSkillGroup deviceClass) skillGroups
+            , column [ spacing 30 ] <| List.map (viewSkill deviceClass) Data.skills
+            , viewIfNonEmpty "Commercial experience" (List.map (viewCommercialExperience deviceClass) Data.commercialExperience)
+            , viewIfNonEmpty "Showcase projects and assessments" (List.map (viewProject deviceClass) Data.showcaseProjects)
+            , viewIfNonEmpty "Notable contributions" (List.map (viewProject deviceClass) Data.contributions)
+            , viewIfNonEmpty "Education and courses" (List.map (viewEducation deviceClass) Data.education)
             ]
     }
