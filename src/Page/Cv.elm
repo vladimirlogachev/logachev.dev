@@ -51,7 +51,7 @@ summarySection deviceClass =
             column [ width fill, spacing 20, alignTop ]
                 [ el pageHeading <| preparedParagraph "Vladimir Logachev"
                 , column [ width fill, spacing 10 ]
-                    [ preparedParagraph "🚀 Functional programming, #Haskell, #Elm, #PureScript, #Scala."
+                    [ preparedParagraph "🚀 Functional programming, #Haskell, #Elm, #Scala."
                     , preparedParagraph "🌱 Fostering and leading performant teams."
                     , preparedParagraph "💼 Open to software engineering opportunities."
                     , preparedParagraph ""
