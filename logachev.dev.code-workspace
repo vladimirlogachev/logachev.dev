@@ -7,8 +7,10 @@
   ],
   "settings": {
     "[elm]": {
-      "editor.formatOnSave": true
+      "editor.formatOnSave": true,
+      "editor.defaultFormatter": "elmTooling.elm-ls-vscode"
     },
+    "elmLS.elmReviewDiagnostics": "warning",
     "[markdown]": {
       "editor.formatOnSave": true,
       "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -24,15 +26,15 @@
     "[shellscript]": {
       "editor.formatOnSave": true,
       "editor.defaultFormatter": "foxundermoon.shell-format"
-    },
-    "elmLS.elmReviewDiagnostics": "warning"
+    }
   },
   "extensions": {
     "recommendations": [
       "elmtooling.elm-ls-vscode",
       "esbenp.prettier-vscode",
       "shd101wyy.markdown-preview-enhanced",
-      "foxundermoon.shell-format"
+      "foxundermoon.shell-format",
+      "github.vscode-github-actions"
     ]
   }
 }
