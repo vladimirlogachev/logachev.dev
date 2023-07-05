@@ -24,17 +24,12 @@ viewCommercialExperience : DeviceClass -> CommercialExperience msg -> Element ms
 viewCommercialExperience deviceClass x =
     column [ width fill, spacing 16 ]
         [ column [ width fill, spacing 10 ]
-            [ case x.url of
-                Just url ->
-                    printableLinkVertical deviceClass { url = url, label = el itemHeading <| preparedParagraph x.company }
-
-                Nothing ->
-                    el itemHeading <| preparedParagraph x.company
+            [ printableLinkVertical deviceClass { url = x.url, label = el itemHeading <| preparedParagraph x.company }
             , wrappedRow [ width fill, spacing 10 ]
                 [ el [ Font.medium ] <| preparedText x.positionTitle
                 , (showDate x.startDate ++ " — " ++ (x.endDate |> Maybe.map showDate |> Maybe.withDefault "present"))
                     |> preparedText
-                    |> el [ Font.color Color.gray600 ]
+                    |> el [ Font.color Color.detail ]
                 ]
             ]
         , column [ width fill, spacing 16 ] <| x.roleDescription

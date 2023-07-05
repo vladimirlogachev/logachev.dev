@@ -11,6 +11,7 @@ import Page.Cv.Skill exposing (viewSkill)
 import Page.Cv.SkillGroup exposing (viewIfNonEmpty)
 import Typography exposing (preparedParagraph)
 import Util.Style exposing (pageHeading, printableLinkHorizontal, sectionHeading)
+import VitePluginHelper
 
 
 bioSection : Element msg
@@ -41,7 +42,7 @@ summarySection deviceClass =
                     , Border.rounded 10
                     , clip
                     ]
-                    { src = "https://avatars2.githubusercontent.com/u/17773003?s=600"
+                    { src = VitePluginHelper.asset "/assets/images/photo_460px.jpg"
                     , description = "Vladimir Logachev"
                     }
                 ]
@@ -51,9 +52,9 @@ summarySection deviceClass =
             column [ width fill, spacing 20, alignTop ]
                 [ el pageHeading <| preparedParagraph "Vladimir Logachev"
                 , column [ width fill, spacing 10 ]
-                    [ preparedParagraph "🚀 Functional programming, #Haskell, #Elm, #Scala."
-                    , preparedParagraph "🌱 Fostering and leading performant teams."
-                    , preparedParagraph "💼 Open to software engineering opportunities."
+                    [ preparedParagraph "🏴\u{200D}☠️ Creating products."
+                    , preparedParagraph "🔋 Engineering every day."
+                    , preparedParagraph "🧰 FP, Haskell, Elm, Scala, whatever."
                     , preparedParagraph ""
                     , preparedParagraph "Location: Remote"
                     , links
@@ -103,7 +104,7 @@ summarySection deviceClass =
 
 view : DeviceClass -> ElementDocument msg
 view deviceClass =
-    { title = "Vladimir Logachev. Haskell, Elm, Functional programming"
+    { title = "Vladimir Logachev. 🏴\u{200D}☠️ Creating products. 🔋 Engineering every day. 🧰 FP, Haskell, Elm, Scala, whatever."
     , content =
         column [ spacing 30, width fill, height fill ]
             [ summarySection deviceClass

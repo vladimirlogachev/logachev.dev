@@ -2,34 +2,33 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
+    <!-- <meta
+      http-equiv="Content-Security-Policy"
+      content="script-src 'self' mc.yandex.ru; img-src 'self' mc.yandex.ru; object-src 'none'"
+    /> -->
     <title>Vladimir Logachev</title>
     <meta
       name="description"
       content="🏴‍☠️ Creating products. 🔋 Engineering every day. 🧰 FP, Haskell, Elm, Scala, whatever."
     />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      inline
       href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap"
       rel="stylesheet"
+      rel="preload"
+      as="style"
     />
-    <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml" />
-    <link inline rel="stylesheet" href="/assets/inline/reset.css" />
-    <!-- Elm main bundle -->
-    <script
-      inline
-      type="text/javascript"
-      src="/assets/inline/bundle.js"
-    ></script>
+    <link rel="stylesheet" href="/assets/styles/reset.css" />
+
     <!-- Yandex.Metrika counter init (subscribe counter Id to events) -->
     <script
-      inline
+      type="module"
       type="text/javascript"
-      src="/assets/inline/yandex-metrika-init.js"
+      src="/assets/scripts/yandex-metrika-init.js"
     ></script>
     <!-- Yandex.Metrika counter main bundle -->
     <script
@@ -41,28 +40,17 @@
 
   <body>
     <noscript> You need to enable JavaScript to run this app. </noscript>
-    <div id="elm-node"></div>
-    <script>
-      const app = Elm.Main.init({
-        node: document.getElementById('elm-node'),
-        flags: {
-          windowSize: {
-            height: window.innerHeight,
-            width: window.innerWidth,
-          },
-        },
-      })
-    </script>
-
-    <!-- Yandex.Metrika counter (via image, when JS is disabled) -->
-    <noscript>
-      <div>
+    <div id="app"><div></div></div>
+    <script type="module" src="/init.ts"></script>
+    <!-- Yandex.Metrika counter -->
+    <noscript
+      ><div>
         <img
           src="https://mc.yandex.ru/watch/40142970"
           style="position: absolute; left: -9999px"
           alt=""
-        />
-      </div>
-    </noscript>
+        /></div
+    ></noscript>
+    <!-- /Yandex.Metrika counter -->
   </body>
 </html>

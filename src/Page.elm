@@ -23,7 +23,7 @@ view toMsg global _ { title, content } =
     , body =
         [ Element.layout
             [ Background.color Color.white
-            , Font.color Color.gray800
+            , Font.color Color.black
             , width fill
             , Font.size 16
             , fontFamilyGeneral

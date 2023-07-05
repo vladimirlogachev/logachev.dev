@@ -32,24 +32,34 @@ pageHeading =
 
 sectionHeading : List (Attribute msg)
 sectionHeading =
-    [ Region.heading 3, Font.semiBold, Font.size 28 ]
+    [ Region.heading 2, Font.semiBold, Font.size 28 ]
 
 
 itemHeading : List (Attribute msg)
 itemHeading =
-    [ Region.heading 4, Font.semiBold, Font.size 20 ]
+    [ Region.heading 3, Font.semiBold, Font.size 20 ]
 
 
-printableLinkVertical : DeviceClass -> { url : String, label : Element msg } -> Element msg
+printableLinkVertical : DeviceClass -> { url : Maybe String, label : Element msg } -> Element msg
 printableLinkVertical deviceClass { url, label } =
     let
         nonPrintableLink : Element msg
         nonPrintableLink =
-            newTabLink [] { label = el [ Font.color Color.blue ] label, url = url }
+            case url of
+                Just urlString ->
+                    newTabLink [] { label = el [ Color.fontColor Color.blue ] label, url = urlString }
+
+                Nothing ->
+                    el [ Font.color Color.black ] label
 
         printFriendlyLink : Element msg
         printFriendlyLink =
-            column [ spacing 7 ] [ label, newTabLink [ Font.color Color.blue ] { label = preparedParagraph url, url = url } ]
+            case url of
+                Just urlString ->
+                    column [ spacing 7 ] [ label, newTabLink [ Color.fontColor Color.blue ] { label = preparedParagraph urlString, url = urlString } ]
+
+                Nothing ->
+                    label
     in
     case deviceClass of
         Phone ->
@@ -70,11 +80,11 @@ printableLinkHorizontal deviceClass { url, labelText } =
     let
         nonPrintableLink : Element msg
         nonPrintableLink =
-            newTabLink [] { label = el [ Font.color Color.blue ] <| preparedParagraph labelText, url = url }
+            newTabLink [] { label = el [ Color.fontColor Color.blue ] <| preparedParagraph labelText, url = url }
 
         printFriendlyLink : Element msg
         printFriendlyLink =
-            wrappedRow [ spacing 7 ] [ preparedParagraph (labelText ++ ":"), newTabLink [ Font.color Color.blue ] { label = preparedParagraph url, url = url } ]
+            wrappedRow [ spacing 7 ] [ preparedParagraph (labelText ++ ":"), newTabLink [ Color.fontColor Color.blue ] { label = preparedParagraph url, url = url } ]
     in
     case deviceClass of
         Phone ->

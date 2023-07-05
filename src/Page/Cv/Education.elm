@@ -9,7 +9,7 @@ import Util.Style exposing (itemHeading, printableLinkVertical)
 
 type alias Education =
     { title : String
-    , url : String
+    , url : Maybe String
     , details : String
     }
 
@@ -18,5 +18,5 @@ viewEducation : DeviceClass -> Education -> Element msg
 viewEducation deviceClass x =
     column [ spacing 10 ]
         [ printableLinkVertical deviceClass { url = x.url, label = el itemHeading <| preparedParagraph x.title }
-        , preparedParagraph x.details |> el [ Font.color Color.gray600 ]
+        , preparedParagraph x.details |> el [ Font.color Color.detail ]
         ]

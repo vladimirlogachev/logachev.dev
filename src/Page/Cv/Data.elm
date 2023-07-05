@@ -8,11 +8,12 @@ import Page.Cv.Education exposing (Education)
 import Page.Cv.Project exposing (Project)
 import Page.Cv.Skill exposing (Skill)
 import Typography exposing (preparedParagraph)
+import VitePluginHelper
 
 
 skills : List Skill
 skills =
-    [ { icon = Just "/assets/images/haskell.svg"
+    [ { icon = Just <| VitePluginHelper.asset "/assets/images/haskell.svg"
       , title = "Haskell"
       , details =
             [ { name = "Libraries"
@@ -43,7 +44,7 @@ skills =
               }
             ]
       }
-    , { icon = Just "/assets/images/elm.svg"
+    , { icon = Just <| VitePluginHelper.asset "/assets/images/elm.svg"
       , title = "Elm"
       , details =
             [ { name = "Libraries"
@@ -71,11 +72,11 @@ skills =
             ]
       }
 
-    -- , { icon = Just "/assets/images/purescript.svg"
+    -- , { icon = Just <| VitePluginHelper.asset "/assets/images/purescript.svg"
     --   , title = "PureScript"
     --   , details = []
     --   }
-    , { icon = Just "/assets/images/scala.svg"
+    , { icon = Just <| VitePluginHelper.asset "/assets/images/scala.svg"
       , title = "Scala"
       , details =
             [ { name = "Libraries"
@@ -105,7 +106,7 @@ skills =
               }
             ]
       }
-    , { icon = Just "/assets/images/typescript.svg"
+    , { icon = Just <| VitePluginHelper.asset "/assets/images/typescript.svg"
       , title = "TypeScript"
       , details =
             [ { name = "Functional programming"
@@ -344,7 +345,7 @@ commercialExperience =
 showcaseProjects : List Project
 showcaseProjects =
     [ { title = "servant-to-elm example"
-      , url = "https://github.com/VladimirLogachev/servant-to-elm-example"
+      , url = Just "https://github.com/VladimirLogachev/servant-to-elm-example"
       , description = """An example full-stack web application, built in a typesafe functional way.
           What's cool there is that servant-to-elm does the job of generating types and decoders/encoders
           from Haskell types and Servant definition to Elm, which not only catches regressions
@@ -353,7 +354,7 @@ showcaseProjects =
       , tags = [ "Elm", "Haskell", "Servant", "SQLite" ]
       }
     , { title = "Transitive Closure (assessment)"
-      , url = "https://github.com/VladimirLogachev/transitive_closure"
+      , url = Just "https://github.com/VladimirLogachev/transitive_closure"
       , description = """A function that accepts a list of object ids and returns those objects
       and all objects which they refer to (directly or indirectly) from some Repository
       with a monadic interface. The code is pretty abstract,
@@ -362,7 +363,7 @@ showcaseProjects =
       , tags = [ "Scala", "Cats", "ScalaTest" ]
       }
     , { title = "Web crawler microservice (assessment)"
-      , url = "https://github.com/VladimirLogachev/crawler"
+      , url = Just "https://github.com/VladimirLogachev/crawler"
       , description = """A microservice that accepts a list of page URLs, and returns
       a list of page titles. It takes into account situations like bad URLs,
       duplicate urls, redirects, concurrency, and backpressure."""
@@ -374,17 +375,17 @@ showcaseProjects =
 contributions : List Project
 contributions =
     [ { title = "higherkindness/mu-graphql-example-elm"
-      , url = "https://github.com/higherkindness/mu-graphql-example-elm"
+      , url = Just "https://github.com/higherkindness/mu-graphql-example-elm"
       , description = "An example of how to implement both frontend and backend in a schema-first, typesafe, and functional way (for the mu-haskell library, demonstrating its GraphQL capabilities). I rebuilt its Elm frontend and made minor changes to the Haskell backend (and also discovered a couple of bugs)."
       , tags = [ "Elm", "Haskell", "GraphQL" ]
       }
     , { title = "FP Specialty"
-      , url = "https://fpspecialty.github.io"
+      , url = Just "https://fpspecialty.github.io"
       , description = "From 2019 to 2021 I have maintained a functional programming reading group for people of all functional programming skills."
       , tags = [ "Reading group" ]
       }
     , { title = "Russian translation of the Mostly Adequate Guide to Functional Programming in JavaScript"
-      , url = "https://github.com/MostlyAdequate/mostly-adequate-guide-ru"
+      , url = Just "https://github.com/MostlyAdequate/mostly-adequate-guide-ru"
       , description = """The book introduces the reader to the functional programming paradigm 
           and describes a functional approach to developing JavaScript applications.
           The translation was initiated by Maxim Filippov and stopped at 60%. Then I and Sakayama joined the translation, 
@@ -397,23 +398,23 @@ contributions =
 education : List Education
 education =
     [ { title = "Mastering Haskell Programming"
-      , url = "https://www.udemy.com/certificate/UC-DRMAMOQ5"
+      , url = Just "https://www.udemy.com/certificate/UC-DRMAMOQ5"
       , details = "Packt, 2019"
       }
     , { title = "Functional Programming in Haskell, part 2 (certificate with honors)"
-      , url = "https://stepik.org/cert/207739"
+      , url = Just "https://stepik.org/cert/207739"
       , details = "Stepik, Computer Science Center, 2019"
       }
     , { title = "Functional Programming in Haskell, part 1 (certificate with honors)"
-      , url = "https://stepik.org/cert/196007"
+      , url = Just "https://stepik.org/cert/196007"
       , details = "Stepik, Computer Science Center, 2019"
       }
     , { title = "Computer Science Summer School, Theory of Programming Languages"
-      , url = ""
+      , url = Nothing
       , details = "Novosibirsk State University, 2019"
       }
     , { title = "Maintenance of computer equipment and computer networks"
-      , url = ""
+      , url = Nothing
       , details = "Novosibirsk Aviation Technical College, 2004 — 2008"
       }
     ]

@@ -1,13 +1,13 @@
 {
-  "name": "frontend",
+  "name": "logachev.dev",
   "version": "1.0.0",
   "description": "",
   "private": true,
   "scripts": {
-    "start": "elm-live src/Main.elm --dir=./ --host=0.0.0.0 --port=8080 --pushstate --start-page=index.src.html -- --output=./assets/inline/bundle.js",
-    "start-debug": "elm-live src/Main.elm --dir=./ --host=0.0.0.0 --port=8080 --pushstate --start-page=index.src.html -- --output=./assets/inline/bundle.js --debug",
-    "start-optimized": "elm-live src/Main.elm --dir=./ --host=0.0.0.0 --port=8080 --pushstate --start-page=index.src.html -- --output=./assets/inline/bundle.js --optimize",
-    "compile": "elm make src/Main.elm --output=./assets/inline/bundle.js --optimize",
+    "start": "vite",
+    "build": "vite build",
+    "preview-build": "vite preview",
+    "typecheck": "npm run build",
     "test-watch": "elm-test \"src/**/*Test.elm\" --watch",
     "test": "elm-test \"src/**/*Test.elm\"",
     "format-fix-all": "elm-format --yes .",
@@ -15,20 +15,24 @@
     "review": "elm-review",
     "review-fix-interactive": "elm-review --fix",
     "review-fix-all": "yes | elm-review --fix-all",
-    "precommit": "npm run compile && npm run format-validate && npm test && npm run review",
-    "precommit-fix": "npm run compile && npm run format-fix-all && npm test && npm run review-fix-all",
-    "build-publish": "bash scripts/build.sh",
-    "uglifyjs": "uglifyjs",
-    "inline-source": "inline-source"
+    "check": "npm run typecheck && npm run format-validate && npm test && npm run review",
+    "precommit-fix": "npm run typecheck && npm run format-fix-all && npm test && npm run review-fix-all"
   },
   "author": "",
-  "license": "ISC",
-  "dependencies": {
+  "license": "MIT",
+  "devDependencies": {
+    "elm": "^0.19.1-5",
     "elm-format": "^0.8.7",
-    "elm-live": "^4.0.2",
-    "elm-review": "^2.10.1",
-    "elm-test": "^0.19.1-revision9",
-    "uglify-js": "3.7.6",
-    "inline-source-cli": "2.0.0"
+    "elm-review": "^2.10.2",
+    "elm-test": "^0.19.1-revision12",
+    "vite": "^4.3.9",
+    "vite-plugin-elm": "^2.8.0-beta.3"
+  },
+  "dependencies": {
+    "elm-debug-transformer": "^1.1.2"
+  },
+  "engines": {
+    "npm": ">=9.7.0 <10.0.0",
+    "node": ">=18.16.0 <19.0.0"
   }
 }

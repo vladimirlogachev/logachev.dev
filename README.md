@@ -11,7 +11,7 @@
 
 ## Prod
 
-1. Save a new PDF to `assets-root/cv_vladimir_logachev.pdf`
+1. Save a new PDF to `public/cv_vladimir_logachev.pdf`
 
    - paper size: A4
    - no headers
@@ -20,4 +20,4 @@
    - scale 100%
    - when set, check line breaks (visually)
 
-2. `npm run build-publish`
+2. `npm run check && npm run build`

@@ -9,7 +9,7 @@ import Util.Style exposing (itemHeading, printableLinkVertical)
 
 type alias Project =
     { title : String
-    , url : String
+    , url : Maybe String
     , description : String
     , tags : List String
     }
@@ -20,5 +20,5 @@ viewProject deviceClass x =
     column [ spacing 16 ]
         [ printableLinkVertical deviceClass { url = x.url, label = el itemHeading <| preparedParagraph x.title }
         , preparedParagraph x.description
-        , el [ Font.color Color.gray600 ] <| preparedParagraph <| String.join ", " <| x.tags
+        , el [ Font.color Color.detail ] <| preparedParagraph <| String.join ", " <| x.tags
         ]
