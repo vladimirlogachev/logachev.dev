@@ -12,6 +12,7 @@ import Color
 import Element exposing (..)
 import Element.Font as Font
 import Element.Region as Region
+import Oklch
 import Typography exposing (preparedParagraph)
 
 
@@ -47,7 +48,7 @@ printableLinkVertical deviceClass { url, label } =
         nonPrintableLink =
             case url of
                 Just urlString ->
-                    newTabLink [] { label = el [ Color.fontColor Color.blue ] label, url = urlString }
+                    newTabLink [] { label = el [ Oklch.fontColor Oklch.blue ] label, url = urlString }
 
                 Nothing ->
                     el [ Font.color Color.black ] label
@@ -56,7 +57,7 @@ printableLinkVertical deviceClass { url, label } =
         printFriendlyLink =
             case url of
                 Just urlString ->
-                    column [ spacing 7 ] [ label, newTabLink [ Color.fontColor Color.blue ] { label = preparedParagraph urlString, url = urlString } ]
+                    column [ spacing 7 ] [ label, newTabLink [ Oklch.fontColor Oklch.blue ] { label = preparedParagraph urlString, url = urlString } ]
 
                 Nothing ->
                     label
@@ -80,11 +81,11 @@ printableLinkHorizontal deviceClass { url, labelText } =
     let
         nonPrintableLink : Element msg
         nonPrintableLink =
-            newTabLink [] { label = el [ Color.fontColor Color.blue ] <| preparedParagraph labelText, url = url }
+            newTabLink [] { label = el [ Oklch.fontColor Oklch.blue ] <| preparedParagraph labelText, url = url }
 
         printFriendlyLink : Element msg
         printFriendlyLink =
-            wrappedRow [ spacing 7 ] [ preparedParagraph (labelText ++ ":"), newTabLink [ Color.fontColor Color.blue ] { label = preparedParagraph url, url = url } ]
+            wrappedRow [ spacing 7 ] [ preparedParagraph (labelText ++ ":"), newTabLink [ Oklch.fontColor Oklch.blue ] { label = preparedParagraph url, url = url } ]
     in
     case deviceClass of
         Phone ->
