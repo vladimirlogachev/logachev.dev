@@ -161,8 +161,8 @@ commercialExperience =
             [ { name = "Backend", tags = [ "Scala", "zio", "zio-http", "zio-test", "tapir", "circe", "chimney", "enumeratum", "flyway", "testcontainers", "finagle", "scalatest", "MySQL", "Redis", "Docker" ] }
             ]
       }
-    , { company = "Wolf, private trading platform"
-      , positionTitle = "Principal engineer and founder"
+    , { company = "Wolf, a crypto trading bot"
+      , positionTitle = "Founder, Principal Engineer, and Project Lead (spare time)"
       , startDate = Date 8 2021
       , endDate = Just <| Date 7 2022
       , url = Nothing
