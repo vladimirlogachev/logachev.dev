@@ -42,7 +42,7 @@ summarySection deviceClass =
                     , Border.rounded 10
                     , clip
                     ]
-                    { src = VitePluginHelper.asset "/assets/images/photo_460px.jpg"
+                    { src = VitePluginHelper.asset "/assets/images/photo.jpg"
                     , description = "Vladimir Logachev"
                     }
                 ]
@@ -52,11 +52,11 @@ summarySection deviceClass =
             column [ width fill, spacing 20, alignTop ]
                 [ el pageHeading <| preparedParagraph "Vladimir Logachev"
                 , column [ width fill, spacing 10 ]
-                    [ preparedParagraph "🏴\u{200D}☠️ Creating products."
-                    , preparedParagraph "🔋 Engineering every day."
-                    , preparedParagraph "🧰 FP, Haskell, Elm, Scala, whatever."
-                    , preparedParagraph ""
-                    , preparedParagraph "Location: Remote"
+                    [ --preparedParagraph "🏴\u{200D}☠️ Creating products."
+                      -- , preparedParagraph "🔋 Engineering every day."
+                      -- , preparedParagraph "🧰 FP, Haskell, Elm, Scala, whatever."
+                      -- , preparedParagraph ""
+                      preparedParagraph "Location: Remote"
                     , links
                     ]
                 ]
@@ -80,12 +80,14 @@ summarySection deviceClass =
         links =
             linksContainer
                 [ printableLinkHorizontal deviceClass { labelText = "Mail", url = "mailto:vladimir@logachev.dev" }
-                , printableLinkHorizontal deviceClass { labelText = "Telegram", url = "https://t.me/vladimirlogachev" }
+
+                -- , printableLinkHorizontal deviceClass { labelText = "Telegram", url = "https://t.me/vladimirlogachev" }
                 , printableLinkHorizontal deviceClass { labelText = "GitHub", url = "https://github.com/vladimirlogachev" }
-                , printableLinkHorizontal deviceClass { labelText = "Twitter", url = "https://twitter.com/logachev_dev" }
-                , printableLinkHorizontal deviceClass { labelText = "LinkedIn", url = "https://www.linkedin.com/in/vladimirlogachev" }
-                , printableLinkHorizontal deviceClass { labelText = "Website", url = "https://logachev.dev" }
-                , printableLinkHorizontal deviceClass { labelText = "Download cv", url = "https://logachev.dev/cv_vladimir_logachev.pdf" }
+
+                -- , printableLinkHorizontal deviceClass { labelText = "Twitter", url = "https://twitter.com/logachev_dev" }
+                -- , printableLinkHorizontal deviceClass { labelText = "LinkedIn", url = "https://www.linkedin.com/in/vladimirlogachev" }
+                -- , printableLinkHorizontal deviceClass { labelText = "Website", url = "https://logachev.dev" }
+                -- , printableLinkHorizontal deviceClass { labelText = "Download cv", url = "https://logachev.dev/cv_vladimir_logachev.pdf" }
                 ]
     in
     case deviceClass of
@@ -104,15 +106,17 @@ summarySection deviceClass =
 
 view : DeviceClass -> ElementDocument msg
 view deviceClass =
-    { title = "Vladimir Logachev. 🏴\u{200D}☠️ Creating products. 🔋 Engineering every day. 🧰 FP, Haskell, Elm, Scala, whatever."
+    { title = "Vladimir Logachev." --  🏴\u{200D}☠️ Creating products. 🔋 Engineering every day. 🧰 FP, Haskell, Elm, Scala, whatever.
     , content =
         column [ spacing 30, width fill, height fill ]
             [ summarySection deviceClass
-            , bioSection
+
+            -- , bioSection
             , column [ spacing 30 ] <| List.map (viewSkill deviceClass) Data.skills
             , viewIfNonEmpty "Commercial experience" (List.map (viewCommercialExperience deviceClass) Data.commercialExperience)
-            , viewIfNonEmpty "Showcase projects and assessments" (List.map (viewProject deviceClass) Data.showcaseProjects)
-            , viewIfNonEmpty "Notable contributions" (List.map (viewProject deviceClass) Data.contributions)
+
+            -- , viewIfNonEmpty "Showcase projects and assessments" (List.map (viewProject deviceClass) Data.showcaseProjects)
+            , viewIfNonEmpty "Open Source Contributions" (List.map (viewProject deviceClass) Data.contributions)
             , viewIfNonEmpty "Education and courses" (List.map (viewEducation deviceClass) Data.education)
             ]
     }

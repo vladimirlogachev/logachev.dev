@@ -344,17 +344,8 @@ commercialExperience =
 
 showcaseProjects : List Project
 showcaseProjects =
-    [ { title = "servant-to-elm example"
-      , url = Just "https://github.com/VladimirLogachev/servant-to-elm-example"
-      , description = """An example full-stack web application, built in a typesafe functional way.
-          What's cool there is that servant-to-elm does the job of generating types and decoders/encoders
-          from Haskell types and Servant definition to Elm, which not only catches regressions
-          in the compile-time but also provides ready (and highly configurable) Elm functions
-          to fetch necessary data from the server."""
-      , tags = [ "Elm", "Haskell", "Servant", "SQLite" ]
-      }
-    , { title = "Transitive Closure (assessment)"
-      , url = Just "https://github.com/VladimirLogachev/transitive_closure"
+    [ { title = "Transitive Closure (assessment)"
+      , url = Just "https://github.com/vladimirlogachev/transitive_closure"
       , description = """A function that accepts a list of object ids and returns those objects
       and all objects which they refer to (directly or indirectly) from some Repository
       with a monadic interface. The code is pretty abstract,
@@ -362,27 +353,32 @@ showcaseProjects =
       for cases like very large referencing graphs and cyclic references)."""
       , tags = [ "Scala", "Cats", "ScalaTest" ]
       }
-    , { title = "Web crawler microservice (assessment)"
-      , url = Just "https://github.com/VladimirLogachev/crawler"
-      , description = """A microservice that accepts a list of page URLs, and returns
-      a list of page titles. It takes into account situations like bad URLs,
-      duplicate urls, redirects, concurrency, and backpressure."""
-      , tags = [ "Scala", "Akka HTTP" ]
-      }
+
+    -- , { title = "Web crawler microservice (assessment)"
+    --   , url = Just "https://github.com/vladimirlogachev/crawler"
+    --   , description = """A microservice that accepts a list of page URLs, and returns
+    --   a list of page titles. It takes into account situations like bad URLs,
+    --   duplicate urls, redirects, concurrency, and backpressure."""
+    --   , tags = [ "Scala", "Akka HTTP" ]
+    --   }
     ]
 
 
 contributions : List Project
 contributions =
-    [ { title = "higherkindness/mu-graphql-example-elm"
+    [ { title = "haskell-to-elm/servant-to-elm-example"
+      , url = Just "https://github.comhaskell-to-elm/servant-to-elm-example"
+      , description = """An example full-stack web application, built in a typesafe functional way.
+          The servant-to-elm does the job of generating types and decoders/encoders
+          from Haskell types and Servant definition to Elm, which not only catches regressions
+          in the compile-time but also provides ready (and highly configurable) Elm functions
+          to fetch necessary data from the server."""
+      , tags = [ "Elm", "Haskell", "Servant", "SQLite" ]
+      }
+    , { title = "higherkindness/mu-graphql-example-elm"
       , url = Just "https://github.com/higherkindness/mu-graphql-example-elm"
       , description = "An example of how to implement both frontend and backend in a schema-first, typesafe, and functional way (for the mu-haskell library, demonstrating its GraphQL capabilities). I rebuilt its Elm frontend and made minor changes to the Haskell backend (and also discovered a couple of bugs)."
       , tags = [ "Elm", "Haskell", "GraphQL" ]
-      }
-    , { title = "FP Specialty"
-      , url = Just "https://fpspecialty.github.io"
-      , description = "From 2019 to 2021 I have maintained a functional programming reading group for people of all functional programming skills."
-      , tags = [ "Reading group" ]
       }
     , { title = "Russian translation of the Mostly Adequate Guide to Functional Programming in JavaScript"
       , url = Just "https://github.com/MostlyAdequate/mostly-adequate-guide-ru"
@@ -391,6 +387,11 @@ contributions =
           The translation was initiated by Maxim Filippov and stopped at 60%. Then I and Sakayama joined the translation, 
           refactored every chapter translated before us, and then finished the translation."""
       , tags = [ "JavaScript", "Ramda" ]
+      }
+    , { title = "FP Specialty"
+      , url = Nothing
+      , description = "From 2019 to 2021 I have maintained a functional programming reading group for people of all functional programming skills."
+      , tags = []
       }
     ]
 
