@@ -76,8 +76,8 @@ printableLinkVertical deviceClass { url, label } =
             printFriendlyLink
 
 
-printableLinkHorizontal : DeviceClass -> { url : String, labelText : String } -> Element msg
-printableLinkHorizontal deviceClass { url, labelText } =
+printableLinkHorizontal : DeviceClass -> { url : String, labelText : String, printAs : Maybe String } -> Element msg
+printableLinkHorizontal deviceClass { url, labelText, printAs } =
     let
         nonPrintableLink : Element msg
         nonPrintableLink =
@@ -85,7 +85,10 @@ printableLinkHorizontal deviceClass { url, labelText } =
 
         printFriendlyLink : Element msg
         printFriendlyLink =
-            wrappedRow [ spacing 7 ] [ preparedParagraph (labelText ++ ":"), newTabLink [ Oklch.fontColor Oklch.blue ] { label = preparedParagraph url, url = url } ]
+            wrappedRow [ spacing 7 ]
+                [ preparedParagraph (labelText ++ ":")
+                , newTabLink [ Oklch.fontColor Oklch.blue ] { label = preparedParagraph <| Maybe.withDefault url printAs, url = url }
+                ]
     in
     case deviceClass of
         Phone ->
