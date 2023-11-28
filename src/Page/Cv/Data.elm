@@ -133,23 +133,24 @@ commercialExperience =
               }
             ]
       }
-    , { company = "Fourier Labs"
-      , positionTitle = "Software Engineer"
-      , startDate = Date 3 2022
-      , endDate = Just <| Date 4 2022
-      , url = Just "https://fourierlabs.io"
-      , roleDescription =
-            [ preparedParagraph "I worked on the POC EVM implementation for the Cardano blockchain."
-            ]
-      , details =
-            [ { name = "Responsibilities"
-              , tags = [ "engineering", "testing", "code review" ]
-              }
-            , { name = "Backend", tags = [ "Haskell", "Plutus" ] }
-            , { name = "Infrastructure", tags = [ "Nix" ] }
-            , { name = "Blockchain", tags = [ "Cardano", "Ethereum" ] }
-            ]
-      }
+
+    -- , { company = "Fourier Labs"
+    --   , positionTitle = "Backend Engineer"
+    --   , startDate = Date 3 2022
+    --   , endDate = Just <| Date 4 2022
+    --   , url = Just "https://fourierlabs.io"
+    --   , roleDescription =
+    --         [ preparedParagraph "I worked on the POC EVM implementation for the Cardano blockchain."
+    --         ]
+    --   , details =
+    --         [ { name = "Responsibilities"
+    --           , tags = [ "engineering", "testing", "code review" ]
+    --           }
+    --         , { name = "Backend", tags = [ "Haskell", "Plutus" ] }
+    --         , { name = "Infrastructure", tags = [ "Nix" ] }
+    --         , { name = "Blockchain", tags = [ "Cardano", "Ethereum" ] }
+    --         ]
+    --   }
     , { company = "Pamir"
       , positionTitle = "Frontend Engineer"
       , startDate = Date 5 2020
@@ -180,7 +181,7 @@ commercialExperience =
             ]
       }
     , { company = "Eldis"
-      , positionTitle = "Software Engineer"
+      , positionTitle = "Backend Engineer"
       , startDate = Date 10 2019
       , endDate = Just <| Date 12 2019
       , url = Just "https://eldis.ru"
