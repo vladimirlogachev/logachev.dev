@@ -112,11 +112,11 @@ view deviceClass =
             [ summarySection deviceClass
 
             -- , bioSection
-            , column [ spacing 30 ] <| List.map (viewSkill deviceClass) Data.skills
-            , viewIfNonEmpty "Commercial experience" (List.map (viewCommercialExperience deviceClass) Data.commercialExperience)
+            , viewIfNonEmpty "Experience" (List.map (viewCommercialExperience deviceClass) Data.commercialExperience)
+            , viewIfNonEmpty "Open Source Contributions" (List.map (viewProject deviceClass) Data.contributions)
 
             -- , viewIfNonEmpty "Showcase projects and assessments" (List.map (viewProject deviceClass) Data.showcaseProjects)
-            , viewIfNonEmpty "Open Source Contributions" (List.map (viewProject deviceClass) Data.contributions)
-            , viewIfNonEmpty "Education and courses" (List.map (viewEducation deviceClass) Data.education)
+            , viewIfNonEmpty "Education" (List.map (viewEducation deviceClass) Data.education)
+            , viewIfNonEmpty "Skills" <| List.map (viewSkill deviceClass) Data.skills
             ]
     }
