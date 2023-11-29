@@ -509,7 +509,7 @@ skills =
                     , "conducting technical interviews"
                     , "preparing and giving presentations"
                     , "running meetup groups and reading groups"
-                    , "initiative"
+                    , "proactive mindset"
                     , "transparency"
                     , "conflict resolution"
                     , "providing feedback"
