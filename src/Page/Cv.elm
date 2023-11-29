@@ -110,7 +110,7 @@ view deviceClass =
 
             -- , viewIfNonEmpty "Showcase projects and assessments" (List.map (viewProject deviceClass) Data.showcaseProjects)
             , viewIfNonEmpty "Education" (List.map (viewEducation deviceClass) Data.education)
-            , column [ height (px 50) ] []
+            , column [ height (px 0) ] [] -- separator
             , viewIfNonEmpty "Skills" <| List.map viewSkill Data.skills
             ]
     }
