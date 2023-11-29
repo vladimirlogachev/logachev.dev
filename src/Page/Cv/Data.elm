@@ -16,8 +16,8 @@ commercialExperience =
       , endDate = Nothing
       , url = Just "https://samokat.tech/"
       , roleDescription =
-            [ preparedParagraph "Samokat.tech develops solutions for real-time retail (the Samokat food delivery app and other marketplaces)."
-            , preparedParagraph "I develop data pipelines using platform instruments."
+            [ preparedParagraph "Samokat.tech develops real-time retail solutions, including the Samokat food delivery app and other marketplaces."
+            , preparedParagraph "I develop data pipelines using platform tools."
             ]
       , details =
             [ { name = "Responsibilities"
@@ -42,10 +42,9 @@ commercialExperience =
       , endDate = Nothing
       , url = Nothing
       , roleDescription =
-            [ preparedParagraph "The project is a full-stack web application for trading on the Binance crypto exchange. It consists of a trend-following trading algorithm, exchange simulation engine for backtesting, exhange API client for trading with real account, and a web application for inspecting and debugging the trading algorithm, and displaying stats."
-            , preparedParagraph "We use several kinds of testing techniques, including snapshot testing and property-based testing, along with case-based testing. We have schema-first typesafe SQL queries to PostgreSQL. And the haskell-to-elm library generates Elm code from Haskell code. Also, we have a strong focus on the absence of partial functions. This combination of technologies allows us to catch most regressions in the compile-time."
-            , preparedParagraph "The line count is ~17k of Haskell and ~10k of Elm code."
-            , preparedParagraph "During a technical interview, I can demonstrate the project running in a production environment and its source code."
+            [ preparedParagraph "The project is a full-stack web application designed for trading on the Binance crypto exchange. It incorporates a trend-following trading algorithm, an exchange simulation engine for backtesting, an exchange API client for live trading, and a web application for inspecting, debugging the trading algorithm, and displaying statistics."
+            , preparedParagraph "We employ various testing techniques, including snapshot testing, property-based testing, and case-based testing. Our approach includes schema-first typesafe SQL queries to PostgreSQL. Additionally, we utilize the Haskell-to-Elm library to generate Elm code from Haskell Also, we have a strong focus on the absence of partial functions. This technological combination enables us to catch most regressions at compile-time."
+            , preparedParagraph "The project consists of approximately 17,000 lines of Haskell code and 10,000 lines of Elm code. During a technical interview, I can provide a demonstration of the project running in a production environment and highlight relevant sections of its source code."
             ]
       , details =
             [ { name = "Responsibilities"
@@ -105,8 +104,8 @@ commercialExperience =
       , endDate = Just <| Date 5 2023
       , url = Just "https://www.swiftinvention.com"
       , roleDescription =
-            [ preparedParagraph "I maintained two projects as a team lead, including implementing new features, writing tests, and fixing bugs."
-            , preparedParagraph "Also, I mentored new developers to get on board with Scala (mostly, from a Java background), and ran a weekly Scala book reading club."
+            [ preparedParagraph "As a team lead, I managed two projects, overseeing the implementation of new features, writing tests, and addressing bugs."
+            , preparedParagraph "Additionally, I mentored new developers, predominantly with a Java background, to familiarize them with Scala. I also organized and led a weekly Scala book reading club."
             ]
       , details =
             [ { name = "Responsibilities"
@@ -157,9 +156,8 @@ commercialExperience =
       , endDate = Just <| Date 12 2020
       , url = Nothing
       , roleDescription =
-            [ preparedParagraph """Developed a web application, which utilizes server-side rendering and covered it with unit tests.
-                Packaged everything in Docker and set up CI."""
-            , preparedParagraph "I also mentored the second frontend developer who joined the team later."
+            [ preparedParagraph "I developed a web application that employs server-side rendering and implemented comprehensive unit test coverage. I containerized the application using Docker and established continuous integration (CI)."
+            , preparedParagraph "Additionally, I provided mentorship to the second frontend developer who joined the team later."
             ]
       , details =
             [ { name = "Responsibilities"
@@ -185,7 +183,7 @@ commercialExperience =
       , startDate = Date 10 2019
       , endDate = Just <| Date 12 2019
       , url = Just "https://eldis.ru"
-      , roleDescription = [ preparedParagraph "I developed a declarative decoder for the internal binary document format, covered it with tests, including property-based testing." ]
+      , roleDescription = [ preparedParagraph "I developed a declarative decoder for the internal binary document format, ensuring comprehensive test coverage, including property-based testing." ]
       , details =
             [ { name = "Responsibilities"
               , tags = [ "engineering", "testing" ]
@@ -198,7 +196,7 @@ commercialExperience =
       , startDate = Date 1 2019
       , endDate = Just <| Date 9 2019
       , url = Nothing
-      , roleDescription = [ preparedParagraph "I implemented new functionality in existing web applications, fixed defects, and developed new applications, and microservices, covering them with unit tests and integration tests." ]
+      , roleDescription = [ preparedParagraph "I implemented new functionality in existing web applications, addressed defects, and developed new applications and microservices, ensuring coverage with both unit tests and integration tests." ]
       , details =
             [ { name = "Responsibilities"
               , tags = [ "engineering", "testing" ]
@@ -227,10 +225,8 @@ commercialExperience =
       , endDate = Just <| Date 1 2019
       , url = Just "https://sweet.io"
       , roleDescription =
-            [ preparedParagraph "Sweet's product is a loyalty platform, social network, and online store."
-            , preparedParagraph """I performed tasks related to business logic at the front end and was engaged in covering the existing code
-                with unit tests and tuning them, thanks to which the tests were launched using CI pipeline, and the defects
-                associated with an unsuccessful merging of Git branches in a huge codebase really began to be prevented."""
+            [ preparedParagraph "Sweet's product is a combination of a loyalty platform, social network, and online store."
+            , preparedParagraph """In my role, I focused on tasks related to front-end business logic. I actively contributed to enhancing code quality by covering existing code with unit tests and fine-tuning them. This effort resulted in the successful integration of tests into the CI pipeline, effectively preventing defects associated with unsuccessful Git branch mergers in our extensive codebase."""
             ]
       , details =
             [ { name = "Responsibilities"
@@ -245,12 +241,14 @@ commercialExperience =
       , endDate = Just <| Date 8 2018
       , url = Just "https://savl.com"
       , roleDescription =
-            [ preparedParagraph "I worked in the Savl project — this is a mobile application, a wallet with support for 6 cryptocurrencies."
-            , preparedParagraph """I was responsible for the data layer in the mobile application. I applied everything that I learned from books
-                about functional programming and software design, and also completely covered the business logic with tests,
-                as a result of which the application became fault-tolerant and modular, that is, it stopped crashing due to exceptions or unexpected behavior of external services, and allowed to enable and disable support for individual
-                cryptocurrencies at any time."""
-            , preparedParagraph "Also inside the company, I made several presentations on functional programming."
+            [ preparedParagraph """I contributed to the Savl project, a mobile application functioning as a wallet with support for several cryptocurrencies.
+            My primary focus was on the data layer within the mobile application.
+            Applying principles from functional programming and software design, 
+            I implemented changes that enhanced the application's modularity and fault tolerance, 
+            effectively preventing crashes due to exceptions or unexpected behavior from external services. 
+            Furthermore, these modifications facilitated the seamless enabling and disabling of support for individual cryptocurrencies, 
+            coupled with the implementation of comprehensive unit testing."""
+            , preparedParagraph "Within the company, I conducted several presentations on functional programming."
             ]
       , details =
             [ { name = "Responsibilities"
@@ -277,32 +275,32 @@ contributions : List Project
 contributions =
     [ { title = "haskell-to-elm/servant-to-elm-example"
       , url = Just "https://github.com/haskell-to-elm/servant-to-elm-example"
-      , description = """An example full-stack web app, built in a code-first, typesafe, and functional way.
-          The servant-to-elm generates types and decoders/encoders
-          from Haskell types and Servant definition to Elm, which not only catches regressions
-          in the compile-time but also provides ready (and highly configurable) Elm functions
-          to fetch necessary data from the server."""
+      , description = """An example full-stack web app, constructed in a code-first, typesafe, and functional way. 
+          The servant-to-elm tool generates Elm types, decoders/encoders from Haskell types, and Servant definitions. 
+          This not only detects regressions during compile-time but also provides customizable Elm functions 
+          for fetching data from the server."""
       , tags = [ "Haskell", "Elm", "servant-server", "haskell-to-elm", "servant-to-elm" ]
       }
     , { title = "higherkindness/mu-graphql-example-elm"
       , url = Just "https://github.com/higherkindness/mu-graphql-example-elm"
-      , description = """An example full-stack web app, built in a schema-first, typesafe, and functional way.
-          The mu-haskell library typechecks Haskell code against GraphQL schema at compile-time.
-          The elm-graphql library generates types and decoders/encoders for Elm from GraphQL schema.
-          I rebuilt its Elm frontend and made minor changes to the Haskell backend (and also discovered a couple of bugs in the mu-haskell library itself)."""
+      , description = """An example full-stack web app, developed with a schema-first, typesafe, and functional approach. 
+          Leveraging the mu-haskell library, it performs type checking of Haskell code against GraphQL schema during compile-time. 
+          Additionally, the elm-graphql library generates Elm types, decoders/encoders from GraphQL schema. 
+          I revamped the Elm frontend and made minor adjustments to the Haskell backend, 
+          and uncovered some bugs in the mu-haskell library itself in the process."""
       , tags = [ "Haskell", "Elm", "GraphQL", "mu-haskell", "elm-graphql" ]
       }
     , { title = "Russian translation of the Mostly Adequate Guide to Functional Programming in JavaScript"
       , url = Just "https://github.com/MostlyAdequate/mostly-adequate-guide-ru"
-      , description = """The book introduces the reader to the functional programming paradigm 
-          and describes a functional approach to developing JavaScript applications.
-          I joined the translation when it got stuck at 60%.
-          Me and my friend refactored every chapter translated before us, and then finished the translation."""
+      , description = """Translated the Mostly Adequate Guide to Functional Programming in JavaScript into Russian. 
+          The book introduces the functional programming paradigm and outlines a functional approach to JavaScript application development. 
+          I joined the translation effort when progress was at 60%. Collaborating with a friend, 
+          we refactored each previously translated chapter before completing the translation."""
       , tags = [ "JavaScript", "Ramda" ]
       }
     , { title = "FP Specialty"
       , url = Nothing
-      , description = "From 2019 to 2021 I have maintained a functional programming reading group for people of all functional programming skills."
+      , description = "Maintained a functional programming reading group from 2019 to 2021, welcoming individuals of all functional programming skill levels."
       , tags = []
       }
     ]

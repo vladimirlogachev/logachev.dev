@@ -33,4 +33,4 @@ black =
 
 detail : Element.Color
 detail =
-    rgb255 100 100 100
+    rgb255 111 111 111
