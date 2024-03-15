@@ -11,7 +11,7 @@ import Typography exposing (preparedParagraph)
 commercialExperience : List (CommercialExperience msg)
 commercialExperience =
     [ { company = "Samokat.tech"
-      , positionTitle = "Data Engineer"
+      , role = "Data Engineer"
       , startDate = Date 9 2023
       , endDate = PresentFullTime
       , url = Just "https://samokat.tech/"
@@ -37,7 +37,7 @@ commercialExperience =
             ]
       }
     , { company = "Wolf"
-      , positionTitle = "Founder and Engineering Lead"
+      , role = "Founder and Engineering Lead"
       , startDate = Date 8 2021
       , endDate = PresentSpareTime
       , url = Nothing
@@ -99,7 +99,7 @@ commercialExperience =
             ]
       }
     , { company = "Tian"
-      , positionTitle = "Fullstack Engineer"
+      , role = "Fullstack Engineer"
       , startDate = Date 7 2023
       , endDate = PresentSpareTime
       , url = Just "http://radar.tian.solutions"
@@ -148,7 +148,7 @@ commercialExperience =
             ]
       }
     , { company = "Swift Invention"
-      , positionTitle = "Backend Team Lead"
+      , role = "Backend Team Lead"
       , startDate = Date 8 2022
       , endDate = EndedOn <| Date 5 2023
       , url = Just "https://www.swiftinvention.com"
@@ -183,7 +183,7 @@ commercialExperience =
       }
 
     -- , { company = "Fourier Labs"
-    --   , positionTitle = "Backend Engineer"
+    --   , role = "Backend Engineer"
     --   , startDate = Date 3 2022
     --   , endDate = Just <| Date 4 2022
     --   , url = Just "https://fourierlabs.io"
@@ -200,7 +200,7 @@ commercialExperience =
     --         ]
     --   }
     , { company = "Pamir"
-      , positionTitle = "Frontend Engineer"
+      , role = "Frontend Engineer"
       , startDate = Date 5 2020
       , endDate = EndedOn <| Date 12 2020
       , url = Nothing
@@ -228,7 +228,7 @@ commercialExperience =
             ]
       }
     , { company = "Eldis"
-      , positionTitle = "Backend Engineer"
+      , role = "Backend Engineer"
       , startDate = Date 10 2019
       , endDate = EndedOn <| Date 12 2019
       , url = Just "https://eldis.ru"
@@ -241,7 +241,7 @@ commercialExperience =
             ]
       }
     , { company = "Neolab-Nsk"
-      , positionTitle = "Fullstack Engineer"
+      , role = "Fullstack Engineer"
       , startDate = Date 1 2019
       , endDate = EndedOn <| Date 9 2019
       , url = Nothing
@@ -269,7 +269,7 @@ commercialExperience =
             ]
       }
     , { company = "SocialSweet Inc"
-      , positionTitle = "Frontend Engineer"
+      , role = "Frontend Engineer"
       , startDate = Date 8 2018
       , endDate = EndedOn <| Date 1 2019
       , url = Just "https://sweet.io"
@@ -285,7 +285,7 @@ commercialExperience =
             ]
       }
     , { company = "Allmax"
-      , positionTitle = "Frontend Engineer"
+      , role = "Frontend Engineer"
       , startDate = Date 11 2017
       , endDate = EndedOn <| Date 8 2018
       , url = Just "https://savl.com"
