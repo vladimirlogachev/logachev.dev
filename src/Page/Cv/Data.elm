@@ -98,6 +98,55 @@ commercialExperience =
               }
             ]
       }
+    , { company = "Tian"
+      , positionTitle = "Fullstack Engineer"
+      , startDate = Date 7 2023
+      , endDate = PresentSpareTime
+      , url = Just "http://radar.tian.solutions"
+      , roleDescription =
+            [ preparedParagraph "A real-time flight tracker on a 3D Earth map, with elevations combined with textures."
+            ]
+      , details =
+            [ { name = "Responsibilities"
+              , tags =
+                    [ "engineering"
+                    , "code review"
+                    , "devops"
+                    ]
+              }
+            , { name = "Backend"
+              , tags =
+                    [ "Haskell"
+                    , "servant-server"
+                    , "hasql"
+                    , "haskell-to-elm"
+                    , "mtl"
+                    , "lens"
+                    , "conduit"
+                    , "relude"
+                    , "hspec"
+                    ]
+              }
+            , { name = "Frontend"
+              , tags =
+                    [ "Elm"
+                    , "elm-ui"
+                    , "elm-3d-scene"
+                    , "elm-review"
+                    , "elm-test"
+                    ]
+              }
+            , { name = "Infrastructure"
+              , tags =
+                    [ "Docker"
+                    , "Nginx"
+                    , "DigitalOcean"
+                    , "GitHub Actions"
+                    , "GitHub Container Registry"
+                    ]
+              }
+            ]
+      }
     , { company = "Swift Invention"
       , positionTitle = "Backend Team Lead"
       , startDate = Date 8 2022
