@@ -1,7 +1,7 @@
 module Page.Cv.Data exposing (commercialExperience, contributions, education, skills)
 
 import Page.Cv.CommercialExperience exposing (CommercialExperience)
-import Page.Cv.Date exposing (Date)
+import Page.Cv.Date exposing (Date, EndDate(..))
 import Page.Cv.Education exposing (Education)
 import Page.Cv.Project exposing (Project)
 import Page.Cv.Skill exposing (Skill)
@@ -13,7 +13,7 @@ commercialExperience =
     [ { company = "Samokat.tech"
       , positionTitle = "Data Engineer"
       , startDate = Date 9 2023
-      , endDate = Nothing
+      , endDate = PresentFullTime
       , url = Just "https://samokat.tech/"
       , roleDescription =
             [ preparedParagraph "Samokat.tech develops real-time retail solutions, including the Samokat food delivery app and other marketplaces."
@@ -39,7 +39,7 @@ commercialExperience =
     , { company = "Wolf"
       , positionTitle = "Founder and Engineering Lead"
       , startDate = Date 8 2021
-      , endDate = Nothing
+      , endDate = PresentSpareTime
       , url = Nothing
       , roleDescription =
             [ preparedParagraph "The project is a full-stack web application designed for trading on the Binance crypto exchange. It incorporates a trend-following trading algorithm, an exchange simulation engine for backtesting, an exchange API client for live trading, and a web application for inspecting, debugging the trading algorithm, and displaying statistics."
@@ -101,7 +101,7 @@ commercialExperience =
     , { company = "Swift Invention"
       , positionTitle = "Backend Team Lead"
       , startDate = Date 8 2022
-      , endDate = Just <| Date 5 2023
+      , endDate = EndedOn <| Date 5 2023
       , url = Just "https://www.swiftinvention.com"
       , roleDescription =
             [ preparedParagraph "As a team lead, I managed two projects, overseeing the implementation of new features, writing tests, and addressing bugs."
@@ -153,7 +153,7 @@ commercialExperience =
     , { company = "Pamir"
       , positionTitle = "Frontend Engineer"
       , startDate = Date 5 2020
-      , endDate = Just <| Date 12 2020
+      , endDate = EndedOn <| Date 12 2020
       , url = Nothing
       , roleDescription =
             [ preparedParagraph "I developed a web application that employs server-side rendering and implemented comprehensive unit test coverage. I containerized the application using Docker and established continuous integration (CI)."
@@ -181,7 +181,7 @@ commercialExperience =
     , { company = "Eldis"
       , positionTitle = "Backend Engineer"
       , startDate = Date 10 2019
-      , endDate = Just <| Date 12 2019
+      , endDate = EndedOn <| Date 12 2019
       , url = Just "https://eldis.ru"
       , roleDescription = [ preparedParagraph "I developed a declarative decoder for the internal binary document format, ensuring comprehensive test coverage, including property-based testing." ]
       , details =
@@ -194,7 +194,7 @@ commercialExperience =
     , { company = "Neolab-Nsk"
       , positionTitle = "Fullstack Engineer"
       , startDate = Date 1 2019
-      , endDate = Just <| Date 9 2019
+      , endDate = EndedOn <| Date 9 2019
       , url = Nothing
       , roleDescription = [ preparedParagraph "I implemented new functionality in existing web applications, addressed defects, and developed new applications and microservices, ensuring coverage with both unit tests and integration tests." ]
       , details =
@@ -222,7 +222,7 @@ commercialExperience =
     , { company = "SocialSweet Inc"
       , positionTitle = "Frontend Engineer"
       , startDate = Date 8 2018
-      , endDate = Just <| Date 1 2019
+      , endDate = EndedOn <| Date 1 2019
       , url = Just "https://sweet.io"
       , roleDescription =
             [ preparedParagraph "Sweet's product is a combination of a loyalty platform, social network, and online store."
@@ -238,7 +238,7 @@ commercialExperience =
     , { company = "Allmax"
       , positionTitle = "Frontend Engineer"
       , startDate = Date 11 2017
-      , endDate = Just <| Date 8 2018
+      , endDate = EndedOn <| Date 8 2018
       , url = Just "https://savl.com"
       , roleDescription =
             [ preparedParagraph """I contributed to the Savl project, a mobile application functioning as a wallet with support for several cryptocurrencies.
