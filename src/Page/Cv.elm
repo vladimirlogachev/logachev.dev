@@ -40,9 +40,9 @@ summarySection deviceClass =
             column [ width fill, spacing 20, alignTop ]
                 [ el pageHeading <| preparedParagraph "Vladimir Logachev"
                 , column [ width fill, spacing 10 ]
-                    [ preparedParagraph "Location: Armenia (remote)"
+                    [ preparedParagraph "🏴\u{200D}☠️ I make software succeed"
+                    , preparedParagraph "Location: Armenia (remote)"
                     , links
-                    , preparedParagraph "🏴\u{200D}☠️ Creating products. 🔋 Engineering every day."
                     ]
                 ]
 
