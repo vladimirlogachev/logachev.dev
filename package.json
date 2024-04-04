@@ -4,9 +4,8 @@
   "description": "",
   "private": true,
   "scripts": {
-    "start": "vite",
-    "build": "vite build",
-    "preview-build": "vite preview",
+    "start": "elm-land server",
+    "build": "elm-land build",
     "typecheck": "npm run build",
     "test-watch": "elm-test \"src/**/*Test.elm\" --watch",
     "test": "elm-test \"src/**/*Test.elm\"",
@@ -25,14 +24,12 @@
     "elm-format": "^0.8.7",
     "elm-review": "^2.10.2",
     "elm-test": "^0.19.1-revision12",
-    "vite": "^4.3.9",
-    "vite-plugin-elm": "^2.8.0-beta.3"
+    "elm-land": "^0.19.5"
   },
   "dependencies": {
-    "elm-debug-transformer": "^1.1.2"
   },
   "engines": {
-    "npm": ">=9.7.0 <10.0.0",
-    "node": ">=18.16.0 <19.0.0"
+    "npm": ">=10.2.3 <11.0.0",
+    "node": ">=20.10.0 <21.0.0"
   }
 }
