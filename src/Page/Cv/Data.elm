@@ -41,7 +41,7 @@ commercialExperience =
       , url = Nothing
       , roleDescription =
             [ preparedParagraph "The project is a full-stack web application designed for trading on the Binance crypto exchange. It incorporates a trend-following trading algorithm, an exchange simulation engine for backtesting, an exchange API client for live trading, and a web application for inspecting, debugging the trading algorithm, and displaying statistics."
-            , preparedParagraph "We employ various testing techniques, including snapshot testing, property-based testing, and case-based testing. Our approach includes schema-first typesafe SQL queries to PostgreSQL. Additionally, we utilize the Haskell-to-Elm library to generate Elm code from Haskell Also, we have a strong focus on the absence of partial functions. This technological combination enables us to catch most regressions at compile-time."
+            , preparedParagraph "We employ various testing techniques, including snapshot testing, property-based testing, and case-based testing. Our approach includes schema-first typesafe SQL queries to PostgreSQL. Additionally, we utilize the Haskell-to-Elm library to generate Elm code from Haskell Also, we have a strong focus on the absence of partial functions. This technological combination enables us to catch most regressions at compile time."
             , preparedParagraph "The project consists of approximately 17,000 lines of Haskell code and 10,000 lines of Elm code. During a technical interview, I can provide a demonstration of the project running in a production environment and highlight relevant sections of its source code."
             ]
       , details =
@@ -272,7 +272,7 @@ commercialExperience =
       , endDate = EndedOn <| Date 1 2019
       , url = Just "https://sweet.io"
       , roleDescription =
-            [ preparedParagraph "Sweet's product is a combination of a loyalty platform, social network, and online store."
+            [ preparedParagraph "Sweet's product is a combination of a loyalty platform, a social network, and an online store."
             , preparedParagraph """In my role, I focused on tasks related to front-end business logic. I actively contributed to enhancing code quality by covering existing code with unit tests and fine-tuning them. This effort resulted in the successful integration of tests into the CI pipeline, effectively preventing defects associated with unsuccessful Git branch mergers in our extensive codebase."""
             ]
       , details =
@@ -324,14 +324,14 @@ contributions =
       , url = Just "https://github.com/haskell-to-elm/servant-to-elm-example"
       , description = """An example full-stack web app, constructed in a code-first, typesafe, and functional way. 
           The servant-to-elm tool generates Elm types, decoders/encoders from Haskell types, and Servant definitions. 
-          This not only detects regressions during compile-time but also provides customizable Elm functions 
+          This not only detects regressions during compile time but also provides customizable Elm functions 
           for fetching data from the server."""
       , tags = [ "Haskell", "Elm", "servant-server", "haskell-to-elm", "servant-to-elm" ]
       }
     , { title = "higherkindness/mu-graphql-example-elm"
       , url = Just "https://github.com/higherkindness/mu-graphql-example-elm"
       , description = """An example full-stack web app, developed with a schema-first, typesafe, and functional approach. 
-          Leveraging the mu-haskell library, it performs type checking of Haskell code against GraphQL schema during compile-time. 
+          Leveraging the mu-haskell library, it performs type checking of Haskell code against GraphQL schema during compile time. 
           Additionally, the elm-graphql library generates Elm types, decoders/encoders from GraphQL schema. 
           I revamped the Elm frontend and made minor adjustments to the Haskell backend, 
           and uncovered some bugs in the mu-haskell library itself in the process."""
