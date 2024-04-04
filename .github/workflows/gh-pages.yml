@@ -64,8 +64,8 @@ jobs:
           # Render pdf, A4 (dimensions are specified in inches)
           npx chrome-headless-render-pdf \
             --url http://localhost:1234 \
-            --paper-width 8.3
-            --paper-height 11.7
+            --paper-width 8.3 \
+            --paper-height 11.7 \
             --pdf static/cv_vladimir_logachev.pdf
 
           # Teardown
