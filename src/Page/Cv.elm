@@ -14,8 +14,27 @@ import Util.Style exposing (pageHeading, printableLinkHorizontal)
 import VitePluginHelper
 
 
-summarySection : DeviceClass -> Element msg
-summarySection deviceClass =
+view : DeviceClass -> ElementDocument msg
+view deviceClass =
+    { title = "Vladimir Logachev."
+    , content =
+        column [ spacing 30, width fill, height fill ]
+            [ viewContacts deviceClass
+            , viewSummary deviceClass
+            , viewIfNonEmpty "Skills" <| List.map viewSkill Data.skills
+            , viewIfNonEmpty "Experience" (List.map (viewCommercialExperience deviceClass) Data.commercialExperience)
+
+            -- , viewIfNonEmpty "Showcase projects and assessments" (List.map (viewProject deviceClass) Data.showcaseProjects)
+            , viewIfNonEmpty "Education" (List.map (viewEducation deviceClass) Data.education)
+
+            -- , column [ height (px 0) ] [] -- separator
+            , viewIfNonEmpty "Open Source Contributions" (List.map (viewProject deviceClass) Data.contributions)
+            ]
+    }
+
+
+viewContacts : DeviceClass -> Element msg
+viewContacts deviceClass =
     let
         photo : Element msg
         photo =
@@ -40,8 +59,10 @@ summarySection deviceClass =
             column [ width fill, spacing 20, alignTop ]
                 [ el pageHeading <| preparedParagraph "Vladimir Logachev"
                 , column [ width fill, spacing 10 ]
-                    [ preparedParagraph "🏴\u{200D}☠️ I make software succeed"
-                    , preparedParagraph "Location: Armenia (remote)"
+                    [ {- preparedParagraph "🏴\u{200D}☠️ I make software succeed"
+                         ,
+                      -}
+                      preparedParagraph "Location: Armenia (remote)"
                     , links
                     ]
                 ]
@@ -74,13 +95,28 @@ summarySection deviceClass =
                 , printableLinkHorizontal deviceClass
                     { labelText = "GitHub"
                     , url = "https://github.com/vladimirlogachev"
-                    , printAs = Nothing
+                    , printAs = Just "vladimirlogachev"
                     }
-
-                -- , printableLinkHorizontal deviceClass { labelText = "Twitter", url = "https://twitter.com/logachev_dev" }
-                -- , printableLinkHorizontal deviceClass { labelText = "LinkedIn", url = "https://www.linkedin.com/in/vladimirlogachev" }
-                -- , printableLinkHorizontal deviceClass { labelText = "Website", url = "https://logachev.dev" }
-                -- , printableLinkHorizontal deviceClass { labelText = "Download cv", url = "https://logachev.dev/cv_vladimir_logachev.pdf" }
+                , printableLinkHorizontal deviceClass
+                    { labelText = "Twitter"
+                    , url = "https://twitter.com/logachev_dev"
+                    , printAs = Just "logachev_dev"
+                    }
+                , printableLinkHorizontal deviceClass
+                    { labelText = "LinkedIn"
+                    , url = "https://www.linkedin.com/in/vladimirlogachev"
+                    , printAs = Just "vladimirlogachev"
+                    }
+                , printableLinkHorizontal deviceClass
+                    { labelText = "Website"
+                    , url = "https://logachev.dev"
+                    , printAs = Just "logachev.dev"
+                    }
+                , printableLinkHorizontal deviceClass
+                    { labelText = "Download cv"
+                    , url = "https://logachev.dev/cv_vladimir_logachev.pdf"
+                    , printAs = Just "cv_vladimir_logachev.pdf"
+                    }
                 ]
     in
     case deviceClass of
@@ -97,20 +133,6 @@ summarySection deviceClass =
             wrappedRow [ width fill, spacing 50 ] [ photo, summary ]
 
 
-view : DeviceClass -> ElementDocument msg
-view deviceClass =
-    { title = "Vladimir Logachev." --  🏴\u{200D}☠️ Creating products. 🔋 Engineering every day. 🧰 FP, Haskell, Elm, Scala, whatever.
-    , content =
-        column [ spacing 30, width fill, height fill ]
-            [ summarySection deviceClass
-
-            -- , bioSection
-            , viewIfNonEmpty "Experience" (List.map (viewCommercialExperience deviceClass) Data.commercialExperience)
-            , viewIfNonEmpty "Open Source Contributions" (List.map (viewProject deviceClass) Data.contributions)
-
-            -- , viewIfNonEmpty "Showcase projects and assessments" (List.map (viewProject deviceClass) Data.showcaseProjects)
-            , viewIfNonEmpty "Education" (List.map (viewEducation deviceClass) Data.education)
-            , column [ height (px 0) ] [] -- separator
-            , viewIfNonEmpty "Skills" <| List.map viewSkill Data.skills
-            ]
-    }
+viewSummary : DeviceClass -> Element msg
+viewSummary _ =
+    column [ width fill, spacing 50 ] [ text "This is summary" ]
