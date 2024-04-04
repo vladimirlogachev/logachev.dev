@@ -40,5 +40,5 @@ view : Shared.Model -> View msg
 view shared =
     { title = "Vladimir Logachev"
     , attributes = []
-    , element = text "test"
+    , element = text "Oh hi!"
     }
