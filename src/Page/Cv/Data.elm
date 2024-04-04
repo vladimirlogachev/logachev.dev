@@ -364,12 +364,12 @@ education =
       , url = Just "https://www.udemy.com/certificate/UC-DRMAMOQ5"
       , details = "Packt, 2019"
       }
-    , { title = "Functional Programming in Haskell, part 2 (certificate with honors)"
-      , url = Just "https://stepik.org/cert/207739"
+    , { title = "Functional Programming in Haskell, part 2"
+      , url = Just "https://stepik.org/cert/207739?lang=en"
       , details = "Stepik, Computer Science Center, 2019"
       }
-    , { title = "Functional Programming in Haskell, part 1 (certificate with honors)"
-      , url = Just "https://stepik.org/cert/196007"
+    , { title = "Functional Programming in Haskell, part 1"
+      , url = Just "https://stepik.org/cert/196007?lang=en"
       , details = "Stepik, Computer Science Center, 2019"
       }
     , { title = "Computer Science Summer School, Theory of Programming Languages"
