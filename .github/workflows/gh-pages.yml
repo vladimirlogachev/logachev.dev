@@ -31,20 +31,45 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
+
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 20.10
-      - name: Set up Elm Land
-        run: npm i -g elm elm-land@latest
+
+      - name: Install dependencies
+        run: npm i
+
+      - name: Save specified page as pdf
+        run: |
+          # Build for rendering pdf
+          docker build -t container-for-pdf .
+
+          # Run for rendering pdf
+          docker container run \
+            -p 1234:80 \
+            --detach \
+            container-for-pdf
+          
+          # Render pdf
+          npx chrome-headless-render-pdf \
+            --url https://localhost:1234 \
+            --pdf static/cv_vladimir_logachev.pdf
+
+          # Teardown
+          docker stop $(docker ps -q --filter ancestor=container-for-pdf )
+
       - name: Build app
-        run: elm-land build
+        run: npm run build build
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: 'dist'
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

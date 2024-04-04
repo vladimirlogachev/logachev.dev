@@ -56,6 +56,7 @@ commercialExperience =
                     , "testing"
                     , "code review"
                     , "devops"
+                    , "research"
                     ]
               }
             , { name = "Backend"

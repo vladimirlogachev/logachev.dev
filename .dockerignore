@@ -1,0 +1,16 @@
+/.git
+/.gitignore
+/.github
+
+/Dockerfile
+/.dockerignore
+
+/dist
+/.elm-land
+/elm-stuff
+/node_modules
+
+/review
+
+/docs
+/README.md
