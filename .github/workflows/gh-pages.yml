@@ -59,7 +59,7 @@ jobs:
           sleep 3
 
           # Try curl, or fail if it's not available yet
-          curl http://localhost:1234
+          curl http://localhost:1234 --fail
           
           # Render pdf, A4 (dimensions are specified in inches)
           npx chrome-headless-render-pdf \
