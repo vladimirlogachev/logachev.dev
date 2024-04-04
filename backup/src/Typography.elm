@@ -1,20 +1,30 @@
-module Typography exposing (nbsp, preparedText)
+module Typography exposing (nbsp, preparedParagraph, preparedText)
 
 import Element exposing (..)
 import Set exposing (Set)
 
 
-{-| A helper to avoid typographic mistakes.
+{-| Avoid typographic mistakes
 
 1.  Split string into lines
 2.  Glue last 2 words in a line together (if line consists of 3 and more)
 3.  Replace spaces after specific words with nbsp
 4.  Glue lines back together
 
-Note: Ideally it should be stored in both clean and processed forms in database.
-Note: We may even come up with a separate elm package, carefully ported from js.
+Ideally it should be stored in both clean and processed forms in database.
+But I don't have one, so why not process everything in real time? :D
 
 -}
+preparedParagraph : String -> Element msg
+preparedParagraph x =
+    paragraph []
+        [ String.lines x
+            |> List.map processLine
+            |> String.join "\n"
+            |> text
+        ]
+
+
 preparedText : String -> Element msg
 preparedText x =
     String.lines x
