@@ -55,10 +55,10 @@ jobs:
             --detach \
             container-for-pdf
 
-          # wait for container to start
-          sleep 5
+          # Wait for the container to start
+          sleep 3
 
-          # Try curl
+          # Try curl, or fail if it's not available yet
           curl http://localhost:1234
           
           # Render pdf
