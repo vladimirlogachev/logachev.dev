@@ -35,7 +35,7 @@ commercialExperience =
             ]
       }
     , { company = "Wolf"
-      , role = "Engineering Lead"
+      , role = "Product Manager and Engineering Lead"
       , startDate = Date 8 2021
       , endDate = PresentSpareTime
       , url = Nothing
