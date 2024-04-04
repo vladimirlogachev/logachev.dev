@@ -355,24 +355,8 @@ contributions =
 
 education : List Education
 education =
-    [ { title = "Modern Product Leadership"
-      , url = Just "https://www.edx.org/learn/product-management/the-university-of-maryland-college-park-modern-product-leadership"
-      , details = "The University of Maryland, 2024"
-      }
-    , { title = "Data Science and Agile Systems for Product Management"
-      , url = Just "https://www.edx.org/learn/product-management/the-university-of-maryland-college-park-data-science-and-agile-systems-for-product-management"
-      , details = "The University of Maryland, 2024"
-      }
-    , { title = "Product Design, Prototyping, and Testing"
-      , url = Just "https://www.edx.org/learn/product-design/the-university-of-maryland-college-park-product-design-prototyping-and-testing"
-      , details = "The University of Maryland, 2024"
-      }
-    , { title = "Achieving Product-Market Fit"
-      , url = Just "https://www.edx.org/learn/marketing/the-university-of-maryland-college-park-achieving-product-market-fit"
-      , details = "The University of Maryland, 2024"
-      }
-    , { title = "Product Management Fundamentals"
-      , url = Just "https://www.edx.org/learn/product-management/the-university-of-maryland-college-park-product-management-fundamentals"
+    [ { title = "Professional Certificate in Product Management"
+      , url = Just "https://www.edx.org/certificates/professional-certificate/usmx-product-management"
       , details = "The University of Maryland, 2024"
       }
     , { title = "Mastering Haskell Programming"
@@ -401,186 +385,103 @@ education =
 skills : List Skill
 skills =
     [ { icon = Nothing
-      , title = "Haskell"
+      , title = "Leadership and Project Management"
       , details =
-            [ { name = "Effects and Streaming"
+            [ { name = "Responsibilities"
               , tags =
-                    [ "async"
-                    , "conduit"
-                    , "mtl"
-                    , "parallel"
-                    , "resource-pool"
-                    , "retry"
+                    [ "project management"
+                    , "product management"
+                    , "team leadership"
+                    , "presenting"
+                    , "planning"
+                    , "risk management"
+                    , "schedule management"
+                    , "release management"
+                    , "issue resolution"
+                    , "stakeholder communication"
+                    , "providing feedback"
                     ]
               }
-            , { name = "HTTP and Networking"
-              , tags =
-                    [ "http-conduit"
-                    , "servant-server"
-                    , "ua-parser"
-                    , "wai"
-                    , "wai-extra"
-                    , "warp"
-                    ]
+            , { name = "Values"
+              , tags = [ "collaboration", "transparency", "accountability", "proactivity", "empathy" ]
               }
-            , { name = "Testing"
-              , tags =
-                    [ "generic-random"
-                    , "hspec"
-                    , "hspec-golden"
-                    , "QuickCheck"
-                    , "testcontainers"
-                    ]
-              }
-            , { name = "Other"
-              , tags =
-                    [ "aeson"
-                    , "fmt"
-                    , "haskell-to-elm"
-                    , "lens"
-                    , "nonempty-containers"
-                    , "optparse-applicative"
-                    , "password"
-                    , "pcg-random"
-                    , "postgresql-typed"
-                    , "pretty-simple"
-                    , "relude"
-                    , "safe-decimal"
-                    , "text"
-                    , "uuid"
-                    , "zlib"
-                    ]
+            , { name = "Tools"
+              , tags = [ "GitHub Projects", "Notion", "Jira", "Confluence", "Figma", "Draw.io" ]
               }
             ]
       }
     , { icon = Nothing
-      , title = "Scala"
+      , title = "Technical Expertise"
       , details =
-            [ { name = "Effects and Streaming"
+            [ { name = "Responsibilities"
               , tags =
-                    [ "akka"
-                    , "akka-stream"
-                    , "cats"
-                    , "cats-effect"
-                    , "fs2"
-                    , "zio"
-                    , "zio-streams"
+                    [ "research and analysis"
+                    , "engineering"
+                    , "code review"
+                    , "mentorship"
+                    , "technical interviews"
+                    , "running meetups and reading groups"
                     ]
               }
-            , { name = "HTTP"
+            , { name = "Backend"
               , tags =
-                    [ "akka-http"
-                    , "caliban"
-                    , "finagle"
-                    , "tapir"
-                    , "zio-http"
+                    [ "Haskell (mtl)"
+                    , "Scala (ZIO, cats, Akka)"
+                    , "Rust (Tokio)"
+                    , "TypeScript"
                     ]
-              }
-            , { name = "Testing"
-              , tags =
-                    [ "scalacheck"
-                    , "scalatest"
-                    , "specs2"
-                    , "testcontainers"
-                    , "zio-test"
-                    ]
-              }
-            , { name = "Other"
-              , tags =
-                    [ "chimney"
-                    , "circe"
-                    , "enumeratum"
-                    , "flyway"
-                    , "quill"
-                    , "scala-parser-combinators"
-                    , "scodec"
-                    ]
-              }
-            ]
-      }
-    , { icon = Nothing
-      , title = "Elm"
-      , details =
-            [ { name = "UI"
-              , tags =
-                    [ "elm-charts"
-                    , "elm-css"
-                    , "elm-datetime-picker"
-                    , "elm-style-animation"
-                    , "elm-ui"
-                    , "elm-ui-dialog"
-                    , "svg"
-                    ]
-              }
-            , { name = "Testing"
-              , tags =
-                    [ "elm-test"
-                    , "elm-review"
-                    ]
-              }
-            , { name = "Other"
-              , tags =
-                    [ "remotedata"
-                    , "elm-all-set"
-                    , "elm-round"
-                    , "elm-stat"
-                    ]
-              }
-            ]
-      }
-    , { icon = Nothing
-      , title = "TypeScript"
-      , details =
-            [ { name = "Functional programming"
-              , tags = [ "fp-ts", "io-ts", "rxjs", "sanctuary-js", "ramda" ]
-              }
-            , { name = "Network"
-              , tags = [ "Socket.io", "Apollo" ]
-              }
-            , { name = "Testing"
-              , tags = [ "Jest", "Mocha", "Jasmine" ]
               }
             , { name = "Frontend"
-              , tags = [ "React", "Angular", "Next.js", "Redux", "Redux-saga", "Vite", "Webpack", "ESLint", "SCSS", "Emotion" ]
+              , tags =
+                    [ "Elm"
+                    , "TypeScript"
+                    , "React"
+                    , "Angular"
+                    , "Next.js"
+                    ]
               }
-            ]
-      }
-    , { icon = Nothing
-      , title = "Other"
-      , details =
-            [ { name = "Databases"
-              , tags = [ "PostgreSQL", "MySQL", "MS SQL", "Greenplum", "Redis", "MinIO", "MongoDB" ]
+            , { name = "DevOps"
+              , tags =
+                    [ "Terraform"
+                    , "Kubernetes"
+                    , "Docker"
+                    , "GitHub Actions"
+                    ]
               }
-            , { name = "Infrastructure"
-              , tags = [ "Terraform", "Kubernetes", "Docker", "Zitadel", "Keycloak", "Grafana", "Loki", "NGINX", "Traefik" ]
+            , { name = "Databases"
+              , tags =
+                    [ "PostgreSQL"
+                    , "MySQL"
+                    , "Redis"
+                    , "MongoDB"
+                    , "S3"
+                    ]
+              }
+            , { name = "Streaming"
+              , tags =
+                    [ "Pulsar"
+                    , "Kafka"
+                    ]
+              }
+            , { name = "Auth"
+              , tags =
+                    [ "Zitadel"
+                    , "Keycloak"
+                    ]
+              }
+            , { name = "Monitoring"
+              , tags =
+                    [ "Grafana"
+                    , "Loki"
+                    ]
               }
             , { name = "Testing"
               , tags = [ "Cypress", "K6", "Percy" ]
               }
-            , { name = "CI and other tools"
-              , tags = [ "GitHub Actions", "Just" ]
-              }
-            , { name = "APIs"
-              , tags = [ "GraphQL", "OpenAPI" ]
-              }
-            , { name = "Project Management and Documentation"
-              , tags = [ "GitHub Projects", "Figma", "Draw.io" ]
-              }
-            , { name = "Soft Skills"
+            , { name = "API Design"
               , tags =
-                    [ "research and analysis"
-                    , "project management"
-                    , "code review"
-                    , "leading"
-                    , "mentoring"
-                    , "conducting technical interviews"
-                    , "preparing and giving presentations"
-                    , "running meetup groups and reading groups"
-                    , "proactive mindset"
-                    , "transparency"
-                    , "conflict resolution"
-                    , "providing feedback"
-                    , "active listening"
+                    [ "REST"
+                    , "GraphQL"
                     ]
               }
             ]

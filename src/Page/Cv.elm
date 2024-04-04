@@ -20,7 +20,8 @@ view deviceClass =
     , content =
         column [ spacing 30, width fill, height fill ]
             [ viewContacts deviceClass
-            , viewSummary deviceClass
+
+            -- , viewSummary deviceClass
             , viewIfNonEmpty "Skills" <| List.map viewSkill Data.skills
             , viewIfNonEmpty "Experience" (List.map (viewCommercialExperience deviceClass) Data.commercialExperience)
 
@@ -90,28 +91,33 @@ viewContacts deviceClass =
                     , url = "mailto:vladimir@logachev.dev"
                     , printAs = Just "vladimir@logachev.dev"
                     }
-
-                -- , printableLinkHorizontal deviceClass { labelText = "Telegram", url = "https://t.me/vladimirlogachev" }
+                , printableLinkHorizontal deviceClass
+                    { labelText = "Telegram"
+                    , url = "https://t.me/vladimirlogachev"
+                    , printAs = Just "vladimirlogachev"
+                    }
                 , printableLinkHorizontal deviceClass
                     { labelText = "GitHub"
                     , url = "https://github.com/vladimirlogachev"
                     , printAs = Just "vladimirlogachev"
                     }
-                , printableLinkHorizontal deviceClass
-                    { labelText = "Twitter"
-                    , url = "https://twitter.com/logachev_dev"
-                    , printAs = Just "logachev_dev"
-                    }
+
+                -- , printableLinkHorizontal deviceClass
+                --     { labelText = "Twitter"
+                --     , url = "https://twitter.com/logachev_dev"
+                --     , printAs = Just "logachev_dev"
+                --     }
                 , printableLinkHorizontal deviceClass
                     { labelText = "LinkedIn"
                     , url = "https://www.linkedin.com/in/vladimirlogachev"
                     , printAs = Just "vladimirlogachev"
                     }
-                , printableLinkHorizontal deviceClass
-                    { labelText = "Website"
-                    , url = "https://logachev.dev"
-                    , printAs = Just "logachev.dev"
-                    }
+
+                -- , printableLinkHorizontal deviceClass
+                --     { labelText = "Website"
+                --     , url = "https://logachev.dev"
+                --     , printAs = Just "logachev.dev"
+                --     }
                 , printableLinkHorizontal deviceClass
                     { labelText = "Download cv"
                     , url = "https://logachev.dev/cv_vladimir_logachev.pdf"
@@ -135,4 +141,4 @@ viewContacts deviceClass =
 
 viewSummary : DeviceClass -> Element msg
 viewSummary _ =
-    column [ width fill, spacing 50 ] [ text "This is summary" ]
+    column [ width fill, spacing 50 ] [ text "Some summary" ]
