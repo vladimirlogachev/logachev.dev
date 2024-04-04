@@ -42,12 +42,3 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
-/* ------- custom styles --------- */
-.line-height-116 > div {
-	display: inline-block!important;
-  line-height: 116px;
-}
-.line-height-100 > div {
-	display: inline-block!important;
-  line-height: 100px;
-}
