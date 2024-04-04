@@ -56,7 +56,7 @@ jobs:
           
           # Render pdf
           npx chrome-headless-render-pdf \
-            --url https://localhost:1234 \
+            --url http://localhost:1234 \
             --pdf static/cv_vladimir_logachev.pdf
 
           # Teardown
