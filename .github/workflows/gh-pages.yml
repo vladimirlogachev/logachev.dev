@@ -55,6 +55,9 @@ jobs:
             --detach \
             container-for-pdf
 
+          # wait for container to start
+          sleep 5
+
           # Try curl
           curl http://localhost:1234
           
