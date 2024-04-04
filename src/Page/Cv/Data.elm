@@ -13,7 +13,7 @@ commercialExperience =
     [ { company = "Samokat.tech"
       , role = "Data Engineer"
       , startDate = Date 9 2023
-      , endDate = PresentFullTime
+      , endDate = EndedOn <| Date 4 2024
       , url = Just "https://samokat.tech/"
       , roleDescription =
             [ preparedParagraph "Samokat.tech develops real-time retail solutions, including the Samokat food delivery app and other marketplaces."
@@ -30,14 +30,12 @@ commercialExperience =
                     , "Kafka"
                     , "MinIO"
                     , "Airflow"
-                    , "MS SQL"
-                    , "Jenkins"
                     ]
               }
             ]
       }
     , { company = "Wolf"
-      , role = "Founder and Engineering Lead"
+      , role = "Engineering Lead"
       , startDate = Date 8 2021
       , endDate = PresentSpareTime
       , url = Nothing
@@ -357,7 +355,27 @@ contributions =
 
 education : List Education
 education =
-    [ { title = "Mastering Haskell Programming"
+    [ { title = "Modern Product Leadership"
+      , url = Just "https://www.edx.org/learn/product-management/the-university-of-maryland-college-park-modern-product-leadership"
+      , details = "The University of Maryland, 2024"
+      }
+    , { title = "Data Science and Agile Systems for Product Management"
+      , url = Just "https://www.edx.org/learn/product-management/the-university-of-maryland-college-park-data-science-and-agile-systems-for-product-management"
+      , details = "The University of Maryland, 2024"
+      }
+    , { title = "Product Design, Prototyping, and Testing"
+      , url = Just "https://www.edx.org/learn/product-design/the-university-of-maryland-college-park-product-design-prototyping-and-testing"
+      , details = "The University of Maryland, 2024"
+      }
+    , { title = "Achieving Product-Market Fit"
+      , url = Just "https://www.edx.org/learn/marketing/the-university-of-maryland-college-park-achieving-product-market-fit"
+      , details = "The University of Maryland, 2024"
+      }
+    , { title = "Product Management Fundamentals"
+      , url = Just "https://www.edx.org/learn/product-management/the-university-of-maryland-college-park-product-management-fundamentals"
+      , details = "The University of Maryland, 2024"
+      }
+    , { title = "Mastering Haskell Programming"
       , url = Just "https://www.udemy.com/certificate/UC-DRMAMOQ5"
       , details = "Packt, 2019"
       }
@@ -534,10 +552,10 @@ skills =
               , tags = [ "PostgreSQL", "MySQL", "MS SQL", "Greenplum", "Redis", "MinIO", "MongoDB" ]
               }
             , { name = "Infrastructure"
-              , tags = [ "Kubernetes", "Docker", "Zitadel", "Keycloak", "Grafana", "Loki", "NGINX", "Traefik" ]
+              , tags = [ "Terraform", "Kubernetes", "Docker", "Zitadel", "Keycloak", "Grafana", "Loki", "NGINX", "Traefik" ]
               }
             , { name = "Testing"
-              , tags = [ "Cypress", "K6" ]
+              , tags = [ "Cypress", "K6", "Percy" ]
               }
             , { name = "CI and other tools"
               , tags = [ "GitHub Actions", "Just" ]
