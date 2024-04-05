@@ -386,7 +386,7 @@ education =
 skills : List Skill
 skills =
     [ { icon = Nothing
-      , title = "Leadership and Project Management"
+      , title = "Leadership and Product Management"
       , details =
             [ { name = "Responsibilities"
               , tags =
