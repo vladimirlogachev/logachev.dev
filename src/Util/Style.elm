@@ -86,7 +86,7 @@ screenLink { url, labelText } =
 
 printLinkHorizontal : { url : String, labelText : String, printAs : Maybe String } -> Element msg
 printLinkHorizontal { url, labelText, printAs } =
-    wrappedRow [ spacing 7 ]
+    wrappedRow []
         [ el [ Font.color Color.detail, width (px contactsKeyColumnWidth) ] <| preparedParagraph (labelText ++ nbsp)
         , newTabLink [ Oklch.fontColor Oklch.blue ] { label = preparedParagraph <| Maybe.withDefault url printAs, url = url }
         ]
