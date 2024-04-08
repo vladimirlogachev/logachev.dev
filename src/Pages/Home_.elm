@@ -42,11 +42,13 @@ page shared _ =
 view : Shared.Model -> View msg
 view shared =
     let
+        deviceClass : DeviceClass
         deviceClass =
             (classifyDevice shared.window).class
 
+        viewContent : Element msg
         viewContent =
-            column [ spacing 30, width fill, height fill ]
+            column [ spacing 60, width fill, height fill ]
                 [ viewContacts deviceClass
 
                 -- , viewSummary deviceClass
@@ -55,8 +57,6 @@ view shared =
 
                 -- , viewIfNonEmpty "Showcase projects and assessments" (List.map (viewProject deviceClass) Data.showcaseProjects)
                 , viewIfNonEmpty "Education" (List.map (viewEducation deviceClass) Data.education)
-
-                -- , column [ height (px 0) ] [] -- separator
                 , viewIfNonEmpty "Open Source Contributions" (List.map (viewProject deviceClass) Data.contributions)
                 ]
     in

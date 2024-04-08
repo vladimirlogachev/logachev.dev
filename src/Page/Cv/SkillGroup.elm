@@ -12,4 +12,4 @@ viewIfNonEmpty title list =
             none
 
         xs ->
-            column [ spacing 20 ] [ el sectionHeading <| preparedParagraph title, column [ spacing 20 ] xs ]
+            column [ spacing 32 ] [ el sectionHeading <| preparedParagraph title, column [ spacing 32 ] xs ]
