@@ -21,7 +21,7 @@ commercialExperience =
             ]
       , details =
             [ { name = "Responsibilities"
-              , tags = [ "engineering", "code review" ]
+              , tags = [ "Engineering", "code review" ]
               }
             , { name = "Backend"
               , tags =
@@ -47,7 +47,7 @@ commercialExperience =
       , details =
             [ { name = "Responsibilities"
               , tags =
-                    [ "design"
+                    [ "Design"
                     , "technology strategy"
                     , "project management"
                     , "leading"
@@ -56,7 +56,6 @@ commercialExperience =
                     , "testing"
                     , "code review"
                     , "devops"
-                    , "research"
                     ]
               }
             , { name = "Backend"
@@ -108,7 +107,7 @@ commercialExperience =
       , details =
             [ { name = "Responsibilities"
               , tags =
-                    [ "engineering"
+                    [ "Engineering"
                     , "code review"
                     , "devops"
                     ]
@@ -157,7 +156,7 @@ commercialExperience =
             ]
       , details =
             [ { name = "Responsibilities"
-              , tags = [ "leading", "mentoring", "technical interviews", "engineering", "testing", "code review" ]
+              , tags = [ "Leading", "mentoring", "technical interviews", "engineering", "testing", "code review" ]
               }
             , { name = "Backend"
               , tags =
@@ -191,7 +190,7 @@ commercialExperience =
     --         ]
     --   , details =
     --         [ { name = "Responsibilities"
-    --           , tags = [ "engineering", "testing", "code review" ]
+    --           , tags = [ "Engineering", "testing", "code review" ]
     --           }
     --         , { name = "Backend", tags = [ "Haskell", "Plutus" ] }
     --         , { name = "Infrastructure", tags = [ "Nix" ] }
@@ -209,7 +208,7 @@ commercialExperience =
             ]
       , details =
             [ { name = "Responsibilities"
-              , tags = [ "mentoring", "engineering", "testing", "code review" ]
+              , tags = [ "Mentoring", "engineering", "testing", "code review" ]
               }
             , { name = "Frontend"
               , tags =
@@ -234,7 +233,7 @@ commercialExperience =
       , roleDescription = [ preparedParagraph "I developed a declarative decoder for the internal binary document format, ensuring comprehensive test coverage, including property-based testing." ]
       , details =
             [ { name = "Responsibilities"
-              , tags = [ "engineering", "testing" ]
+              , tags = [ "Engineering", "testing" ]
               }
             , { name = "Backend", tags = [ "Scala", "scodec", "cats", "fs2", "decline", "specs2", "scalacheck" ] }
             ]
@@ -247,7 +246,7 @@ commercialExperience =
       , roleDescription = [ preparedParagraph "I implemented new functionality in existing web applications, addressed defects, and developed new applications and microservices, ensuring coverage with both unit tests and integration tests." ]
       , details =
             [ { name = "Responsibilities"
-              , tags = [ "engineering", "testing" ]
+              , tags = [ "Engineering", "testing" ]
               }
             , { name = "Frontend", tags = [ "TypeScript", "React", "Redux", "Saga", "RxJS", "FP-TS" ] }
             , { name = "Backend"
@@ -278,7 +277,7 @@ commercialExperience =
             ]
       , details =
             [ { name = "Responsibilities"
-              , tags = [ "engineering", "testing", "code review" ]
+              , tags = [ "Engineering", "testing", "code review" ]
               }
             , { name = "Frontend", tags = [ "TypeScript", "Angular", "RxJS" ] }
             ]
@@ -300,7 +299,7 @@ commercialExperience =
             ]
       , details =
             [ { name = "Responsibilities"
-              , tags = [ "mentoring", "engineering", "testing", "code review" ]
+              , tags = [ "Mentoring", "engineering", "testing", "code review" ]
               }
             , { name = "Frontend"
               , tags =
@@ -321,7 +320,7 @@ commercialExperience =
 
 contributions : List Project
 contributions =
-    [ { title = "haskell-to-elm/servant-to-elm-example"
+    [ { title = "servant-to-elm-example"
       , url = Just "https://github.com/haskell-to-elm/servant-to-elm-example"
       , description = """An example full-stack web app, constructed in a code-first, typesafe, and functional way. 
           The servant-to-elm tool generates Elm types, decoders/encoders from Haskell types, and Servant definitions. 
@@ -329,7 +328,7 @@ contributions =
           for fetching data from the server."""
       , tags = [ "Haskell", "Elm", "servant-server", "haskell-to-elm", "servant-to-elm" ]
       }
-    , { title = "higherkindness/mu-graphql-example-elm"
+    , { title = "mu-graphql-example-elm"
       , url = Just "https://github.com/higherkindness/mu-graphql-example-elm"
       , description = """An example full-stack web app, developed with a schema-first, typesafe, and functional approach. 
           Leveraging the mu-haskell library, it performs type checking of Haskell code against GraphQL schema during compile time. 
@@ -338,7 +337,7 @@ contributions =
           and uncovered some bugs in the mu-haskell library itself in the process."""
       , tags = [ "Haskell", "Elm", "GraphQL", "mu-haskell", "elm-graphql" ]
       }
-    , { title = "Russian translation of the Mostly Adequate Guide to Functional Programming in JavaScript"
+    , { title = "Translation of the Mostly Adequate Guide to Functional Programming in JavaScript"
       , url = Just "https://github.com/MostlyAdequate/mostly-adequate-guide-ru"
       , description = """Translated the Mostly Adequate Guide to Functional Programming in JavaScript into Russian. 
           The book introduces the functional programming paradigm and outlines a functional approach to JavaScript application development. 
@@ -356,8 +355,8 @@ contributions =
 
 education : List Education
 education =
-    [ { title = "Professional Certificate in Product Management"
-      , url = Just "https://www.edx.org/certificates/professional-certificate/usmx-product-management"
+    [ { title = "Product Ideation, Design, and Management Specialization"
+      , url = Just "https://www.coursera.org/specializations/product-ideation-design-and-management"
       , details = "The University of Maryland, 2024"
       }
     , { title = "Mastering Haskell Programming"
@@ -390,7 +389,7 @@ skills =
       , details =
             [ { name = "Responsibilities"
               , tags =
-                    [ "project management"
+                    [ "Project management"
                     , "product management"
                     , "team leadership"
                     , "presenting"
@@ -404,7 +403,7 @@ skills =
                     ]
               }
             , { name = "Values"
-              , tags = [ "collaboration", "transparency", "accountability", "proactivity", "empathy" ]
+              , tags = [ "Collaboration", "transparency", "accountability", "proactivity", "empathy" ]
               }
             , { name = "Tools"
               , tags = [ "GitHub Projects", "Notion", "Jira", "Confluence", "Figma", "Draw.io" ]
@@ -416,7 +415,7 @@ skills =
       , details =
             [ { name = "Responsibilities"
               , tags =
-                    [ "research and analysis"
+                    [ "Research and analysis"
                     , "engineering"
                     , "code review"
                     , "mentorship"

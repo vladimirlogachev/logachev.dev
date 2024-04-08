@@ -39,7 +39,8 @@
           "type": "image/svg+xml",
           "href": "/icons/favicon.svg"
         },
-        { "rel": "stylesheet", "href": "/styles/reset.css" }
+        { "rel": "stylesheet", "href": "/styles/reset.css" },
+        { "rel": "stylesheet", "href": "/styles/custom.css" }
       ],
       "script": [
         { "type": "module", "src": "/scripts/metrika.js" }

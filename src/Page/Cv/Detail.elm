@@ -4,6 +4,7 @@ import Color
 import Element exposing (..)
 import Element.Font as Font
 import Typography exposing (nbsp, preparedText)
+import Util.Style exposing (keyColumnWidth)
 
 
 type alias Detail =
@@ -12,7 +13,7 @@ type alias Detail =
 
 viewDetail : Detail -> Element msg
 viewDetail y =
-    paragraph [ width fill ]
-        [ text (y.name ++ ":" ++ nbsp ++ nbsp)
-        , el [ Font.color Color.detail ] <| preparedText <| String.join ", " <| y.tags
+    row [ width fill ]
+        [ el [ Font.color Color.detail, width (px keyColumnWidth), alignTop ] <| text (y.name ++ nbsp)
+        , paragraph [ alignTop ] [ preparedText <| String.join ", " <| y.tags ]
         ]

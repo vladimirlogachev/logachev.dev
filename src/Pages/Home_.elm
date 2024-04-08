@@ -6,6 +6,7 @@ import Element exposing (..)
 import Element.Background as Background
 import Element.Border as Border
 import Element.Font as Font
+import Html.Attributes
 import Page exposing (Page)
 import Page.Cv.CommercialExperience exposing (viewCommercialExperience)
 import Page.Cv.Data as Data
@@ -15,8 +16,8 @@ import Page.Cv.Skill exposing (viewSkill)
 import Page.Cv.SkillGroup exposing (viewIfNonEmpty)
 import Route exposing (Route)
 import Shared
-import Typography exposing (preparedParagraph)
-import Util.Style exposing (fontFamilyGeneral, pageHeading, printableLinkHorizontal)
+import Typography exposing (nbsp, preparedParagraph)
+import Util.Style exposing (contactsKeyColumnWidth, fontFamilyGeneral, pageHeading, printLinkHorizontal, screenLink)
 import View exposing (View)
 
 
@@ -126,68 +127,75 @@ viewContacts deviceClass =
             column [ width fill, spacing 20, alignTop ]
                 [ el pageHeading <| preparedParagraph "Vladimir Logachev"
                 , column [ width fill, spacing 10 ]
-                    [ {- preparedParagraph "🏴\u{200D}☠️ I make software succeed"
-                         ,
-                      -}
-                      preparedParagraph "Location: Armenia (remote)"
-                    , links
+                    [ column [ spacing 10, htmlAttribute <| Html.Attributes.class "only-screen" ]
+                        [ row []
+                            [ el [ Font.color Color.detail, width (px contactsKeyColumnWidth) ] <| preparedParagraph ("Location" ++ nbsp)
+                            , text "Armenia (remote)"
+                            ]
+                        , linksScreen
+                        ]
+                    , column [ spacing 10, htmlAttribute <| Html.Attributes.class "only-print" ]
+                        [ row []
+                            [ el [ Font.color Color.detail, width (px contactsKeyColumnWidth) ] <| preparedParagraph ("Location" ++ nbsp)
+                            , text "Armenia (remote)"
+                            ]
+                        , linksPrint
+                        ]
                     ]
                 ]
 
-        linksContainer : List (Element msg) -> Element msg
-        linksContainer =
-            case deviceClass of
-                Phone ->
-                    wrappedRow [ spacing 10 ]
+        linksScreen : Element msg
+        linksScreen =
+            wrappedRow [ spacing 20 ]
+                [ screenLink
+                    { labelText = "Mail"
+                    , url = "mailto:vladimir@logachev.dev"
+                    }
+                , screenLink
+                    { labelText = "Telegram"
+                    , url = "https://t.me/vladimirlogachev"
+                    }
+                , screenLink
+                    { labelText = "GitHub"
+                    , url = "https://github.com/vladimirlogachev"
+                    }
+                , screenLink
+                    { labelText = "LinkedIn"
+                    , url = "https://www.linkedin.com/in/vladimirlogachev"
+                    }
+                , screenLink
+                    { labelText = "Download cv"
+                    , url = "https://logachev.dev/cv_vladimir_logachev.pdf"
+                    }
+                ]
 
-                Tablet ->
-                    wrappedRow [ spacing 10 ]
-
-                Desktop ->
-                    column [ width fill, spacing 10 ]
-
-                BigDesktop ->
-                    column [ width fill, spacing 10 ]
-
-        links : Element msg
-        links =
-            linksContainer
-                [ printableLinkHorizontal deviceClass
+        linksPrint : Element msg
+        linksPrint =
+            column [ width fill, spacing 10 ]
+                [ printLinkHorizontal
                     { labelText = "Mail"
                     , url = "mailto:vladimir@logachev.dev"
                     , printAs = Just "vladimir@logachev.dev"
                     }
-                , printableLinkHorizontal deviceClass
+                , printLinkHorizontal
                     { labelText = "Telegram"
                     , url = "https://t.me/vladimirlogachev"
                     , printAs = Just "vladimirlogachev"
                     }
-                , printableLinkHorizontal deviceClass
+                , printLinkHorizontal
                     { labelText = "GitHub"
                     , url = "https://github.com/vladimirlogachev"
                     , printAs = Just "vladimirlogachev"
                     }
-
-                -- , printableLinkHorizontal deviceClass
-                --     { labelText = "Twitter"
-                --     , url = "https://twitter.com/logachev_dev"
-                --     , printAs = Just "logachev_dev"
-                --     }
-                , printableLinkHorizontal deviceClass
+                , printLinkHorizontal
                     { labelText = "LinkedIn"
                     , url = "https://www.linkedin.com/in/vladimirlogachev"
                     , printAs = Just "vladimirlogachev"
                     }
-
-                -- , printableLinkHorizontal deviceClass
-                --     { labelText = "Website"
-                --     , url = "https://logachev.dev"
-                --     , printAs = Just "logachev.dev"
-                --     }
-                , printableLinkHorizontal deviceClass
-                    { labelText = "Download cv"
-                    , url = "https://logachev.dev/cv_vladimir_logachev.pdf"
-                    , printAs = Just "cv_vladimir_logachev.pdf"
+                , printLinkHorizontal
+                    { labelText = "Website"
+                    , url = "https://logachev.dev"
+                    , printAs = Just "logachev.dev"
                     }
                 ]
     in

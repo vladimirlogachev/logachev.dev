@@ -1,10 +1,13 @@
 module Util.Style exposing
-    ( fontFamilyGeneral
+    ( contactsKeyColumnWidth
+    , fontFamilyGeneral
     , itemHeading
+    , keyColumnWidth
     , maxDesktopInnerWidth
     , pageHeading
-    , printableLinkHorizontal
+    , printLinkHorizontal
     , printableLinkVertical
+    , screenLink
     , sectionHeading
     )
 
@@ -13,7 +16,7 @@ import Element exposing (..)
 import Element.Font as Font
 import Element.Region as Region
 import Oklch
-import Typography exposing (preparedParagraph)
+import Typography exposing (nbsp, preparedParagraph)
 
 
 fontFamilyGeneral : Attribute msg
@@ -57,7 +60,7 @@ printableLinkVertical deviceClass { url, label } =
         printFriendlyLink =
             case url of
                 Just urlString ->
-                    column [ spacing 7 ] [ label, newTabLink [ Oklch.fontColor Oklch.blue ] { label = preparedParagraph urlString, url = urlString } ]
+                    column [] [ label, newTabLink [ Oklch.fontColor Oklch.blue ] { label = preparedParagraph urlString, url = urlString } ]
 
                 Nothing ->
                     label
@@ -76,29 +79,24 @@ printableLinkVertical deviceClass { url, label } =
             printFriendlyLink
 
 
-printableLinkHorizontal : DeviceClass -> { url : String, labelText : String, printAs : Maybe String } -> Element msg
-printableLinkHorizontal deviceClass { url, labelText, printAs } =
-    let
-        nonPrintableLink : Element msg
-        nonPrintableLink =
-            newTabLink [] { label = el [ Oklch.fontColor Oklch.blue ] <| preparedParagraph labelText, url = url }
+screenLink : { url : String, labelText : String } -> Element msg
+screenLink { url, labelText } =
+    newTabLink [] { label = el [ Oklch.fontColor Oklch.blue ] <| preparedParagraph labelText, url = url }
 
-        printFriendlyLink : Element msg
-        printFriendlyLink =
-            wrappedRow [ spacing 7 ]
-                [ preparedParagraph (labelText ++ ":")
-                , newTabLink [ Oklch.fontColor Oklch.blue ] { label = preparedParagraph <| Maybe.withDefault url printAs, url = url }
-                ]
-    in
-    case deviceClass of
-        Phone ->
-            nonPrintableLink
 
-        Tablet ->
-            nonPrintableLink
+printLinkHorizontal : { url : String, labelText : String, printAs : Maybe String } -> Element msg
+printLinkHorizontal { url, labelText, printAs } =
+    wrappedRow [ spacing 7 ]
+        [ el [ Font.color Color.detail, width (px contactsKeyColumnWidth) ] <| preparedParagraph (labelText ++ nbsp)
+        , newTabLink [ Oklch.fontColor Oklch.blue ] { label = preparedParagraph <| Maybe.withDefault url printAs, url = url }
+        ]
 
-        Desktop ->
-            printFriendlyLink
 
-        BigDesktop ->
-            printFriendlyLink
+keyColumnWidth : Int
+keyColumnWidth =
+    140
+
+
+contactsKeyColumnWidth : Int
+contactsKeyColumnWidth =
+    140
