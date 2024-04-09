@@ -355,8 +355,8 @@ contributions =
 
 education : List Education
 education =
-    [ { title = "Product Ideation, Design, and Management Specialization"
-      , url = Just "https://www.coursera.org/specializations/product-ideation-design-and-management"
+    [ { title = "Product Management Essentials"
+      , url = Just "https://www.coursera.org/account/accomplishments/verify/DU4BJFRJH99A"
       , details = "The University of Maryland, 2024"
       }
     , { title = "Mastering Haskell Programming"
