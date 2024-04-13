@@ -20,16 +20,16 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "elm": "^0.19.1-5",
+    "elm": "^0.19.1-6",
     "elm-format": "^0.8.7",
-    "elm-review": "^2.10.2",
+    "elm-review": "^2.11.1",
     "elm-test": "^0.19.1-revision12",
-    "elm-land": "^0.19.5"
+    "elm-land": "^0.20.0"
   },
   "dependencies": {
   },
   "engines": {
     "npm": ">=10.2.3 <11.0.0",
-    "node": ">=20.10.0 <21.0.0"
+    "node": ">=20.12.0 <21.0.0"
   }
 }
