@@ -37,7 +37,7 @@ commercialExperience =
     , { company = "Wolf"
       , role = "Product Manager and Engineering Lead"
       , startDate = Date 8 2021
-      , endDate = PresentSpareTime
+      , endDate = EndedOn <| Date 3 2024
       , url = Nothing
       , roleDescription =
             [ preparedParagraph "The project is a full-stack web application designed for trading on the Binance crypto exchange. It incorporates a trend-following trading algorithm, an exchange simulation engine for backtesting, an exchange API client for live trading, and a web application for inspecting, debugging the trading algorithm, and displaying statistics."
@@ -99,7 +99,7 @@ commercialExperience =
     , { company = "Tian"
       , role = "Fullstack Engineer"
       , startDate = Date 7 2023
-      , endDate = PresentSpareTime
+      , endDate = EndedOn <| Date 2 2024
       , url = Just "http://radar.tian.solutions"
       , roleDescription =
             [ preparedParagraph "A real-time flight tracker on a 3D Earth map, with elevations combined with textures."
