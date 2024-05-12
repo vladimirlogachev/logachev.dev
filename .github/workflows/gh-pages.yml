@@ -73,7 +73,7 @@ jobs:
           docker stop $(docker ps -q --filter ancestor=container-for-pdf )
 
       - name: Build app
-        run: npm run build build
+        run: npm run check-and-build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

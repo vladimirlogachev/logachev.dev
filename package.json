@@ -6,7 +6,6 @@
   "scripts": {
     "start": "elm-land server",
     "build": "elm-land build",
-    "typecheck": "npm run build",
     "test-watch": "elm-test \"src/**/*Test.elm\" --watch",
     "test": "elm-test \"src/**/*Test.elm\"",
     "format-fix-all": "elm-format --yes src/ review/",
@@ -14,8 +13,8 @@
     "review": "elm-review",
     "review-fix-interactive": "elm-review --fix",
     "review-fix-all": "yes | elm-review --fix-all",
-    "check": "npm run typecheck && npm run format-validate && npm test && npm run review",
-    "precommit-fix": "npm run typecheck && npm run format-fix-all && npm test && npm run review-fix-all"
+    "check-and-build": "npm run build && npm run format-validate && npm test && npm run review",
+    "precommit-fix": "npm run build && npm run format-fix-all && npm test && npm run review-fix-all"
   },
   "author": "",
   "license": "MIT",
