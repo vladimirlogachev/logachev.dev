@@ -1,19 +1,15 @@
 module Util.Style exposing
     ( contactsKeyColumnWidth
-    , itemHeading
     , keyColumnWidth
-    , pageHeading
     , preparedParagraph
     , printLinkHorizontal
     , printableLinkVertical
     , screenLink
-    , sectionHeading
     )
 
 import Color
 import Element exposing (..)
 import Element.Font as Font
-import Element.Region as Region
 import ExtraColor
 import GridLayout2 exposing (..)
 import Typography exposing (nbsp, preparedText)
@@ -24,21 +20,6 @@ import Typography exposing (nbsp, preparedText)
 preparedParagraph : String -> Element msg
 preparedParagraph text =
     paragraph [] [ preparedText text ]
-
-
-pageHeading : List (Attribute msg)
-pageHeading =
-    [ Region.heading 1, Font.semiBold, Font.size 48 ]
-
-
-sectionHeading : List (Attribute msg)
-sectionHeading =
-    [ Region.heading 2, Font.semiBold, Font.size 36 ]
-
-
-itemHeading : List (Attribute msg)
-itemHeading =
-    [ Region.heading 3, Font.semiBold, Font.size 20 ]
 
 
 printableLinkVertical : LayoutState -> { url : Maybe String, label : Element msg } -> Element msg

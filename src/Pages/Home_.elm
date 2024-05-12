@@ -13,8 +13,17 @@ import Layouts
 import Page exposing (Page)
 import Route exposing (Route)
 import Shared
+import TextStyle
 import Typography exposing (nbsp, preparedText)
-import Util.Style exposing (contactsKeyColumnWidth, itemHeading, keyColumnWidth, pageHeading, preparedParagraph, printLinkHorizontal, printableLinkVertical, screenLink, sectionHeading)
+import Util.Style
+    exposing
+        ( contactsKeyColumnWidth
+        , keyColumnWidth
+        , preparedParagraph
+        , printLinkHorizontal
+        , printableLinkVertical
+        , screenLink
+        )
 import View exposing (View)
 
 
@@ -84,7 +93,7 @@ viewContacts layout =
         summary : Element msg
         summary =
             column [ width fill, spacing 20, alignTop ]
-                [ el pageHeading <| preparedParagraph "Vladimir Logachev"
+                [ paragraph TextStyle.headline.attrs [ preparedText "Vladimir Logachev" ]
                 , column [ width fill, spacing 10 ]
                     [ column [ spacing 10, htmlAttribute <| Html.Attributes.class "only-screen" ]
                         [ row []
@@ -184,7 +193,7 @@ viewCommercialExperience : LayoutState -> CommercialExperience msg -> Element ms
 viewCommercialExperience layout x =
     column [ width fill, spacing 16 ]
         [ column [ width fill, spacing 10 ]
-            [ el itemHeading <| preparedParagraph x.role
+            [ paragraph TextStyle.lead.attrs [ preparedText x.role ]
             , printableLinkVertical layout { url = x.url, label = el [ Region.heading 4, Font.medium, Font.size 20 ] <| preparedParagraph x.company }
             , (showDate x.startDate ++ " — " ++ showEndDate x.endDate)
                 |> preparedText
@@ -198,7 +207,7 @@ viewCommercialExperience layout x =
 viewSkill : Skill -> Element msg
 viewSkill x =
     column [ alignTop, width fill, spacing 20 ]
-        [ el (width fill :: itemHeading) <| preparedParagraph x.title
+        [ paragraph (width fill :: TextStyle.lead.attrs) [ preparedText x.title ]
         , column [ width fill, spacing 16 ] <| List.map viewDetail x.details
         ]
 
@@ -210,13 +219,13 @@ viewIfNonEmpty title list =
             none
 
         xs ->
-            column [ spacing 32 ] [ el sectionHeading <| preparedParagraph title, column [ spacing 32 ] xs ]
+            column [ spacing 32 ] [ paragraph TextStyle.header.attrs [ preparedText title ], column [ spacing 32 ] xs ]
 
 
 viewProject : LayoutState -> Project -> Element msg
 viewProject layout x =
     column [ spacing 16 ]
-        [ printableLinkVertical layout { url = x.url, label = el itemHeading <| preparedParagraph x.title }
+        [ printableLinkVertical layout { url = x.url, label = paragraph TextStyle.lead.attrs [ preparedText x.title ] }
         , preparedParagraph x.description
         , el [ Font.color Color.detail ] <| preparedParagraph <| String.join ", " <| x.tags
         ]
@@ -225,7 +234,7 @@ viewProject layout x =
 viewEducation : LayoutState -> Education -> Element msg
 viewEducation layout x =
     column [ spacing 10 ]
-        [ printableLinkVertical layout { url = x.url, label = el itemHeading <| preparedParagraph x.title }
+        [ printableLinkVertical layout { url = x.url, label = paragraph TextStyle.lead.attrs [ preparedText x.title ] }
         , preparedParagraph x.details |> el [ Font.color Color.detail ]
         ]
 
