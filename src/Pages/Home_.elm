@@ -6,8 +6,8 @@ import Effect
 import Element exposing (..)
 import Element.Border as Border
 import Element.Font as Font
-import Element.Region as Region
-import GridLayout2 exposing (LayoutState, ScreenClass(..))
+import ExtraColor
+import GridLayout2 exposing (..)
 import Html.Attributes
 import Layouts
 import Page exposing (Page)
@@ -15,15 +15,6 @@ import Route exposing (Route)
 import Shared
 import TextStyle
 import Typography exposing (nbsp, preparedText)
-import Util.Style
-    exposing
-        ( contactsKeyColumnWidth
-        , keyColumnWidth
-        , preparedParagraph
-        , printLinkHorizontal
-        , printableLinkVertical
-        , screenLink
-        )
 import View exposing (View)
 
 
@@ -97,14 +88,14 @@ viewContacts layout =
                 , column [ width fill, spacing 10 ]
                     [ column [ spacing 10, htmlAttribute <| Html.Attributes.class "only-screen" ]
                         [ row []
-                            [ el [ Font.color Color.detail, width (px contactsKeyColumnWidth) ] <| preparedParagraph ("Location" ++ nbsp)
+                            [ paragraph [ Font.color Color.detail, width (px contactsKeyColumnWidth) ] [ preparedText ("Location" ++ nbsp) ]
                             , text "Armenia (remote)"
                             ]
                         , linksScreen
                         ]
                     , column [ spacing 10, htmlAttribute <| Html.Attributes.class "only-print" ]
                         [ row []
-                            [ el [ Font.color Color.detail, width (px contactsKeyColumnWidth) ] <| preparedParagraph ("Location" ++ nbsp)
+                            [ paragraph [ Font.color Color.detail, width (px contactsKeyColumnWidth) ] [ preparedText ("Location" ++ nbsp) ]
                             , text "Armenia (remote)"
                             ]
                         , linksPrint
@@ -194,7 +185,7 @@ viewCommercialExperience layout x =
     column [ width fill, spacing 16 ]
         [ column [ width fill, spacing 10 ]
             [ paragraph TextStyle.lead.attrs [ preparedText x.role ]
-            , printableLinkVertical layout { url = x.url, label = el [ Region.heading 4, Font.medium, Font.size 20 ] <| preparedParagraph x.company }
+            , printableLinkVertical layout { url = x.url, label = paragraph TextStyle.companyName.attrs [ preparedText x.company ] }
             , (showDate x.startDate ++ " — " ++ showEndDate x.endDate)
                 |> preparedText
                 |> el [ Font.color Color.detail ]
@@ -226,8 +217,8 @@ viewProject : LayoutState -> Project -> Element msg
 viewProject layout x =
     column [ spacing 16 ]
         [ printableLinkVertical layout { url = x.url, label = paragraph TextStyle.lead.attrs [ preparedText x.title ] }
-        , preparedParagraph x.description
-        , el [ Font.color Color.detail ] <| preparedParagraph <| String.join ", " <| x.tags
+        , paragraph [] [ preparedText x.description ]
+        , paragraph [ Font.color Color.detail ] [ preparedText <| String.join ", " <| x.tags ]
         ]
 
 
@@ -235,7 +226,7 @@ viewEducation : LayoutState -> Education -> Element msg
 viewEducation layout x =
     column [ spacing 10 ]
         [ printableLinkVertical layout { url = x.url, label = paragraph TextStyle.lead.attrs [ preparedText x.title ] }
-        , preparedParagraph x.details |> el [ Font.color Color.detail ]
+        , paragraph [ Font.color Color.detail ] [ preparedText x.details ]
         ]
 
 
@@ -257,3 +248,48 @@ showEndDate ed =
 
         PresentSpareTime ->
             "present (spare time)"
+
+
+printableLinkVertical : LayoutState -> { url : Maybe String, label : Element msg } -> Element msg
+printableLinkVertical layout { url, label } =
+    case layout.screenClass of
+        MobileScreen ->
+            -- nonPrintableLink
+            case url of
+                Just urlString ->
+                    newTabLink [] { label = el [ ExtraColor.fontColor Color.blue ] label, url = urlString }
+
+                Nothing ->
+                    el [ Font.color Color.black ] label
+
+        DesktopScreen ->
+            -- printFriendlyLink
+            case url of
+                Just urlString ->
+                    column [] [ label, newTabLink [ ExtraColor.fontColor Color.blue ] { label = paragraph [] [ preparedText urlString ], url = urlString } ]
+
+                Nothing ->
+                    label
+
+
+screenLink : { url : String, labelText : String } -> Element msg
+screenLink { url, labelText } =
+    newTabLink [] { label = paragraph [ ExtraColor.fontColor Color.blue ] [ preparedText labelText ], url = url }
+
+
+printLinkHorizontal : { url : String, labelText : String, printAs : Maybe String } -> Element msg
+printLinkHorizontal { url, labelText, printAs } =
+    wrappedRow []
+        [ paragraph [ Font.color Color.detail, width (px contactsKeyColumnWidth) ] [ preparedText (labelText ++ nbsp) ]
+        , newTabLink [ ExtraColor.fontColor Color.blue ] { label = preparedText <| Maybe.withDefault url printAs, url = url }
+        ]
+
+
+keyColumnWidth : Int
+keyColumnWidth =
+    140
+
+
+contactsKeyColumnWidth : Int
+contactsKeyColumnWidth =
+    140

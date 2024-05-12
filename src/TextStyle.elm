@@ -1,4 +1,4 @@
-module TextStyle exposing (body, header, headline, lead)
+module TextStyle exposing (body, companyName, header, headline, lead)
 
 import Element.Font as Font
 import Typography exposing (TextStyle)
@@ -43,6 +43,17 @@ lead =
         { fontFamily = [ Font.typeface "Source Sans Pro", Font.sansSerif ]
         , fontSizePx = 20
         , fontWeight = Font.semiBold
+        , lineHeightPx = 20
+        , letterSpacingPercent = 0
+        }
+
+
+companyName : TextStyle msg
+companyName =
+    Typography.textStyleFromFigma
+        { fontFamily = [ Font.typeface "Source Sans Pro", Font.sansSerif ]
+        , fontSizePx = 20
+        , fontWeight = Font.medium
         , lineHeightPx = 20
         , letterSpacingPercent = 0
         }

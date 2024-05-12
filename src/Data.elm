@@ -12,8 +12,15 @@ module Data exposing
     , skills
     )
 
-import Element exposing (Element)
-import Util.Style exposing (preparedParagraph)
+import Element exposing (Element, paragraph)
+import Typography exposing (preparedText)
+
+
+{-| TODO: remove
+-}
+preparedParagraph : String -> Element msg
+preparedParagraph text =
+    paragraph [] [ preparedText text ]
 
 
 type alias Detail =
