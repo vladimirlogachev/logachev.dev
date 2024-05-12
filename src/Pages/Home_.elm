@@ -4,17 +4,17 @@ import Color
 import Data exposing (CommercialExperience, Date, Detail, Education, EndDate(..), Project, Skill)
 import Effect
 import Element exposing (..)
-import Element.Background as Background
 import Element.Border as Border
 import Element.Font as Font
 import Element.Region as Region
 import GridLayout2 exposing (LayoutState, ScreenClass(..))
 import Html.Attributes
+import Layouts
 import Page exposing (Page)
 import Route exposing (Route)
 import Shared
 import Typography exposing (nbsp, preparedText)
-import Util.Style exposing (contactsKeyColumnWidth, fontFamilyGeneral, itemHeading, keyColumnWidth, pageHeading, preparedParagraph, printLinkHorizontal, printableLinkVertical, screenLink, sectionHeading)
+import Util.Style exposing (contactsKeyColumnWidth, itemHeading, keyColumnWidth, pageHeading, preparedParagraph, printLinkHorizontal, printableLinkVertical, screenLink, sectionHeading)
 import View exposing (View)
 
 
@@ -34,6 +34,7 @@ page shared _ =
         , subscriptions = always Sub.none
         , view = always <| view shared
         }
+        |> Page.withLayout (always <| Layouts.WebappLayout {})
 
 
 view : Shared.Model -> View msg
@@ -54,41 +55,9 @@ view { layout } =
                 ]
     in
     { title = "Vladimir Logachev"
-    , attributes =
-        [ Background.color Color.white
-        , Font.color Color.black
-        , width fill
-        , Font.size 16
-        , fontFamilyGeneral
-        ]
-    , element =
-        column [ width fill, height fill ]
-            [ wrap layout viewContent
-            ]
+    , attributes = []
+    , element = viewContent
     }
-
-
-wrap : LayoutState -> Element msg -> Element msg
-wrap layout content =
-    let
-        pageInnerWidth : Length
-        pageInnerWidth =
-            case layout.screenClass of
-                MobileScreen ->
-                    fill
-
-                DesktopScreen ->
-                    fill |> maximum Util.Style.maxDesktopInnerWidth
-    in
-    row [ width fill, height fill ]
-        [ el
-            [ width pageInnerWidth
-            , centerX
-            , paddingEach { top = 40, right = 20, bottom = 60, left = 20 }
-            , height fill
-            ]
-            content
-        ]
 
 
 viewContacts : LayoutState -> Element msg

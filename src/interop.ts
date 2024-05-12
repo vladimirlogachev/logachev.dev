@@ -6,3 +6,9 @@ export const flags = ({ env }) => {
     },
   };
 };
+
+export const onReady = ({ app, env }) => {
+  app.ports.urlChanged.subscribe((val) => {
+    window.scrollTo(0, 0);
+  });
+};

@@ -1,9 +1,7 @@
 module Util.Style exposing
     ( contactsKeyColumnWidth
-    , fontFamilyGeneral
     , itemHeading
     , keyColumnWidth
-    , maxDesktopInnerWidth
     , pageHeading
     , preparedParagraph
     , printLinkHorizontal
@@ -26,16 +24,6 @@ import Typography exposing (nbsp, preparedText)
 preparedParagraph : String -> Element msg
 preparedParagraph text =
     paragraph [] [ preparedText text ]
-
-
-fontFamilyGeneral : Attribute msg
-fontFamilyGeneral =
-    Font.family [ Font.typeface "Source Sans Pro", Font.sansSerif ]
-
-
-maxDesktopInnerWidth : Int
-maxDesktopInnerWidth =
-    900
 
 
 pageHeading : List (Attribute msg)

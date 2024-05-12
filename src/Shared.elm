@@ -54,7 +54,7 @@ layoutConfig =
         }
     , desktopScreen =
         { minGridWidth = 1024
-        , maxGridWidth = Just 1440
+        , maxGridWidth = Just 1024
         , columnCount = 12
         , gutter = 32
         , margin = GridLayout2.SameAsGutter
