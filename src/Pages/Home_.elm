@@ -56,7 +56,10 @@ viewMobile : LayoutState -> Element msg
 viewMobile layout =
     column [ spacing 60, width fill ]
         [ viewContactsMobile layout
-        , viewIfNonEmpty "Skills" <| List.map viewSkill Data.skills
+        , viewSkillsMobile layout
+        , viewExperienceMobile layout
+        , viewEducationMobile layout
+        , viewContributionsMobile layout
         , viewIfNonEmpty "Experience" (List.map (viewCommercialExperience layout) Data.commercialExperience)
         , viewIfNonEmpty "Education" (List.map (viewEducation layout) Data.education)
         , viewIfNonEmpty "Open Source Contributions" (List.map (viewProject layout) Data.contributions)
@@ -67,7 +70,10 @@ viewDesktop : LayoutState -> Element msg
 viewDesktop layout =
     column [ spacing 60, width fill ]
         [ viewContactsDesktop layout
-        , viewIfNonEmpty "Skills" <| List.map viewSkill Data.skills
+        , viewSkillsDesktop layout
+        , viewExperienceDesktop layout
+        , viewEducationDesktop layout
+        , viewContributionsDesktop layout
         , viewIfNonEmpty "Experience" (List.map (viewCommercialExperience layout) Data.commercialExperience)
         , viewIfNonEmpty "Education" (List.map (viewEducation layout) Data.education)
         , viewIfNonEmpty "Open Source Contributions" (List.map (viewProject layout) Data.contributions)
@@ -83,14 +89,8 @@ viewContactsMobile layout =
             Data.photo
         , paragraph TextStyle.headline.attrs [ preparedText Data.myName ]
         , gridRow layout
-            [ gridColumn layout
-                { widthSteps = 2 }
-                []
-                [ paragraph [ Font.color Color.detail ] [ preparedText "Location" ] ]
-            , gridColumn layout
-                { widthSteps = 4 }
-                []
-                [ paragraph [ Font.color Color.detail ] [ text "Armenia (remote)" ] ]
+            [ paragraph (Font.color Color.detail :: widthOfGridSteps layout 2) [ preparedText "Location" ]
+            , paragraph (widthOfGridSteps layout 4) [ preparedText Data.location ]
             ]
         , wrappedRow [ spacing layout.grid.gutter ] <| List.map screenLink Data.linksScreen
         ]
@@ -98,6 +98,14 @@ viewContactsMobile layout =
 
 viewContactsDesktop : LayoutState -> Element msg
 viewContactsDesktop layout =
+    let
+        contactsLinkForPrint : { url : String, labelText : String, printAs : String } -> Element msg
+        contactsLinkForPrint { url, labelText, printAs } =
+            wrappedRow [ spacing layout.grid.gutter ]
+                [ paragraph (Font.color Color.detail :: widthOfGridSteps layout 2) [ preparedText (labelText ++ nbsp) ]
+                , newTabLink [ ExtraColor.fontColor Color.blue ] { label = preparedText printAs, url = url }
+                ]
+    in
     gridRow layout
         [ Image.view layout
             { widthSteps = 3, heightSteps = 3 }
@@ -106,23 +114,89 @@ viewContactsDesktop layout =
         , gridColumn layout
             { widthSteps = 9 }
             [ spacing layout.grid.gutter ]
-            [ paragraph TextStyle.headline.attrs [ preparedText "Vladimir Logachev" ]
+            [ paragraph TextStyle.headline.attrs [ preparedText Data.myName ]
             , column
                 [ spacing 16, htmlAttribute <| Html.Attributes.class "only-screen" ]
-                [ row []
-                    [ paragraph [ Font.color Color.detail, width (px contactsKeyColumnWidth) ] [ preparedText ("Location" ++ nbsp) ]
-                    , text "Armenia (remote)"
+                [ gridRow layout
+                    [ paragraph (Font.color Color.detail :: widthOfGridSteps layout 2) [ preparedText "Location" ]
+                    , paragraph [ width fill ] [ preparedText Data.location ]
                     ]
                 , wrappedRow [ spacing layout.grid.gutter ] <| List.map screenLink Data.linksScreen
                 ]
             , column [ spacing 10, htmlAttribute <| Html.Attributes.class "only-print" ]
-                [ row []
-                    [ paragraph [ Font.color Color.detail, width (px contactsKeyColumnWidth) ] [ preparedText ("Location" ++ nbsp) ]
-                    , text "Armenia (remote)"
+                [ gridRow layout
+                    [ paragraph (Font.color Color.detail :: widthOfGridSteps layout 2) [ preparedText "Location" ]
+                    , paragraph [ width fill ] [ preparedText Data.location ]
                     ]
-                , column [ width fill, spacing 10 ] <| List.map printLinkHorizontal Data.linksPrint
+                , column [ width fill, spacing 10 ] <| List.map contactsLinkForPrint Data.linksPrint
                 ]
             ]
+        ]
+
+
+viewSkillsMobile : LayoutState -> Element msg
+viewSkillsMobile layout =
+    column [ spacing layout.grid.gutter ]
+        [ paragraph TextStyle.header.attrs [ preparedText "Skills" ]
+        , column [ spacing layout.grid.gutter ] <| List.map (viewSkillSet layout) Data.skills
+        ]
+
+
+viewSkillsDesktop : LayoutState -> Element msg
+viewSkillsDesktop layout =
+    column [ spacing layout.grid.gutter ]
+        [ paragraph TextStyle.header.attrs [ preparedText "Skills" ]
+        , column [ spacing layout.grid.gutter ] <| List.map (viewSkillSet layout) Data.skills
+        ]
+
+
+viewSkillSet : LayoutState -> Skill -> Element msg
+viewSkillSet layout x =
+    column [ width fill, spacing 20 ]
+        [ paragraph (width fill :: TextStyle.lead.attrs) [ preparedText x.title ]
+        , column [ width fill, spacing 16 ] <| List.map (viewDetail layout) x.details
+        ]
+
+
+viewExperienceMobile : LayoutState -> Element msg
+viewExperienceMobile layout =
+    none
+
+
+viewExperienceDesktop : LayoutState -> Element msg
+viewExperienceDesktop layout =
+    none
+
+
+viewEducationMobile : LayoutState -> Element msg
+viewEducationMobile layout =
+    none
+
+
+viewEducationDesktop : LayoutState -> Element msg
+viewEducationDesktop layout =
+    none
+
+
+viewContributionsMobile : LayoutState -> Element msg
+viewContributionsMobile layout =
+    none
+
+
+viewContributionsDesktop : LayoutState -> Element msg
+viewContributionsDesktop layout =
+    none
+
+
+
+-- Reusable helpers
+
+
+viewDetail : LayoutState -> Detail -> Element msg
+viewDetail layout x =
+    gridRow layout
+        [ paragraph (alignTop :: Font.color Color.detail :: widthOfGridSteps layout 2) [ preparedText x.name ]
+        , paragraph [ alignTop, width fill ] [ preparedText <| String.join ", " <| x.tags ]
         ]
 
 
@@ -130,14 +204,6 @@ viewContactsDesktop layout =
 -- ====================================================
 -- ========================== LEGACY ==========================
 -- ====================================================
-
-
-viewDetail : Detail -> Element msg
-viewDetail y =
-    row [ width fill ]
-        [ el [ Font.color Color.detail, width (px keyColumnWidth), alignTop ] <| text (y.name ++ nbsp)
-        , paragraph [ alignTop ] [ preparedText <| String.join ", " <| y.tags ]
-        ]
 
 
 viewCommercialExperience : LayoutState -> CommercialExperience -> Element msg
@@ -151,15 +217,7 @@ viewCommercialExperience layout x =
                 |> el [ Font.color Color.detail ]
             ]
         , column [ width fill, spacing 16 ] <| List.map (\line -> paragraph [] [ preparedText line ]) x.roleDescription
-        , column [ width fill, spacing 10 ] <| List.map viewDetail x.details
-        ]
-
-
-viewSkill : Skill -> Element msg
-viewSkill x =
-    column [ alignTop, width fill, spacing 20 ]
-        [ paragraph (width fill :: TextStyle.lead.attrs) [ preparedText x.title ]
-        , column [ width fill, spacing 16 ] <| List.map viewDetail x.details
+        , column [ width fill, spacing 10 ] <| List.map (viewDetail layout) x.details
         ]
 
 
@@ -235,21 +293,3 @@ printableLinkVertical layout { url, label } =
 screenLink : { url : String, labelText : String } -> Element msg
 screenLink { url, labelText } =
     newTabLink [] { label = paragraph [ ExtraColor.fontColor Color.blue ] [ preparedText labelText ], url = url }
-
-
-printLinkHorizontal : { url : String, labelText : String, printAs : String } -> Element msg
-printLinkHorizontal { url, labelText, printAs } =
-    wrappedRow []
-        [ paragraph [ Font.color Color.detail, width (px contactsKeyColumnWidth) ] [ preparedText (labelText ++ nbsp) ]
-        , newTabLink [ ExtraColor.fontColor Color.blue ] { label = preparedText printAs, url = url }
-        ]
-
-
-keyColumnWidth : Int
-keyColumnWidth =
-    140
-
-
-contactsKeyColumnWidth : Int
-contactsKeyColumnWidth =
-    140

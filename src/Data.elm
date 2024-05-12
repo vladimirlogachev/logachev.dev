@@ -13,6 +13,7 @@ module Data exposing
     , education
     , linksPrint
     , linksScreen
+    , location
     , myName
     , photo
     , skills
@@ -33,6 +34,11 @@ photo =
     , description = "Vladimir Logachev"
     , placeholderColor = Color.black
     }
+
+
+location : String
+location =
+    "Armenia (remote)"
 
 
 type alias ScreenLink =
