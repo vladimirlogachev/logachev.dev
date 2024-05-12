@@ -56,13 +56,10 @@ viewMobile : LayoutState -> Element msg
 viewMobile layout =
     column [ spacing 60, width fill ]
         [ viewContactsMobile layout
-        , viewSkillsMobile layout
-        , viewExperienceMobile layout
-        , viewEducationMobile layout
-        , viewContributionsMobile layout
-        , viewIfNonEmpty "Experience" (List.map (viewCommercialExperience layout) Data.commercialExperience)
-        , viewIfNonEmpty "Education" (List.map (viewEducation layout) Data.education)
-        , viewIfNonEmpty "Open Source Contributions" (List.map (viewProject layout) Data.contributions)
+        , viewSection layout "Skills" <| List.map (viewSkillSet layout) Data.skills
+        , viewSection layout "Experience" (List.map (viewCommercialExperience layout) Data.commercialExperience)
+        , viewSection layout "Education" (List.map (viewEducation layout) Data.education)
+        , viewSection layout "Open Source Contributions" (List.map (viewProject layout) Data.contributions)
         ]
 
 
@@ -70,13 +67,10 @@ viewDesktop : LayoutState -> Element msg
 viewDesktop layout =
     column [ spacing 60, width fill ]
         [ viewContactsDesktop layout
-        , viewSkillsDesktop layout
-        , viewExperienceDesktop layout
-        , viewEducationDesktop layout
-        , viewContributionsDesktop layout
-        , viewIfNonEmpty "Experience" (List.map (viewCommercialExperience layout) Data.commercialExperience)
-        , viewIfNonEmpty "Education" (List.map (viewEducation layout) Data.education)
-        , viewIfNonEmpty "Open Source Contributions" (List.map (viewProject layout) Data.contributions)
+        , viewSection layout "Skills" <| List.map (viewSkillSet layout) Data.skills
+        , viewSection layout "Experience" (List.map (viewCommercialExperience layout) Data.commercialExperience)
+        , viewSection layout "Education" (List.map (viewEducation layout) Data.education)
+        , viewSection layout "Open Source Contributions" (List.map (viewProject layout) Data.contributions)
         ]
 
 
@@ -92,7 +86,7 @@ viewContactsMobile layout =
             [ paragraph (Font.color Color.detail :: widthOfGridSteps layout 2) [ preparedText "Location" ]
             , paragraph (widthOfGridSteps layout 4) [ preparedText Data.location ]
             ]
-        , wrappedRow [ spacing layout.grid.gutter ] <| List.map screenLink Data.linksScreen
+        , wrappedRow [ spacing layout.grid.gutter ] <| List.map externalLink Data.linksScreen
         ]
 
 
@@ -108,7 +102,7 @@ viewContactsDesktop layout =
     in
     gridRow layout
         [ Image.view layout
-            { widthSteps = 3, heightSteps = 3 }
+            { widthSteps = 4, heightSteps = 4 }
             [ Border.rounded 8, clip ]
             Data.photo
         , gridColumn layout
@@ -121,7 +115,7 @@ viewContactsDesktop layout =
                     [ paragraph (Font.color Color.detail :: widthOfGridSteps layout 2) [ preparedText "Location" ]
                     , paragraph [ width fill ] [ preparedText Data.location ]
                     ]
-                , wrappedRow [ spacing layout.grid.gutter ] <| List.map screenLink Data.linksScreen
+                , wrappedRow [ spacing layout.grid.gutter ] <| List.map externalLink Data.linksScreen
                 ]
             , column [ spacing 10, htmlAttribute <| Html.Attributes.class "only-print" ]
                 [ gridRow layout
@@ -134,22 +128,6 @@ viewContactsDesktop layout =
         ]
 
 
-viewSkillsMobile : LayoutState -> Element msg
-viewSkillsMobile layout =
-    column [ spacing layout.grid.gutter ]
-        [ paragraph TextStyle.header.attrs [ preparedText "Skills" ]
-        , column [ spacing layout.grid.gutter ] <| List.map (viewSkillSet layout) Data.skills
-        ]
-
-
-viewSkillsDesktop : LayoutState -> Element msg
-viewSkillsDesktop layout =
-    column [ spacing layout.grid.gutter ]
-        [ paragraph TextStyle.header.attrs [ preparedText "Skills" ]
-        , column [ spacing layout.grid.gutter ] <| List.map (viewSkillSet layout) Data.skills
-        ]
-
-
 viewSkillSet : LayoutState -> Skill -> Element msg
 viewSkillSet layout x =
     column [ width fill, spacing 20 ]
@@ -158,34 +136,41 @@ viewSkillSet layout x =
         ]
 
 
-viewExperienceMobile : LayoutState -> Element msg
-viewExperienceMobile layout =
-    none
+viewCommercialExperience : LayoutState -> CommercialExperience -> Element msg
+viewCommercialExperience layout x =
+    column [ width fill, spacing 16 ]
+        [ column [ width fill, spacing 10 ]
+            [ paragraph TextStyle.lead.attrs [ preparedText x.role ]
+            , titleWithOptionalLink layout
+                { url = x.url
+                , label = paragraph TextStyle.companyName.attrs [ preparedText x.company ]
+                }
+            , paragraph [ Font.color Color.detail ]
+                [ preparedText (showDate x.startDate ++ " — " ++ showEndDate x.endDate) ]
+            ]
+        , column [ width fill, spacing 10 ] <| List.map (\line -> paragraph [] [ preparedText line ]) x.roleDescription
+        , column [ width fill, spacing 10 ] <| List.map (viewDetail layout) x.details
+        ]
 
 
-viewExperienceDesktop : LayoutState -> Element msg
-viewExperienceDesktop layout =
-    none
+viewEducation : LayoutState -> Education -> Element msg
+viewEducation layout x =
+    column [ spacing 10 ]
+        [ titleWithOptionalLink layout
+            { url = x.url
+            , label = paragraph TextStyle.lead.attrs [ preparedText x.title ]
+            }
+        , paragraph [ Font.color Color.detail ] [ preparedText x.details ]
+        ]
 
 
-viewEducationMobile : LayoutState -> Element msg
-viewEducationMobile layout =
-    none
-
-
-viewEducationDesktop : LayoutState -> Element msg
-viewEducationDesktop layout =
-    none
-
-
-viewContributionsMobile : LayoutState -> Element msg
-viewContributionsMobile layout =
-    none
-
-
-viewContributionsDesktop : LayoutState -> Element msg
-viewContributionsDesktop layout =
-    none
+viewProject : LayoutState -> Project -> Element msg
+viewProject layout x =
+    column [ spacing 16 ]
+        [ titleWithOptionalLink layout { url = x.url, label = paragraph TextStyle.lead.attrs [ preparedText x.title ] }
+        , paragraph [] [ preparedText x.description ]
+        , paragraph [ Font.color Color.detail ] [ preparedText <| String.join ", " <| x.tags ]
+        ]
 
 
 
@@ -200,51 +185,14 @@ viewDetail layout x =
         ]
 
 
-
--- ====================================================
--- ========================== LEGACY ==========================
--- ====================================================
-
-
-viewCommercialExperience : LayoutState -> CommercialExperience -> Element msg
-viewCommercialExperience layout x =
-    column [ width fill, spacing 16 ]
-        [ column [ width fill, spacing 10 ]
-            [ paragraph TextStyle.lead.attrs [ preparedText x.role ]
-            , printableLinkVertical layout { url = x.url, label = paragraph TextStyle.companyName.attrs [ preparedText x.company ] }
-            , (showDate x.startDate ++ " — " ++ showEndDate x.endDate)
-                |> preparedText
-                |> el [ Font.color Color.detail ]
-            ]
-        , column [ width fill, spacing 16 ] <| List.map (\line -> paragraph [] [ preparedText line ]) x.roleDescription
-        , column [ width fill, spacing 10 ] <| List.map (viewDetail layout) x.details
-        ]
-
-
-viewIfNonEmpty : String -> List (Element msg) -> Element msg
-viewIfNonEmpty title list =
-    case list of
-        [] ->
-            none
-
-        xs ->
-            column [ spacing 32 ] [ paragraph TextStyle.header.attrs [ preparedText title ], column [ spacing 32 ] xs ]
-
-
-viewProject : LayoutState -> Project -> Element msg
-viewProject layout x =
-    column [ spacing 16 ]
-        [ printableLinkVertical layout { url = x.url, label = paragraph TextStyle.lead.attrs [ preparedText x.title ] }
-        , paragraph [] [ preparedText x.description ]
-        , paragraph [ Font.color Color.detail ] [ preparedText <| String.join ", " <| x.tags ]
-        ]
-
-
-viewEducation : LayoutState -> Education -> Element msg
-viewEducation layout x =
-    column [ spacing 10 ]
-        [ printableLinkVertical layout { url = x.url, label = paragraph TextStyle.lead.attrs [ preparedText x.title ] }
-        , paragraph [ Font.color Color.detail ] [ preparedText x.details ]
+{-| Works as long as mobile and desktop have the same text styles.
+If they become different, the whole helper better be removed.
+-}
+viewSection : LayoutState -> String -> List (Element msg) -> Element msg
+viewSection layout title xs =
+    column [ spacing layout.grid.gutter ]
+        [ paragraph TextStyle.header.attrs [ preparedText title ]
+        , column [ spacing layout.grid.gutter ] <| xs
         ]
 
 
@@ -268,11 +216,11 @@ showEndDate ed =
             "present (spare time)"
 
 
-printableLinkVertical : LayoutState -> { url : Maybe String, label : Element msg } -> Element msg
-printableLinkVertical layout { url, label } =
+titleWithOptionalLink : LayoutState -> { url : Maybe String, label : Element msg } -> Element msg
+titleWithOptionalLink layout { url, label } =
     case layout.screenClass of
         MobileScreen ->
-            -- nonPrintableLink
+            -- Mobile
             case url of
                 Just urlString ->
                     newTabLink [] { label = el [ ExtraColor.fontColor Color.blue ] label, url = urlString }
@@ -280,16 +228,21 @@ printableLinkVertical layout { url, label } =
                 Nothing ->
                     el [ Font.color Color.black ] label
 
+        -- Desktop and Print
+        -- TODO: Separate desktop and print?
         DesktopScreen ->
-            -- printFriendlyLink
             case url of
                 Just urlString ->
-                    column [] [ label, newTabLink [ ExtraColor.fontColor Color.blue ] { label = paragraph [] [ preparedText urlString ], url = urlString } ]
+                    column [ spacing 10 ]
+                        [ label
+                        , newTabLink [ ExtraColor.fontColor Color.blue ]
+                            { label = paragraph [] [ preparedText urlString ], url = urlString }
+                        ]
 
                 Nothing ->
                     label
 
 
-screenLink : { url : String, labelText : String } -> Element msg
-screenLink { url, labelText } =
+externalLink : { url : String, labelText : String } -> Element msg
+externalLink { url, labelText } =
     newTabLink [] { label = paragraph [ ExtraColor.fontColor Color.blue ] [ preparedText labelText ], url = url }
