@@ -12,16 +12,6 @@ module Data exposing
     , skills
     )
 
-import Element exposing (Element, paragraph)
-import Typography exposing (preparedText)
-
-
-{-| TODO: remove
--}
-preparedParagraph : String -> Element msg
-preparedParagraph text =
-    paragraph [] [ preparedText text ]
-
 
 type alias Detail =
     { name : String, tags : List String }
@@ -37,18 +27,18 @@ type EndDate
     | PresentSpareTime
 
 
-type alias CommercialExperience msg =
+type alias CommercialExperience =
     { company : String
     , role : String
     , startDate : Date
     , endDate : EndDate
     , url : Maybe String
-    , roleDescription : List (Element msg)
+    , roleDescription : List String
     , details : List Detail
     }
 
 
-commercialExperience : List (CommercialExperience msg)
+commercialExperience : List CommercialExperience
 commercialExperience =
     [ { company = "Samokat.tech"
       , role = "Data Engineer"
@@ -56,8 +46,8 @@ commercialExperience =
       , endDate = EndedOn <| Date 4 2024
       , url = Just "https://samokat.tech/"
       , roleDescription =
-            [ preparedParagraph "Samokat.tech develops real-time retail solutions, including the Samokat food delivery app and other marketplaces."
-            , preparedParagraph "I develop data pipelines using platform tools."
+            [ "Samokat.tech develops real-time retail solutions, including the Samokat food delivery app and other marketplaces."
+            , "I develop data pipelines using platform tools."
             ]
       , details =
             [ { name = "Responsibilities"
@@ -80,9 +70,9 @@ commercialExperience =
       , endDate = EndedOn <| Date 3 2024
       , url = Nothing
       , roleDescription =
-            [ preparedParagraph "The project is a full-stack web application designed for trading on the Binance crypto exchange. It incorporates a trend-following trading algorithm, an exchange simulation engine for backtesting, an exchange API client for live trading, and a web application for inspecting, debugging the trading algorithm, and displaying statistics."
-            , preparedParagraph "We employ various testing techniques, including snapshot testing, property-based testing, and case-based testing. Our approach includes schema-first typesafe SQL queries to PostgreSQL. Additionally, we utilize the Haskell-to-Elm library to generate Elm code from Haskell Also, we have a strong focus on the absence of partial functions. This technological combination enables us to catch most regressions at compile time."
-            , preparedParagraph "The project consists of approximately 17,000 lines of Haskell code and 10,000 lines of Elm code. During a technical interview, I can provide a demonstration of the project running in a production environment and highlight relevant sections of its source code."
+            [ "The project is a full-stack web application designed for trading on the Binance crypto exchange. It incorporates a trend-following trading algorithm, an exchange simulation engine for backtesting, an exchange API client for live trading, and a web application for inspecting, debugging the trading algorithm, and displaying statistics."
+            , "We employ various testing techniques, including snapshot testing, property-based testing, and case-based testing. Our approach includes schema-first typesafe SQL queries to PostgreSQL. Additionally, we utilize the Haskell-to-Elm library to generate Elm code from Haskell Also, we have a strong focus on the absence of partial functions. This technological combination enables us to catch most regressions at compile time."
+            , "The project consists of approximately 17,000 lines of Haskell code and 10,000 lines of Elm code. During a technical interview, I can provide a demonstration of the project running in a production environment and highlight relevant sections of its source code."
             ]
       , details =
             [ { name = "Responsibilities"
@@ -142,7 +132,7 @@ commercialExperience =
       , endDate = EndedOn <| Date 2 2024
       , url = Just "http://radar.tian.solutions"
       , roleDescription =
-            [ preparedParagraph "A real-time flight tracker on a 3D Earth map, with elevations combined with textures."
+            [ "A real-time flight tracker on a 3D Earth map, with elevations combined with textures."
             ]
       , details =
             [ { name = "Responsibilities"
@@ -191,8 +181,8 @@ commercialExperience =
       , endDate = EndedOn <| Date 5 2023
       , url = Just "https://www.swiftinvention.com"
       , roleDescription =
-            [ preparedParagraph "As a team lead, I managed two projects, overseeing the implementation of new features, writing tests, and addressing bugs."
-            , preparedParagraph "Additionally, I mentored new developers, predominantly with a Java background, to familiarize them with Scala. I also organized and led a weekly Scala book reading club."
+            [ "As a team lead, I managed two projects, overseeing the implementation of new features, writing tests, and addressing bugs."
+            , "Additionally, I mentored new developers, predominantly with a Java background, to familiarize them with Scala. I also organized and led a weekly Scala book reading club."
             ]
       , details =
             [ { name = "Responsibilities"
@@ -243,8 +233,8 @@ commercialExperience =
       , endDate = EndedOn <| Date 12 2020
       , url = Nothing
       , roleDescription =
-            [ preparedParagraph "I developed a web application that employs server-side rendering and implemented comprehensive unit test coverage. I containerized the application using Docker and established continuous integration (CI)."
-            , preparedParagraph "Additionally, I provided mentorship to the second frontend developer who joined the team later."
+            [ "I developed a web application that employs server-side rendering and implemented comprehensive unit test coverage. I containerized the application using Docker and established continuous integration (CI)."
+            , "Additionally, I provided mentorship to the second frontend developer who joined the team later."
             ]
       , details =
             [ { name = "Responsibilities"
@@ -270,7 +260,7 @@ commercialExperience =
       , startDate = Date 10 2019
       , endDate = EndedOn <| Date 12 2019
       , url = Just "https://eldis.ru"
-      , roleDescription = [ preparedParagraph "I developed a declarative decoder for the internal binary document format, ensuring comprehensive test coverage, including property-based testing." ]
+      , roleDescription = [ "I developed a declarative decoder for the internal binary document format, ensuring comprehensive test coverage, including property-based testing." ]
       , details =
             [ { name = "Responsibilities"
               , tags = [ "Engineering", "testing" ]
@@ -283,7 +273,7 @@ commercialExperience =
       , startDate = Date 1 2019
       , endDate = EndedOn <| Date 9 2019
       , url = Nothing
-      , roleDescription = [ preparedParagraph "I implemented new functionality in existing web applications, addressed defects, and developed new applications and microservices, ensuring coverage with both unit tests and integration tests." ]
+      , roleDescription = [ "I implemented new functionality in existing web applications, addressed defects, and developed new applications and microservices, ensuring coverage with both unit tests and integration tests." ]
       , details =
             [ { name = "Responsibilities"
               , tags = [ "Engineering", "testing" ]
@@ -312,8 +302,8 @@ commercialExperience =
       , endDate = EndedOn <| Date 1 2019
       , url = Just "https://sweet.io"
       , roleDescription =
-            [ preparedParagraph "Sweet's product is a combination of a loyalty platform, a social network, and an online store."
-            , preparedParagraph """In my role, I focused on tasks related to front-end business logic. I actively contributed to enhancing code quality by covering existing code with unit tests and fine-tuning them. This effort resulted in the successful integration of tests into the CI pipeline, effectively preventing defects associated with unsuccessful Git branch mergers in our extensive codebase."""
+            [ "Sweet's product is a combination of a loyalty platform, a social network, and an online store."
+            , """In my role, I focused on tasks related to front-end business logic. I actively contributed to enhancing code quality by covering existing code with unit tests and fine-tuning them. This effort resulted in the successful integration of tests into the CI pipeline, effectively preventing defects associated with unsuccessful Git branch mergers in our extensive codebase."""
             ]
       , details =
             [ { name = "Responsibilities"
@@ -328,14 +318,14 @@ commercialExperience =
       , endDate = EndedOn <| Date 8 2018
       , url = Just "https://savl.com"
       , roleDescription =
-            [ preparedParagraph """I contributed to the Savl project, a mobile application functioning as a wallet with support for several cryptocurrencies.
+            [ """I contributed to the Savl project, a mobile application functioning as a wallet with support for several cryptocurrencies.
             My primary focus was on the data layer within the mobile application.
             Applying principles from functional programming and software design, 
             I implemented changes that enhanced the application's modularity and fault tolerance, 
             effectively preventing crashes due to exceptions or unexpected behavior from external services. 
             Furthermore, these modifications facilitated the seamless enabling and disabling of support for individual cryptocurrencies, 
             coupled with the implementation of comprehensive unit testing."""
-            , preparedParagraph "Within the company, I conducted several presentations on functional programming."
+            , "Within the company, I conducted several presentations on functional programming."
             ]
       , details =
             [ { name = "Responsibilities"

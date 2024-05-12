@@ -180,7 +180,7 @@ viewDetail y =
         ]
 
 
-viewCommercialExperience : LayoutState -> CommercialExperience msg -> Element msg
+viewCommercialExperience : LayoutState -> CommercialExperience -> Element msg
 viewCommercialExperience layout x =
     column [ width fill, spacing 16 ]
         [ column [ width fill, spacing 10 ]
@@ -190,7 +190,7 @@ viewCommercialExperience layout x =
                 |> preparedText
                 |> el [ Font.color Color.detail ]
             ]
-        , column [ width fill, spacing 16 ] <| x.roleDescription
+        , column [ width fill, spacing 16 ] <| List.map (\line -> paragraph [] [ preparedText line ]) x.roleDescription
         , column [ width fill, spacing 10 ] <| List.map viewDetail x.details
         ]
 
