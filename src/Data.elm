@@ -13,7 +13,7 @@ module Data exposing
     )
 
 import Element exposing (Element)
-import Typography exposing (preparedParagraph)
+import Util.Style exposing (preparedParagraph)
 
 
 type alias Detail =

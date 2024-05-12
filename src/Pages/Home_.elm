@@ -8,12 +8,13 @@ import Element.Background as Background
 import Element.Border as Border
 import Element.Font as Font
 import Element.Region as Region
+import GridLayout2 exposing (LayoutState, ScreenClass(..))
 import Html.Attributes
 import Page exposing (Page)
 import Route exposing (Route)
 import Shared
-import Typography exposing (nbsp, preparedParagraph, preparedText)
-import Util.Style exposing (contactsKeyColumnWidth, fontFamilyGeneral, itemHeading, keyColumnWidth, pageHeading, printLinkHorizontal, printableLinkVertical, screenLink, sectionHeading)
+import Typography exposing (nbsp, preparedText)
+import Util.Style exposing (contactsKeyColumnWidth, fontFamilyGeneral, itemHeading, keyColumnWidth, pageHeading, preparedParagraph, printLinkHorizontal, printableLinkVertical, screenLink, sectionHeading)
 import View exposing (View)
 
 
@@ -36,24 +37,20 @@ page shared _ =
 
 
 view : Shared.Model -> View msg
-view shared =
+view { layout } =
     let
-        deviceClass : DeviceClass
-        deviceClass =
-            (classifyDevice shared.window).class
-
         viewContent : Element msg
         viewContent =
             column [ spacing 60, width fill, height fill ]
-                [ viewContacts deviceClass
+                [ viewContacts layout
 
-                -- , viewSummary deviceClass
+                -- , viewSummary layout
                 , viewIfNonEmpty "Skills" <| List.map viewSkill Data.skills
-                , viewIfNonEmpty "Experience" (List.map (viewCommercialExperience deviceClass) Data.commercialExperience)
+                , viewIfNonEmpty "Experience" (List.map (viewCommercialExperience layout) Data.commercialExperience)
 
-                -- , viewIfNonEmpty "Showcase projects and assessments" (List.map (viewProject deviceClass) Data.showcaseProjects)
-                , viewIfNonEmpty "Education" (List.map (viewEducation deviceClass) Data.education)
-                , viewIfNonEmpty "Open Source Contributions" (List.map (viewProject deviceClass) Data.contributions)
+                -- , viewIfNonEmpty "Showcase projects and assessments" (List.map (viewProject layout) Data.showcaseProjects)
+                , viewIfNonEmpty "Education" (List.map (viewEducation layout) Data.education)
+                , viewIfNonEmpty "Open Source Contributions" (List.map (viewProject layout) Data.contributions)
                 ]
     in
     { title = "Vladimir Logachev"
@@ -66,24 +63,21 @@ view shared =
         ]
     , element =
         column [ width fill, height fill ]
-            [ wrap shared viewContent
+            [ wrap layout viewContent
             ]
     }
 
 
-wrap : Shared.Model -> Element msg -> Element msg
-wrap shared content =
+wrap : LayoutState -> Element msg -> Element msg
+wrap layout content =
     let
         pageInnerWidth : Length
         pageInnerWidth =
-            case (classifyDevice shared.window).class of
-                Phone ->
+            case layout.screenClass of
+                MobileScreen ->
                     fill
 
-                Tablet ->
-                    fill
-
-                _ ->
+                DesktopScreen ->
                     fill |> maximum Util.Style.maxDesktopInnerWidth
     in
     row [ width fill, height fill ]
@@ -97,8 +91,8 @@ wrap shared content =
         ]
 
 
-viewContacts : DeviceClass -> Element msg
-viewContacts deviceClass =
+viewContacts : LayoutState -> Element msg
+viewContacts layout =
     let
         photo : Element msg
         photo =
@@ -195,17 +189,11 @@ viewContacts deviceClass =
                     }
                 ]
     in
-    case deviceClass of
-        Phone ->
+    case layout.screenClass of
+        MobileScreen ->
             column [ width fill, spacing 20 ] [ photo, summary ]
 
-        Tablet ->
-            wrappedRow [ width fill, spacing 50 ] [ photo, summary ]
-
-        Desktop ->
-            wrappedRow [ width fill, spacing 50 ] [ photo, summary ]
-
-        BigDesktop ->
+        DesktopScreen ->
             wrappedRow [ width fill, spacing 50 ] [ photo, summary ]
 
 
@@ -223,12 +211,12 @@ viewDetail y =
         ]
 
 
-viewCommercialExperience : DeviceClass -> CommercialExperience msg -> Element msg
-viewCommercialExperience deviceClass x =
+viewCommercialExperience : LayoutState -> CommercialExperience msg -> Element msg
+viewCommercialExperience layout x =
     column [ width fill, spacing 16 ]
         [ column [ width fill, spacing 10 ]
             [ el itemHeading <| preparedParagraph x.role
-            , printableLinkVertical deviceClass { url = x.url, label = el [ Region.heading 4, Font.medium, Font.size 20 ] <| preparedParagraph x.company }
+            , printableLinkVertical layout { url = x.url, label = el [ Region.heading 4, Font.medium, Font.size 20 ] <| preparedParagraph x.company }
             , (showDate x.startDate ++ " — " ++ showEndDate x.endDate)
                 |> preparedText
                 |> el [ Font.color Color.detail ]
@@ -256,19 +244,19 @@ viewIfNonEmpty title list =
             column [ spacing 32 ] [ el sectionHeading <| preparedParagraph title, column [ spacing 32 ] xs ]
 
 
-viewProject : DeviceClass -> Project -> Element msg
-viewProject deviceClass x =
+viewProject : LayoutState -> Project -> Element msg
+viewProject layout x =
     column [ spacing 16 ]
-        [ printableLinkVertical deviceClass { url = x.url, label = el itemHeading <| preparedParagraph x.title }
+        [ printableLinkVertical layout { url = x.url, label = el itemHeading <| preparedParagraph x.title }
         , preparedParagraph x.description
         , el [ Font.color Color.detail ] <| preparedParagraph <| String.join ", " <| x.tags
         ]
 
 
-viewEducation : DeviceClass -> Education -> Element msg
-viewEducation deviceClass x =
+viewEducation : LayoutState -> Education -> Element msg
+viewEducation layout x =
     column [ spacing 10 ]
-        [ printableLinkVertical deviceClass { url = x.url, label = el itemHeading <| preparedParagraph x.title }
+        [ printableLinkVertical layout { url = x.url, label = el itemHeading <| preparedParagraph x.title }
         , preparedParagraph x.details |> el [ Font.color Color.detail ]
         ]
 

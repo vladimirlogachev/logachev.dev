@@ -5,6 +5,7 @@ module Util.Style exposing
     , keyColumnWidth
     , maxDesktopInnerWidth
     , pageHeading
+    , preparedParagraph
     , printLinkHorizontal
     , printableLinkVertical
     , screenLink
@@ -15,8 +16,16 @@ import Color
 import Element exposing (..)
 import Element.Font as Font
 import Element.Region as Region
+import GridLayout2 exposing (..)
 import Oklch
-import Typography exposing (nbsp, preparedParagraph)
+import Typography exposing (nbsp, preparedText)
+
+
+{-| TODO: remove
+-}
+preparedParagraph : String -> Element msg
+preparedParagraph text =
+    paragraph [] [ preparedText text ]
 
 
 fontFamilyGeneral : Attribute msg
@@ -44,11 +53,11 @@ itemHeading =
     [ Region.heading 3, Font.semiBold, Font.size 20 ]
 
 
-printableLinkVertical : DeviceClass -> { url : Maybe String, label : Element msg } -> Element msg
-printableLinkVertical deviceClass { url, label } =
-    let
-        nonPrintableLink : Element msg
-        nonPrintableLink =
+printableLinkVertical : LayoutState -> { url : Maybe String, label : Element msg } -> Element msg
+printableLinkVertical layout { url, label } =
+    case layout.screenClass of
+        MobileScreen ->
+            -- nonPrintableLink
             case url of
                 Just urlString ->
                     newTabLink [] { label = el [ Oklch.fontColor Oklch.blue ] label, url = urlString }
@@ -56,27 +65,14 @@ printableLinkVertical deviceClass { url, label } =
                 Nothing ->
                     el [ Font.color Color.black ] label
 
-        printFriendlyLink : Element msg
-        printFriendlyLink =
+        DesktopScreen ->
+            -- printFriendlyLink
             case url of
                 Just urlString ->
                     column [] [ label, newTabLink [ Oklch.fontColor Oklch.blue ] { label = preparedParagraph urlString, url = urlString } ]
 
                 Nothing ->
                     label
-    in
-    case deviceClass of
-        Phone ->
-            nonPrintableLink
-
-        Tablet ->
-            nonPrintableLink
-
-        Desktop ->
-            printFriendlyLink
-
-        BigDesktop ->
-            printFriendlyLink
 
 
 screenLink : { url : String, labelText : String } -> Element msg

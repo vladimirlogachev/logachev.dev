@@ -14,11 +14,11 @@ module Shared exposing
 
 import Browser.Events
 import Effect exposing (Effect)
+import GridLayout2
 import Json.Decode
 import Route exposing (Route)
 import Shared.Model
 import Shared.Msg
-import Window exposing (WindowSize)
 
 
 
@@ -26,13 +26,13 @@ import Window exposing (WindowSize)
 
 
 type alias Flags =
-    { windowSize : WindowSize }
+    { windowSize : GridLayout2.WindowSize }
 
 
 decoder : Json.Decode.Decoder Flags
 decoder =
     Json.Decode.map Flags
-        (Json.Decode.field "windowSize" Window.windowSizeDecoder)
+        (Json.Decode.field "windowSize" GridLayout2.windowSizeDecoder)
 
 
 
@@ -43,6 +43,25 @@ type alias Model =
     Shared.Model.Model
 
 
+layoutConfig : GridLayout2.LayoutConfig
+layoutConfig =
+    { mobileScreen =
+        { minGridWidth = 360
+        , maxGridWidth = Just 720
+        , columnCount = 6
+        , gutter = 16
+        , margin = GridLayout2.SameAsGutter
+        }
+    , desktopScreen =
+        { minGridWidth = 1024
+        , maxGridWidth = Just 1440
+        , columnCount = 12
+        , gutter = 32
+        , margin = GridLayout2.SameAsGutter
+        }
+    }
+
+
 init : Result Json.Decode.Error Flags -> Route () -> ( Model, Effect Msg )
 init flagsResult _ =
     case flagsResult of
@@ -50,25 +69,23 @@ init flagsResult _ =
             initReady flags
 
         Err _ ->
-            ( meaninglessDefaultModel
-            , Effect.none
-            )
+            meaninglessDefaultModel
 
 
 initReady : Flags -> ( Model, Effect Msg )
 initReady flags =
-    ( { window = flags.windowSize
-      , screenClass = Window.classifyScreen flags.windowSize
+    ( { layout = GridLayout2.init layoutConfig flags.windowSize
       }
     , Effect.none
     )
 
 
-meaninglessDefaultModel : Shared.Model.Model
+meaninglessDefaultModel : ( Model, Effect Msg )
 meaninglessDefaultModel =
-    { window = Window.initWindowSize
-    , screenClass = Window.classifyScreen Window.initWindowSize
-    }
+    ( { layout = GridLayout2.init layoutConfig { width = 1024, height = 768 }
+      }
+    , Effect.none
+    )
 
 
 
@@ -86,9 +103,9 @@ update _ msg model =
             gotNewWindowSize model newWindowSize
 
 
-gotNewWindowSize : Model -> WindowSize -> ( Model, Effect Msg )
+gotNewWindowSize : Model -> GridLayout2.WindowSize -> ( Model, Effect Msg )
 gotNewWindowSize model newWindowSize =
-    ( { model | window = newWindowSize, screenClass = Window.classifyScreen newWindowSize }, Effect.none )
+    ( { model | layout = GridLayout2.update model.layout newWindowSize }, Effect.none )
 
 
 
