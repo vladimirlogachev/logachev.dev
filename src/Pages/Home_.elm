@@ -1,6 +1,7 @@
 module Pages.Home_ exposing (Model, Msg, page)
 
 import Color
+import Components.Image as Image
 import Data exposing (CommercialExperience, Date, Detail, Education, EndDate(..), Project, Skill)
 import Effect
 import Element exposing (..)
@@ -39,131 +40,90 @@ page shared _ =
 
 view : Shared.Model -> View msg
 view { layout } =
-    let
-        viewContent : Element msg
-        viewContent =
-            column [ spacing 60, width fill, height fill ]
-                [ viewContacts layout
-
-                -- , viewSummary layout
-                , viewIfNonEmpty "Skills" <| List.map viewSkill Data.skills
-                , viewIfNonEmpty "Experience" (List.map (viewCommercialExperience layout) Data.commercialExperience)
-
-                -- , viewIfNonEmpty "Showcase projects and assessments" (List.map (viewProject layout) Data.showcaseProjects)
-                , viewIfNonEmpty "Education" (List.map (viewEducation layout) Data.education)
-                , viewIfNonEmpty "Open Source Contributions" (List.map (viewProject layout) Data.contributions)
-                ]
-    in
-    { title = "Vladimir Logachev"
+    { title = Data.myName
     , attributes = []
-    , element = viewContent
+    , element =
+        case layout.screenClass of
+            MobileScreen ->
+                viewMobile layout
+
+            DesktopScreen ->
+                viewDesktop layout
     }
 
 
-viewContacts : LayoutState -> Element msg
-viewContacts layout =
-    let
-        photo : Element msg
-        photo =
-            column
-                [ width (px 180)
-                , height (px 180)
-                , alignTop
-                ]
-                [ image
-                    [ width fill
-                    , height fill
-                    , Border.rounded 10
-                    , clip
+viewMobile : LayoutState -> Element msg
+viewMobile layout =
+    column [ spacing 60, width fill ]
+        [ viewContactsMobile layout
+        , viewIfNonEmpty "Skills" <| List.map viewSkill Data.skills
+        , viewIfNonEmpty "Experience" (List.map (viewCommercialExperience layout) Data.commercialExperience)
+        , viewIfNonEmpty "Education" (List.map (viewEducation layout) Data.education)
+        , viewIfNonEmpty "Open Source Contributions" (List.map (viewProject layout) Data.contributions)
+        ]
+
+
+viewDesktop : LayoutState -> Element msg
+viewDesktop layout =
+    column [ spacing 60, width fill ]
+        [ viewContactsDesktop layout
+        , viewIfNonEmpty "Skills" <| List.map viewSkill Data.skills
+        , viewIfNonEmpty "Experience" (List.map (viewCommercialExperience layout) Data.commercialExperience)
+        , viewIfNonEmpty "Education" (List.map (viewEducation layout) Data.education)
+        , viewIfNonEmpty "Open Source Contributions" (List.map (viewProject layout) Data.contributions)
+        ]
+
+
+viewContactsMobile : LayoutState -> Element msg
+viewContactsMobile layout =
+    column [ width fill, spacing layout.grid.gutter ]
+        [ Image.view layout
+            { widthSteps = 4, heightSteps = 4 }
+            [ Border.rounded 8, clip ]
+            Data.photo
+        , paragraph TextStyle.headline.attrs [ preparedText Data.myName ]
+        , gridRow layout
+            [ gridColumn layout
+                { widthSteps = 2 }
+                []
+                [ paragraph [ Font.color Color.detail ] [ preparedText "Location" ] ]
+            , gridColumn layout
+                { widthSteps = 4 }
+                []
+                [ paragraph [ Font.color Color.detail ] [ text "Armenia (remote)" ] ]
+            ]
+        , wrappedRow [ spacing layout.grid.gutter ] <| List.map screenLink Data.linksScreen
+        ]
+
+
+viewContactsDesktop : LayoutState -> Element msg
+viewContactsDesktop layout =
+    gridRow layout
+        [ Image.view layout
+            { widthSteps = 3, heightSteps = 3 }
+            [ Border.rounded 8, clip ]
+            Data.photo
+        , gridColumn layout
+            { widthSteps = 9 }
+            [ spacing layout.grid.gutter ]
+            [ paragraph TextStyle.headline.attrs [ preparedText "Vladimir Logachev" ]
+            , column
+                [ spacing 16, htmlAttribute <| Html.Attributes.class "only-screen" ]
+                [ row []
+                    [ paragraph [ Font.color Color.detail, width (px contactsKeyColumnWidth) ] [ preparedText ("Location" ++ nbsp) ]
+                    , text "Armenia (remote)"
                     ]
-                    { src = "/images/photo.jpg"
-                    , description = "Vladimir Logachev"
-                    }
+                , wrappedRow [ spacing layout.grid.gutter ] <| List.map screenLink Data.linksScreen
                 ]
-
-        summary : Element msg
-        summary =
-            column [ width fill, spacing 20, alignTop ]
-                [ paragraph TextStyle.headline.attrs [ preparedText "Vladimir Logachev" ]
-                , column [ width fill, spacing 10 ]
-                    [ column [ spacing 10, htmlAttribute <| Html.Attributes.class "only-screen" ]
-                        [ row []
-                            [ paragraph [ Font.color Color.detail, width (px contactsKeyColumnWidth) ] [ preparedText ("Location" ++ nbsp) ]
-                            , text "Armenia (remote)"
-                            ]
-                        , linksScreen
-                        ]
-                    , column [ spacing 10, htmlAttribute <| Html.Attributes.class "only-print" ]
-                        [ row []
-                            [ paragraph [ Font.color Color.detail, width (px contactsKeyColumnWidth) ] [ preparedText ("Location" ++ nbsp) ]
-                            , text "Armenia (remote)"
-                            ]
-                        , linksPrint
-                        ]
+            , column [ spacing 10, htmlAttribute <| Html.Attributes.class "only-print" ]
+                [ row []
+                    [ paragraph [ Font.color Color.detail, width (px contactsKeyColumnWidth) ] [ preparedText ("Location" ++ nbsp) ]
+                    , text "Armenia (remote)"
                     ]
+                , column [ width fill, spacing 10 ] <| List.map printLinkHorizontal Data.linksPrint
                 ]
-
-        linksScreen : Element msg
-        linksScreen =
-            wrappedRow [ spacing 20 ]
-                [ screenLink
-                    { labelText = "Mail"
-                    , url = "mailto:vladimir@logachev.dev"
-                    }
-                , screenLink
-                    { labelText = "Telegram"
-                    , url = "https://t.me/vladimirlogachev"
-                    }
-                , screenLink
-                    { labelText = "GitHub"
-                    , url = "https://github.com/vladimirlogachev"
-                    }
-                , screenLink
-                    { labelText = "LinkedIn"
-                    , url = "https://www.linkedin.com/in/vladimirlogachev"
-                    }
-                , screenLink
-                    { labelText = "Download cv"
-                    , url = "https://logachev.dev/cv_vladimir_logachev.pdf"
-                    }
-                ]
-
-        linksPrint : Element msg
-        linksPrint =
-            column [ width fill, spacing 10 ]
-                [ printLinkHorizontal
-                    { labelText = "Mail"
-                    , url = "mailto:vladimir@logachev.dev"
-                    , printAs = Just "vladimir@logachev.dev"
-                    }
-                , printLinkHorizontal
-                    { labelText = "Telegram"
-                    , url = "https://t.me/vladimirlogachev"
-                    , printAs = Just "vladimirlogachev"
-                    }
-                , printLinkHorizontal
-                    { labelText = "GitHub"
-                    , url = "https://github.com/vladimirlogachev"
-                    , printAs = Just "vladimirlogachev"
-                    }
-                , printLinkHorizontal
-                    { labelText = "LinkedIn"
-                    , url = "https://www.linkedin.com/in/vladimirlogachev"
-                    , printAs = Just "vladimirlogachev"
-                    }
-                , printLinkHorizontal
-                    { labelText = "Website"
-                    , url = "https://logachev.dev"
-                    , printAs = Just "logachev.dev"
-                    }
-                ]
-    in
-    case layout.screenClass of
-        MobileScreen ->
-            column [ width fill, spacing 20 ] [ photo, summary ]
-
-        DesktopScreen ->
-            wrappedRow [ width fill, spacing 50 ] [ photo, summary ]
+            ]
+        ]
 
 
 
@@ -277,11 +237,11 @@ screenLink { url, labelText } =
     newTabLink [] { label = paragraph [ ExtraColor.fontColor Color.blue ] [ preparedText labelText ], url = url }
 
 
-printLinkHorizontal : { url : String, labelText : String, printAs : Maybe String } -> Element msg
+printLinkHorizontal : { url : String, labelText : String, printAs : String } -> Element msg
 printLinkHorizontal { url, labelText, printAs } =
     wrappedRow []
         [ paragraph [ Font.color Color.detail, width (px contactsKeyColumnWidth) ] [ preparedText (labelText ++ nbsp) ]
-        , newTabLink [ ExtraColor.fontColor Color.blue ] { label = preparedText <| Maybe.withDefault url printAs, url = url }
+        , newTabLink [ ExtraColor.fontColor Color.blue ] { label = preparedText printAs, url = url }
         ]
 
 

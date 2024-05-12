@@ -4,13 +4,83 @@ module Data exposing
     , Detail
     , Education
     , EndDate(..)
+    , PrintLink
     , Project
+    , ScreenLink
     , Skill
     , commercialExperience
     , contributions
     , education
+    , linksPrint
+    , linksScreen
+    , myName
+    , photo
     , skills
     )
+
+import Color
+import Components.Image exposing (Image)
+
+
+myName : String
+myName =
+    "Vladimir Logachev"
+
+
+photo : Image
+photo =
+    { url = "/images/photo.jpg"
+    , description = "Vladimir Logachev"
+    , placeholderColor = Color.black
+    }
+
+
+type alias ScreenLink =
+    { labelText : String, url : String }
+
+
+type alias PrintLink =
+    { labelText : String, url : String, printAs : String }
+
+
+linksCommon : List PrintLink
+linksCommon =
+    [ { labelText = "Mail"
+      , url = "mailto:vladimir@logachev.dev"
+      , printAs = "vladimir@logachev.dev"
+      }
+    , { labelText = "Telegram"
+      , url = "https://t.me/vladimirlogachev"
+      , printAs = "vladimirlogachev"
+      }
+    , { labelText = "GitHub"
+      , url = "https://github.com/vladimirlogachev"
+      , printAs = "vladimirlogachev"
+      }
+    , { labelText = "LinkedIn"
+      , url = "https://www.linkedin.com/in/vladimirlogachev"
+      , printAs = "vladimirlogachev"
+      }
+    ]
+
+
+linksScreen : List ScreenLink
+linksScreen =
+    List.map (\x -> { labelText = x.labelText, url = x.url }) linksCommon
+        ++ [ { labelText = "Download cv"
+             , url = "https://logachev.dev/cv_vladimir_logachev.pdf"
+             }
+           ]
+
+
+linksPrint : List PrintLink
+linksPrint =
+    linksCommon
+        ++ [ { labelText = "Website"
+             , url = "https://logachev.dev"
+             , printAs = "logachev.dev"
+             }
+           ]
 
 
 type alias Detail =
