@@ -14,8 +14,8 @@ import Color
 import Element exposing (..)
 import Element.Font as Font
 import Element.Region as Region
+import ExtraColor
 import GridLayout2 exposing (..)
-import Oklch
 import Typography exposing (nbsp, preparedText)
 
 
@@ -48,7 +48,7 @@ printableLinkVertical layout { url, label } =
             -- nonPrintableLink
             case url of
                 Just urlString ->
-                    newTabLink [] { label = el [ Oklch.fontColor Oklch.blue ] label, url = urlString }
+                    newTabLink [] { label = el [ ExtraColor.fontColor Color.blue ] label, url = urlString }
 
                 Nothing ->
                     el [ Font.color Color.black ] label
@@ -57,7 +57,7 @@ printableLinkVertical layout { url, label } =
             -- printFriendlyLink
             case url of
                 Just urlString ->
-                    column [] [ label, newTabLink [ Oklch.fontColor Oklch.blue ] { label = preparedParagraph urlString, url = urlString } ]
+                    column [] [ label, newTabLink [ ExtraColor.fontColor Color.blue ] { label = preparedParagraph urlString, url = urlString } ]
 
                 Nothing ->
                     label
@@ -65,14 +65,14 @@ printableLinkVertical layout { url, label } =
 
 screenLink : { url : String, labelText : String } -> Element msg
 screenLink { url, labelText } =
-    newTabLink [] { label = el [ Oklch.fontColor Oklch.blue ] <| preparedParagraph labelText, url = url }
+    newTabLink [] { label = el [ ExtraColor.fontColor Color.blue ] <| preparedParagraph labelText, url = url }
 
 
 printLinkHorizontal : { url : String, labelText : String, printAs : Maybe String } -> Element msg
 printLinkHorizontal { url, labelText, printAs } =
     wrappedRow []
         [ el [ Font.color Color.detail, width (px contactsKeyColumnWidth) ] <| preparedParagraph (labelText ++ nbsp)
-        , newTabLink [ Oklch.fontColor Oklch.blue ] { label = preparedParagraph <| Maybe.withDefault url printAs, url = url }
+        , newTabLink [ ExtraColor.fontColor Color.blue ] { label = preparedParagraph <| Maybe.withDefault url printAs, url = url }
         ]
 
 

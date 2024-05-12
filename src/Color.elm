@@ -1,24 +1,7 @@
-module Color exposing (black, detail, toCssColor, white)
+module Color exposing (black, blue, detail, white)
 
 import Element exposing (..)
-
-
-toCssColor : Color -> String
-toCssColor x =
-    let
-        { red, green, blue, alpha } =
-            toRgb x
-
-        colors : List String
-        colors =
-            [ red, green, blue ]
-                |> List.map ((*) 255 >> round >> String.fromInt)
-    in
-    "rgba("
-        ++ String.join "," colors
-        ++ ","
-        ++ String.fromFloat alpha
-        ++ ")"
+import ExtraColor exposing (ExtraColor)
 
 
 white : Color
@@ -34,3 +17,8 @@ black =
 detail : Element.Color
 detail =
     rgb255 111 111 111
+
+
+blue : ExtraColor
+blue =
+    ExtraColor.oklch 0.59 0.15 228.57
