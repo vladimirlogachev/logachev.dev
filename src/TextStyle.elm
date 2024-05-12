@@ -4,17 +4,6 @@ import Element.Font as Font
 import Typography exposing (TextStyle)
 
 
-body : TextStyle msg
-body =
-    Typography.textStyleFromFigma
-        { fontFamily = [ Font.typeface "Source Sans Pro", Font.sansSerif ]
-        , fontSizePx = 16
-        , fontWeight = Font.regular
-        , lineHeightPx = 16
-        , letterSpacingPercent = 0
-        }
-
-
 headline : TextStyle msg
 headline =
     Typography.textStyleFromFigma
@@ -55,5 +44,16 @@ companyName =
         , fontSizePx = 20
         , fontWeight = Font.medium
         , lineHeightPx = 20
+        , letterSpacingPercent = 0
+        }
+
+
+body : TextStyle msg
+body =
+    Typography.textStyleFromFigma
+        { fontFamily = [ Font.typeface "Source Sans Pro", Font.sansSerif ]
+        , fontSizePx = 18
+        , fontWeight = Font.regular
+        , lineHeightPx = 18
         , letterSpacingPercent = 0
         }
