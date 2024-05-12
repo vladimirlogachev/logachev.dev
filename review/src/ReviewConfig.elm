@@ -49,7 +49,7 @@ config =
     , NoRecursiveUpdate.rule
     , NoUselessSubscriptions.rule
     , NoUnsafeDivision.rule
-    , NoUnused.CustomTypeConstructors.rule []
+    , NoUnused.CustomTypeConstructors.rule [] |> Rule.ignoreErrorsForFiles [ "src/Data.elm" ]
     , NoUnused.CustomTypeConstructorArgs.rule
     , NoUnused.Dependencies.rule
     , NoUnused.Exports.rule
@@ -64,3 +64,4 @@ config =
     , NoPrematureLetComputation.rule
     , NoSimpleLetBody.rule
     ]
+        |> List.map (Rule.ignoreErrorsForDirectories [ ".elm-land/" ])

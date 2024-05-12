@@ -1,11 +1,44 @@
-module Page.Cv.Data exposing (commercialExperience, contributions, education, skills)
+module Data exposing
+    ( CommercialExperience
+    , Date
+    , Detail
+    , Education
+    , EndDate(..)
+    , Project
+    , Skill
+    , commercialExperience
+    , contributions
+    , education
+    , skills
+    )
 
-import Page.Cv.CommercialExperience exposing (CommercialExperience)
-import Page.Cv.Date exposing (Date, EndDate(..))
-import Page.Cv.Education exposing (Education)
-import Page.Cv.Project exposing (Project)
-import Page.Cv.Skill exposing (Skill)
+import Element exposing (Element)
 import Typography exposing (preparedParagraph)
+
+
+type alias Detail =
+    { name : String, tags : List String }
+
+
+type alias Date =
+    { month : Int, year : Int }
+
+
+type EndDate
+    = EndedOn Date
+    | PresentFullTime
+    | PresentSpareTime
+
+
+type alias CommercialExperience msg =
+    { company : String
+    , role : String
+    , startDate : Date
+    , endDate : EndDate
+    , url : Maybe String
+    , roleDescription : List (Element msg)
+    , details : List Detail
+    }
 
 
 commercialExperience : List (CommercialExperience msg)
@@ -318,6 +351,14 @@ commercialExperience =
     ]
 
 
+type alias Project =
+    { title : String
+    , url : Maybe String
+    , description : String
+    , tags : List String
+    }
+
+
 contributions : List Project
 contributions =
     [ { title = "servant-to-elm-example"
@@ -353,6 +394,13 @@ contributions =
     ]
 
 
+type alias Education =
+    { title : String
+    , url : Maybe String
+    , details : String
+    }
+
+
 education : List Education
 education =
     [ { title = "Product Management Essentials"
@@ -380,6 +428,13 @@ education =
       , details = "Novosibirsk Aviation Technical College, 2004 — 2008"
       }
     ]
+
+
+type alias Skill =
+    { icon : Maybe String
+    , title : String
+    , details : List Detail
+    }
 
 
 skills : List Skill

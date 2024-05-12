@@ -3,7 +3,6 @@ module Window exposing
     , WindowSize
     , classifyScreen
     , initWindowSize
-    , perScreen
     , windowSizeDecoder
     )
 
@@ -33,16 +32,6 @@ classifyScreen { width } =
 
     else
         BigScreen
-
-
-perScreen : ScreenClass -> { small : a, big : a } -> a
-perScreen screenClass { small, big } =
-    case screenClass of
-        SmallScreen ->
-            small
-
-        BigScreen ->
-            big
 
 
 windowSizeDecoder : Json.Decode.Decoder WindowSize

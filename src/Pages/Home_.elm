@@ -1,23 +1,19 @@
 module Pages.Home_ exposing (Model, Msg, page)
 
 import Color
+import Data exposing (CommercialExperience, Date, Detail, Education, EndDate(..), Project, Skill)
 import Effect
 import Element exposing (..)
 import Element.Background as Background
 import Element.Border as Border
 import Element.Font as Font
+import Element.Region as Region
 import Html.Attributes
 import Page exposing (Page)
-import Page.Cv.CommercialExperience exposing (viewCommercialExperience)
-import Page.Cv.Data as Data
-import Page.Cv.Education exposing (viewEducation)
-import Page.Cv.Project exposing (viewProject)
-import Page.Cv.Skill exposing (viewSkill)
-import Page.Cv.SkillGroup exposing (viewIfNonEmpty)
 import Route exposing (Route)
 import Shared
-import Typography exposing (nbsp, preparedParagraph)
-import Util.Style exposing (contactsKeyColumnWidth, fontFamilyGeneral, pageHeading, printLinkHorizontal, screenLink)
+import Typography exposing (nbsp, preparedParagraph, preparedText)
+import Util.Style exposing (contactsKeyColumnWidth, fontFamilyGeneral, itemHeading, keyColumnWidth, pageHeading, printLinkHorizontal, printableLinkVertical, screenLink, sectionHeading)
 import View exposing (View)
 
 
@@ -211,3 +207,87 @@ viewContacts deviceClass =
 
         BigDesktop ->
             wrappedRow [ width fill, spacing 50 ] [ photo, summary ]
+
+
+
+-- ====================================================
+-- ========================== LEGACY ==========================
+-- ====================================================
+
+
+viewDetail : Detail -> Element msg
+viewDetail y =
+    row [ width fill ]
+        [ el [ Font.color Color.detail, width (px keyColumnWidth), alignTop ] <| text (y.name ++ nbsp)
+        , paragraph [ alignTop ] [ preparedText <| String.join ", " <| y.tags ]
+        ]
+
+
+viewCommercialExperience : DeviceClass -> CommercialExperience msg -> Element msg
+viewCommercialExperience deviceClass x =
+    column [ width fill, spacing 16 ]
+        [ column [ width fill, spacing 10 ]
+            [ el itemHeading <| preparedParagraph x.role
+            , printableLinkVertical deviceClass { url = x.url, label = el [ Region.heading 4, Font.medium, Font.size 20 ] <| preparedParagraph x.company }
+            , (showDate x.startDate ++ " — " ++ showEndDate x.endDate)
+                |> preparedText
+                |> el [ Font.color Color.detail ]
+            ]
+        , column [ width fill, spacing 16 ] <| x.roleDescription
+        , column [ width fill, spacing 10 ] <| List.map viewDetail x.details
+        ]
+
+
+viewSkill : Skill -> Element msg
+viewSkill x =
+    column [ alignTop, width fill, spacing 20 ]
+        [ el (width fill :: itemHeading) <| preparedParagraph x.title
+        , column [ width fill, spacing 16 ] <| List.map viewDetail x.details
+        ]
+
+
+viewIfNonEmpty : String -> List (Element msg) -> Element msg
+viewIfNonEmpty title list =
+    case list of
+        [] ->
+            none
+
+        xs ->
+            column [ spacing 32 ] [ el sectionHeading <| preparedParagraph title, column [ spacing 32 ] xs ]
+
+
+viewProject : DeviceClass -> Project -> Element msg
+viewProject deviceClass x =
+    column [ spacing 16 ]
+        [ printableLinkVertical deviceClass { url = x.url, label = el itemHeading <| preparedParagraph x.title }
+        , preparedParagraph x.description
+        , el [ Font.color Color.detail ] <| preparedParagraph <| String.join ", " <| x.tags
+        ]
+
+
+viewEducation : DeviceClass -> Education -> Element msg
+viewEducation deviceClass x =
+    column [ spacing 10 ]
+        [ printableLinkVertical deviceClass { url = x.url, label = el itemHeading <| preparedParagraph x.title }
+        , preparedParagraph x.details |> el [ Font.color Color.detail ]
+        ]
+
+
+showDate : Date -> String
+showDate d =
+    (String.padLeft 2 '0' <| String.fromInt d.month)
+        ++ "/"
+        ++ (String.padLeft 4 '0' <| String.fromInt d.year)
+
+
+showEndDate : EndDate -> String
+showEndDate ed =
+    case ed of
+        EndedOn d ->
+            showDate d
+
+        PresentFullTime ->
+            "present (full time)"
+
+        PresentSpareTime ->
+            "present (spare time)"
