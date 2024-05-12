@@ -183,7 +183,7 @@ commercialExperience =
     -- , { company = "Fourier Labs"
     --   , role = "Backend Engineer"
     --   , startDate = Date 3 2022
-    --   , endDate = Just <| Date 4 2022
+    --   , endDate = EndedOn <| Date 4 2022
     --   , url = Just "https://fourierlabs.io"
     --   , roleDescription =
     --         [ preparedParagraph "I worked on the POC EVM implementation for the Cardano blockchain."
