@@ -131,7 +131,7 @@ viewContactsDesktop layout =
 viewSkillSet : LayoutState -> Skill -> Element msg
 viewSkillSet layout x =
     column [ width fill, spacing 20 ]
-        [ paragraph (width fill :: TextStyle.lead.attrs) [ preparedText x.title ]
+        [ paragraph (width fill :: TextStyle.header2.attrs) [ preparedText x.title ]
         , column [ width fill, spacing 16 ] <| List.map (viewDetail layout) x.details
         ]
 
@@ -140,10 +140,10 @@ viewCommercialExperience : LayoutState -> CommercialExperience -> Element msg
 viewCommercialExperience layout x =
     column [ width fill, spacing 16 ]
         [ column [ width fill, spacing 10 ]
-            [ paragraph TextStyle.lead.attrs [ preparedText x.role ]
+            [ paragraph TextStyle.header2.attrs [ preparedText x.role ]
             , titleWithOptionalLink layout
                 { url = x.url
-                , label = paragraph TextStyle.companyName.attrs [ preparedText x.company ]
+                , label = paragraph TextStyle.lead.attrs [ preparedText x.company ]
                 }
             , paragraph [ Font.color Color.detail ]
                 [ preparedText (showDate x.startDate ++ " — " ++ showEndDate x.endDate) ]
@@ -158,7 +158,7 @@ viewEducation layout x =
     column [ spacing 10 ]
         [ titleWithOptionalLink layout
             { url = x.url
-            , label = paragraph TextStyle.lead.attrs [ preparedText x.title ]
+            , label = paragraph TextStyle.header2.attrs [ preparedText x.title ]
             }
         , paragraph [ Font.color Color.detail ] [ preparedText x.details ]
         ]
@@ -167,7 +167,7 @@ viewEducation layout x =
 viewProject : LayoutState -> Project -> Element msg
 viewProject layout x =
     column [ spacing 16 ]
-        [ titleWithOptionalLink layout { url = x.url, label = paragraph TextStyle.lead.attrs [ preparedText x.title ] }
+        [ titleWithOptionalLink layout { url = x.url, label = paragraph TextStyle.header2.attrs [ preparedText x.title ] }
         , paragraph [] [ preparedText x.description ]
         , paragraph [ Font.color Color.detail ] [ preparedText <| String.join ", " <| x.tags ]
         ]

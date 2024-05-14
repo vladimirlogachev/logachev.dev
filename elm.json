@@ -15,7 +15,7 @@
             "elm-explorations/test": "2.2.0",
             "mdgriffith/elm-ui": "1.1.8",
             "vladimirlogachev/elm-modular-grid": "2.0.1",
-            "vladimirlogachev/elm-ui-toolkit": "1.1.0"
+            "vladimirlogachev/elm-ui-toolkit": "2.0.0"
         },
         "indirect": {
             "elm/bytes": "1.0.8",

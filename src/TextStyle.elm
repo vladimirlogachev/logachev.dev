@@ -1,6 +1,7 @@
-module TextStyle exposing (body, companyName, header, headline, lead)
+module TextStyle exposing (body, header, header2, headline, lead)
 
 import Element.Font as Font
+import Element.Region as Region
 import Typography exposing (TextStyle)
 
 
@@ -12,6 +13,7 @@ headline =
         , fontWeight = Font.semiBold
         , lineHeightPx = 48
         , letterSpacingPercent = 0
+        , region = Just <| Region.heading 1
         }
 
 
@@ -23,6 +25,19 @@ header =
         , fontWeight = Font.semiBold
         , lineHeightPx = 36
         , letterSpacingPercent = 0
+        , region = Just <| Region.heading 2
+        }
+
+
+header2 : TextStyle msg
+header2 =
+    Typography.textStyleFromFigma
+        { fontFamily = [ Font.typeface "Source Sans Pro", Font.sansSerif ]
+        , fontSizePx = 20
+        , fontWeight = Font.semiBold
+        , lineHeightPx = 20
+        , letterSpacingPercent = 0
+        , region = Just <| Region.heading 3
         }
 
 
@@ -31,20 +46,10 @@ lead =
     Typography.textStyleFromFigma
         { fontFamily = [ Font.typeface "Source Sans Pro", Font.sansSerif ]
         , fontSizePx = 20
-        , fontWeight = Font.semiBold
-        , lineHeightPx = 20
-        , letterSpacingPercent = 0
-        }
-
-
-companyName : TextStyle msg
-companyName =
-    Typography.textStyleFromFigma
-        { fontFamily = [ Font.typeface "Source Sans Pro", Font.sansSerif ]
-        , fontSizePx = 20
         , fontWeight = Font.medium
         , lineHeightPx = 20
         , letterSpacingPercent = 0
+        , region = Nothing
         }
 
 
@@ -56,4 +61,5 @@ body =
         , fontWeight = Font.regular
         , lineHeightPx = 18
         , letterSpacingPercent = 0
+        , region = Nothing
         }
