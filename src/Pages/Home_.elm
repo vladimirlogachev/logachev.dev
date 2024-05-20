@@ -52,6 +52,15 @@ view { layout } =
     }
 
 
+viewMoreLink : Element msg
+viewMoreLink =
+    paragraph []
+        [ text "More contributions are listed on "
+        , newTabLink [] { label = el [ ExtraColor.fontColor Color.blue ] (text "my GitHub profile"), url = "https://github.com/vladimirlogachev/" }
+        , text "."
+        ]
+
+
 viewMobile : LayoutState -> Element msg
 viewMobile layout =
     column [ spacing 60, width fill ]
@@ -59,7 +68,7 @@ viewMobile layout =
         , viewSection layout "Skills" <| List.map (viewSkillSet layout) Data.skills
         , viewSection layout "Experience" (List.map (viewCommercialExperience layout) Data.commercialExperience)
         , viewSection layout "Education" (List.map (viewEducation layout) Data.education)
-        , viewSection layout "Open Source Contributions" (List.map (viewProject layout) Data.contributions)
+        , viewSection layout "Open Source Contributions" (List.map (viewProject layout) Data.contributions ++ [ viewMoreLink ])
         ]
 
 
@@ -70,7 +79,7 @@ viewDesktop layout =
         , viewSection layout "Skills" <| List.map (viewSkillSet layout) Data.skills
         , viewSection layout "Experience" (List.map (viewCommercialExperience layout) Data.commercialExperience)
         , viewSection layout "Education" (List.map (viewEducation layout) Data.education)
-        , viewSection layout "Open Source Contributions" (List.map (viewProject layout) Data.contributions)
+        , viewSection layout "Open Source Contributions" (List.map (viewProject layout) Data.contributions ++ [ viewMoreLink ])
         ]
 
 

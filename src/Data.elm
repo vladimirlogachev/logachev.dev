@@ -434,7 +434,17 @@ type alias Project =
 
 contributions : List Project
 contributions =
-    [ { title = "servant-to-elm-example"
+    [ { title = "elm-modular-grid"
+      , url = Just "https://github.com/vladimirlogachev/elm-modular-grid"
+      , description = """An Elm library. Responsive modular grid layouts for Elm."""
+      , tags = [ "Elm", "elm-ui", "elm-land" ]
+      }
+    , { title = "elm-package-insights"
+      , url = Just "https://github.com/vladimirlogachev/elm-package-insights"
+      , description = """A CLI that scans the Elm package registry and detects broken packages."""
+      , tags = [ "Haskell", "mtl" ]
+      }
+    , { title = "servant-to-elm-example"
       , url = Just "https://github.com/haskell-to-elm/servant-to-elm-example"
       , description = """An example full-stack web app, constructed in a code-first, typesafe, and functional way. 
           The servant-to-elm tool generates Elm types, decoders/encoders from Haskell types, and Servant definitions. 
@@ -459,11 +469,12 @@ contributions =
           we refactored each previously translated chapter before completing the translation."""
       , tags = [ "JavaScript", "Ramda" ]
       }
-    , { title = "FP Specialty"
-      , url = Nothing
-      , description = "Maintained a functional programming reading group from 2019 to 2021, welcoming individuals of all functional programming skill levels."
-      , tags = []
-      }
+
+    -- , { title = "FP Specialty"
+    --   , url = Nothing
+    --   , description = "Maintained a functional programming reading group from 2019 to 2021, welcoming individuals of all functional programming skill levels."
+    --   , tags = []
+    --   }
     ]
 
 
