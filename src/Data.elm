@@ -141,7 +141,7 @@ commercialExperience =
             ]
       }
     , { company = "Wolf"
-      , role = "Engineering Lead"
+      , role = "Engineering Team Lead"
       , startDate = Date 8 2021
       , endDate = EndedOn <| Date 3 2024
       , url = Nothing
