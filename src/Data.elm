@@ -141,7 +141,7 @@ commercialExperience =
             ]
       }
     , { company = "Wolf"
-      , role = "Product Manager and Engineering Lead"
+      , role = "Engineering Lead"
       , startDate = Date 8 2021
       , endDate = EndedOn <| Date 3 2024
       , url = Nothing
@@ -524,21 +524,22 @@ type alias Skill =
 skills : List Skill
 skills =
     [ { icon = Nothing
-      , title = "Leadership and Product Management"
+      , title = "Leadership"
       , details =
             [ { name = "Responsibilities"
               , tags =
-                    [ "Project management"
-                    , "product management"
-                    , "team leadership"
+                    [ "Team leadership"
                     , "presenting"
                     , "planning"
-                    , "risk management"
-                    , "schedule management"
-                    , "release management"
                     , "issue resolution"
                     , "stakeholder communication"
                     , "providing feedback"
+                    , "release management"
+
+                    -- , "Project management"
+                    -- , "product management"
+                    -- , "risk management"
+                    -- , "schedule management"
                     ]
               }
             , { name = "Values"
