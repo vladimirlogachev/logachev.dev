@@ -56,7 +56,10 @@ viewMoreLink : Element msg
 viewMoreLink =
     paragraph []
         [ text "More contributions are listed on "
-        , newTabLink [] { label = el [ ExtraColor.fontColor Color.blue ] (text "my GitHub profile"), url = "https://github.com/vladimirlogachev/" }
+        , newTabLink []
+            { label = el [ ExtraColor.fontColor Color.blue ] (text "my GitHub profile")
+            , url = "https://github.com/vladimirlogachev/"
+            }
         , text "."
         ]
 
@@ -87,8 +90,8 @@ viewContactsMobile : LayoutState -> Element msg
 viewContactsMobile layout =
     column [ width fill, spacing layout.grid.gutter ]
         [ Image.view layout
-            { widthSteps = 4, heightSteps = 4 }
-            [ Border.rounded 8, clip ]
+            { widthSteps = 3, heightSteps = 3 }
+            [ Border.rounded 1000, clip ]
             Data.photo
         , paragraph TextStyle.headline.attrs [ preparedText Data.myName ]
         , gridRow layout
@@ -111,8 +114,8 @@ viewContactsDesktop layout =
     in
     gridRow layout
         [ Image.view layout
-            { widthSteps = 4, heightSteps = 4 }
-            [ Border.rounded 8, clip ]
+            { widthSteps = 3, heightSteps = 3 }
+            [ Border.rounded 1000, clip ]
             Data.photo
         , gridColumn layout
             { widthSteps = 9 }
