@@ -99,8 +99,7 @@ type alias Date =
 
 type EndDate
     = EndedOn Date
-    | PresentFullTime
-    | PresentSpareTime
+    | Present
 
 
 type alias CommercialExperience =

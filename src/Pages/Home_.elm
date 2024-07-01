@@ -218,11 +218,8 @@ showEndDate ed =
         EndedOn d ->
             showDate d
 
-        PresentFullTime ->
-            "present (full time)"
-
-        PresentSpareTime ->
-            "present (spare time)"
+        Present ->
+            "present"
 
 
 titleWithOptionalLink : LayoutState -> { url : Maybe String, label : Element msg } -> Element msg
