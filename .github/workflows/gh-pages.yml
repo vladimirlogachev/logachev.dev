@@ -63,7 +63,7 @@ jobs:
           
           # Render pdf, A4 (dimensions are specified in inches)
           npx chrome-headless-render-pdf \
-            --url http://localhost:1234 \
+            --url http://localhost:1234/#/cv \
             --window-size 1600,1200 \
             --paper-width 8.3 \
             --paper-height 11.7 \
