@@ -204,7 +204,7 @@ viewEducation layout x =
     column [ spacing 10 ]
         [ titleWithOptionalLink
             { url = x.url
-            , label = paragraph [] [ preparedText x.title ]
+            , label = paragraph TextStyle.header2.attrs [ preparedText x.title ]
             }
         , paragraph [ Font.color Color.detail ] [ preparedText x.details ]
         ]
