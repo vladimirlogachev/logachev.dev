@@ -1,11 +1,11 @@
-/* only-screen */
+/* Hide `only-screen` on media `print` */
 @media print {
   .only-screen {
     display: none !important;
   }
 }
 
-/* only-print */
+/* Hide `only-print` on media `screen` */
 @media screen {
   .only-print {
     display: none !important;
