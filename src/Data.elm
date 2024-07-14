@@ -38,7 +38,7 @@ photo =
 
 location : String
 location =
-    "Armenia (remote)"
+    "Yerevan, Armenia"
 
 
 type alias ScreenLink =
@@ -57,15 +57,15 @@ linksCommon =
       }
     , { labelText = "Telegram"
       , url = "https://t.me/vladimirlogachev"
-      , printAs = "vladimirlogachev"
+      , printAs = "t.me/vladimirlogachev"
       }
     , { labelText = "GitHub"
       , url = "https://github.com/vladimirlogachev"
-      , printAs = "vladimirlogachev"
+      , printAs = "github.com/vladimirlogachev"
       }
     , { labelText = "LinkedIn"
       , url = "https://www.linkedin.com/in/vladimirlogachev"
-      , printAs = "vladimirlogachev"
+      , printAs = "linkedin.com/in/vladimirlogachev"
       }
     ]
 
@@ -82,11 +82,6 @@ linksScreen =
 linksPrint : List PrintLink
 linksPrint =
     linksCommon
-        ++ [ { labelText = "Website"
-             , url = "https://logachev.dev"
-             , printAs = "logachev.dev"
-             }
-           ]
 
 
 type alias Detail =
@@ -128,15 +123,16 @@ commercialExperience =
             [ { name = "Responsibilities"
               , tags = [ "Engineering", "code review" ]
               }
-            , { name = "Backend"
-              , tags =
-                    [ "Scala"
-                    , "Spark"
-                    , "Kafka"
-                    , "MinIO"
-                    , "Airflow"
-                    ]
-              }
+
+            -- , { name = "Backend"
+            --   , tags =
+            --         [ "Scala"
+            --         , "Spark"
+            --         , "Kafka"
+            --         , "MinIO"
+            --         , "Airflow"
+            --         ]
+            --   }
             ]
       }
     , { company = "Wolf"
@@ -163,42 +159,43 @@ commercialExperience =
                     , "devops"
                     ]
               }
-            , { name = "Backend"
-              , tags =
-                    [ "Haskell"
-                    , "servant-server"
-                    , "postgresql-typed"
-                    , "haskell-to-elm"
-                    , "mtl"
-                    , "lens"
-                    , "conduit"
-                    , "relude"
-                    , "hspec"
-                    , "QuickCheck"
-                    ]
-              }
-            , { name = "Frontend"
-              , tags =
-                    [ "Elm"
-                    , "elm-ui"
-                    , "elm-charts"
-                    , "remotedata"
-                    , "elm-review"
-                    , "elm-test"
-                    ]
-              }
-            , { name = "Infrastructure"
-              , tags =
-                    [ "Kubernetes"
-                    , "Docker"
-                    , "Nginx"
-                    , "Grafana"
-                    , "Loki"
-                    , "DigitalOcean"
-                    , "GitHub Actions"
-                    , "GitHub Container Registry"
-                    ]
-              }
+
+            -- , { name = "Backend"
+            --   , tags =
+            --         [ "Haskell"
+            --         , "servant-server"
+            --         , "postgresql-typed"
+            --         , "haskell-to-elm"
+            --         , "mtl"
+            --         , "lens"
+            --         , "conduit"
+            --         , "relude"
+            --         , "hspec"
+            --         , "QuickCheck"
+            --         ]
+            --   }
+            -- , { name = "Frontend"
+            --   , tags =
+            --         [ "Elm"
+            --         , "elm-ui"
+            --         , "elm-charts"
+            --         , "remotedata"
+            --         , "elm-review"
+            --         , "elm-test"
+            --         ]
+            --   }
+            -- , { name = "Infrastructure"
+            --   , tags =
+            --         [ "Kubernetes"
+            --         , "Docker"
+            --         , "Nginx"
+            --         , "Grafana"
+            --         , "Loki"
+            --         , "DigitalOcean"
+            --         , "GitHub Actions"
+            --         , "GitHub Container Registry"
+            --         ]
+            --   }
             ]
       }
     , { company = "Tian"
@@ -217,37 +214,38 @@ commercialExperience =
                     , "devops"
                     ]
               }
-            , { name = "Backend"
-              , tags =
-                    [ "Haskell"
-                    , "servant-server"
-                    , "hasql"
-                    , "haskell-to-elm"
-                    , "mtl"
-                    , "lens"
-                    , "conduit"
-                    , "relude"
-                    , "hspec"
-                    ]
-              }
-            , { name = "Frontend"
-              , tags =
-                    [ "Elm"
-                    , "elm-ui"
-                    , "elm-3d-scene"
-                    , "elm-review"
-                    , "elm-test"
-                    ]
-              }
-            , { name = "Infrastructure"
-              , tags =
-                    [ "Docker"
-                    , "Nginx"
-                    , "DigitalOcean"
-                    , "GitHub Actions"
-                    , "GitHub Container Registry"
-                    ]
-              }
+
+            -- , { name = "Backend"
+            --   , tags =
+            --         [ "Haskell"
+            --         , "servant-server"
+            --         , "hasql"
+            --         , "haskell-to-elm"
+            --         , "mtl"
+            --         , "lens"
+            --         , "conduit"
+            --         , "relude"
+            --         , "hspec"
+            --         ]
+            --   }
+            -- , { name = "Frontend"
+            --   , tags =
+            --         [ "Elm"
+            --         , "elm-ui"
+            --         , "elm-3d-scene"
+            --         , "elm-review"
+            --         , "elm-test"
+            --         ]
+            --   }
+            -- , { name = "Infrastructure"
+            --   , tags =
+            --         [ "Docker"
+            --         , "Nginx"
+            --         , "DigitalOcean"
+            --         , "GitHub Actions"
+            --         , "GitHub Container Registry"
+            --         ]
+            --   }
             ]
       }
     , { company = "Swift Invention"
@@ -263,25 +261,26 @@ commercialExperience =
             [ { name = "Responsibilities"
               , tags = [ "Leading", "mentoring", "technical interviews", "engineering", "testing", "code review" ]
               }
-            , { name = "Backend"
-              , tags =
-                    [ "Scala"
-                    , "zio"
-                    , "zio-http"
-                    , "zio-test"
-                    , "tapir"
-                    , "circe"
-                    , "chimney"
-                    , "enumeratum"
-                    , "flyway"
-                    , "testcontainers"
-                    , "finagle"
-                    , "scalatest"
-                    , "MySQL"
-                    , "Redis"
-                    , "Docker"
-                    ]
-              }
+
+            -- , { name = "Backend"
+            --   , tags =
+            --         [ "Scala"
+            --         , "zio"
+            --         , "zio-http"
+            --         , "zio-test"
+            --         , "tapir"
+            --         , "circe"
+            --         , "chimney"
+            --         , "enumeratum"
+            --         , "flyway"
+            --         , "testcontainers"
+            --         , "finagle"
+            --         , "scalatest"
+            --         , "MySQL"
+            --         , "Redis"
+            --         , "Docker"
+            --         ]
+            --   }
             ]
       }
 
@@ -315,19 +314,20 @@ commercialExperience =
             [ { name = "Responsibilities"
               , tags = [ "Mentoring", "engineering", "testing", "code review" ]
               }
-            , { name = "Frontend"
-              , tags =
-                    [ "TypeScript"
-                    , "React"
-                    , "Next.js"
-                    , "GraphQL"
-                    , "Apollo"
-                    , "FP-TS"
-                    , "Emotion"
-                    , "Jest"
-                    ]
-              }
-            , { name = "Infrastructure", tags = [ "Nginx", "Docker", "GitHub Actions" ] }
+
+            -- , { name = "Frontend"
+            --   , tags =
+            --         [ "TypeScript"
+            --         , "React"
+            --         , "Next.js"
+            --         , "GraphQL"
+            --         , "Apollo"
+            --         , "FP-TS"
+            --         , "Emotion"
+            --         , "Jest"
+            --         ]
+            --   }
+            -- , { name = "Infrastructure", tags = [ "Nginx", "Docker", "GitHub Actions" ] }
             ]
       }
     , { company = "Eldis"
@@ -340,7 +340,8 @@ commercialExperience =
             [ { name = "Responsibilities"
               , tags = [ "Engineering", "testing" ]
               }
-            , { name = "Backend", tags = [ "Scala", "scodec", "cats", "fs2", "decline", "specs2", "scalacheck" ] }
+
+            -- , { name = "Backend", tags = [ "Scala", "scodec", "cats", "fs2", "decline", "specs2", "scalacheck" ] }
             ]
       }
     , { company = "Neolab-Nsk"
@@ -353,22 +354,23 @@ commercialExperience =
             [ { name = "Responsibilities"
               , tags = [ "Engineering", "testing" ]
               }
-            , { name = "Frontend", tags = [ "TypeScript", "React", "Redux", "Saga", "RxJS", "FP-TS" ] }
-            , { name = "Backend"
-              , tags =
-                    [ "TypeScript"
-                    , "Node"
-                    , "Redux"
-                    , "Saga"
-                    , "RxJS"
-                    , "Redis"
-                    , "Lua"
-                    , "Mongo"
-                    , "PostgreSQL"
-                    , "Clickhouse"
-                    , "Docker"
-                    ]
-              }
+
+            -- , { name = "Frontend", tags = [ "TypeScript", "React", "Redux", "Saga", "RxJS", "FP-TS" ] }
+            -- , { name = "Backend"
+            --   , tags =
+            --         [ "TypeScript"
+            --         , "Node"
+            --         , "Redux"
+            --         , "Saga"
+            --         , "RxJS"
+            --         , "Redis"
+            --         , "Lua"
+            --         , "Mongo"
+            --         , "PostgreSQL"
+            --         , "Clickhouse"
+            --         , "Docker"
+            --         ]
+            --   }
             ]
       }
     , { company = "SocialSweet Inc"
@@ -384,7 +386,8 @@ commercialExperience =
             [ { name = "Responsibilities"
               , tags = [ "Engineering", "testing", "code review" ]
               }
-            , { name = "Frontend", tags = [ "TypeScript", "Angular", "RxJS" ] }
+
+            -- , { name = "Frontend", tags = [ "TypeScript", "Angular", "RxJS" ] }
             ]
       }
     , { company = "Allmax"
@@ -406,18 +409,19 @@ commercialExperience =
             [ { name = "Responsibilities"
               , tags = [ "Mentoring", "engineering", "testing", "code review" ]
               }
-            , { name = "Frontend"
-              , tags =
-                    [ "JavaScript"
-                    , "Flow"
-                    , "React Native"
-                    , "Redux"
-                    , "Saga"
-                    , "Ramda"
-                    , "Sanctuary"
-                    , "Socket.io"
-                    ]
-              }
+
+            -- , { name = "Frontend"
+            --   , tags =
+            --         [ "JavaScript"
+            --         , "Flow"
+            --         , "React Native"
+            --         , "Redux"
+            --         , "Saga"
+            --         , "Ramda"
+            --         , "Sanctuary"
+            --         , "Socket.io"
+            --         ]
+            --   }
             ]
       }
     ]
@@ -486,11 +490,13 @@ type alias Education =
 
 education : List Education
 education =
-    [ { title = "Product Management Essentials"
-      , url = Just "https://www.coursera.org/account/accomplishments/verify/DU4BJFRJH99A"
-      , details = "The University of Maryland, 2024"
-      }
-    , { title = "Mastering Haskell Programming"
+    [ {- { title = "Product Management Essentials"
+           , url = Just "https://www.coursera.org/account/accomplishments/verify/DU4BJFRJH99A"
+           , details = "The University of Maryland, 2024"
+           }
+         ,
+      -}
+      { title = "Mastering Haskell Programming"
       , url = Just "https://www.udemy.com/certificate/UC-DRMAMOQ5"
       , details = "Packt, 2019"
       }
