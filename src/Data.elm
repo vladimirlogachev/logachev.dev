@@ -123,16 +123,6 @@ commercialExperience =
             [ { name = "Responsibilities"
               , tags = [ "Engineering", "code review" ]
               }
-
-            -- , { name = "Backend"
-            --   , tags =
-            --         [ "Scala"
-            --         , "Spark"
-            --         , "Kafka"
-            --         , "MinIO"
-            --         , "Airflow"
-            --         ]
-            --   }
             ]
       }
     , { company = "Wolf"
@@ -159,43 +149,6 @@ commercialExperience =
                     , "devops"
                     ]
               }
-
-            -- , { name = "Backend"
-            --   , tags =
-            --         [ "Haskell"
-            --         , "servant-server"
-            --         , "postgresql-typed"
-            --         , "haskell-to-elm"
-            --         , "mtl"
-            --         , "lens"
-            --         , "conduit"
-            --         , "relude"
-            --         , "hspec"
-            --         , "QuickCheck"
-            --         ]
-            --   }
-            -- , { name = "Frontend"
-            --   , tags =
-            --         [ "Elm"
-            --         , "elm-ui"
-            --         , "elm-charts"
-            --         , "remotedata"
-            --         , "elm-review"
-            --         , "elm-test"
-            --         ]
-            --   }
-            -- , { name = "Infrastructure"
-            --   , tags =
-            --         [ "Kubernetes"
-            --         , "Docker"
-            --         , "Nginx"
-            --         , "Grafana"
-            --         , "Loki"
-            --         , "DigitalOcean"
-            --         , "GitHub Actions"
-            --         , "GitHub Container Registry"
-            --         ]
-            --   }
             ]
       }
     , { company = "Tian"
@@ -214,38 +167,6 @@ commercialExperience =
                     , "devops"
                     ]
               }
-
-            -- , { name = "Backend"
-            --   , tags =
-            --         [ "Haskell"
-            --         , "servant-server"
-            --         , "hasql"
-            --         , "haskell-to-elm"
-            --         , "mtl"
-            --         , "lens"
-            --         , "conduit"
-            --         , "relude"
-            --         , "hspec"
-            --         ]
-            --   }
-            -- , { name = "Frontend"
-            --   , tags =
-            --         [ "Elm"
-            --         , "elm-ui"
-            --         , "elm-3d-scene"
-            --         , "elm-review"
-            --         , "elm-test"
-            --         ]
-            --   }
-            -- , { name = "Infrastructure"
-            --   , tags =
-            --         [ "Docker"
-            --         , "Nginx"
-            --         , "DigitalOcean"
-            --         , "GitHub Actions"
-            --         , "GitHub Container Registry"
-            --         ]
-            --   }
             ]
       }
     , { company = "Swift Invention"
@@ -261,26 +182,6 @@ commercialExperience =
             [ { name = "Responsibilities"
               , tags = [ "Leading", "mentoring", "technical interviews", "engineering", "testing", "code review" ]
               }
-
-            -- , { name = "Backend"
-            --   , tags =
-            --         [ "Scala"
-            --         , "zio"
-            --         , "zio-http"
-            --         , "zio-test"
-            --         , "tapir"
-            --         , "circe"
-            --         , "chimney"
-            --         , "enumeratum"
-            --         , "flyway"
-            --         , "testcontainers"
-            --         , "finagle"
-            --         , "scalatest"
-            --         , "MySQL"
-            --         , "Redis"
-            --         , "Docker"
-            --         ]
-            --   }
             ]
       }
 
@@ -291,14 +192,6 @@ commercialExperience =
     --   , url = Just "https://fourierlabs.io"
     --   , roleDescription =
     --         [ preparedParagraph "I worked on the POC EVM implementation for the Cardano blockchain."
-    --         ]
-    --   , details =
-    --         [ { name = "Responsibilities"
-    --           , tags = [ "Engineering", "testing", "code review" ]
-    --           }
-    --         , { name = "Backend", tags = [ "Haskell", "Plutus" ] }
-    --         , { name = "Infrastructure", tags = [ "Nix" ] }
-    --         , { name = "Blockchain", tags = [ "Cardano", "Ethereum" ] }
     --         ]
     --   }
     , { company = "Pamir"
@@ -314,20 +207,6 @@ commercialExperience =
             [ { name = "Responsibilities"
               , tags = [ "Mentoring", "engineering", "testing", "code review" ]
               }
-
-            -- , { name = "Frontend"
-            --   , tags =
-            --         [ "TypeScript"
-            --         , "React"
-            --         , "Next.js"
-            --         , "GraphQL"
-            --         , "Apollo"
-            --         , "FP-TS"
-            --         , "Emotion"
-            --         , "Jest"
-            --         ]
-            --   }
-            -- , { name = "Infrastructure", tags = [ "Nginx", "Docker", "GitHub Actions" ] }
             ]
       }
     , { company = "Eldis"
@@ -340,8 +219,6 @@ commercialExperience =
             [ { name = "Responsibilities"
               , tags = [ "Engineering", "testing" ]
               }
-
-            -- , { name = "Backend", tags = [ "Scala", "scodec", "cats", "fs2", "decline", "specs2", "scalacheck" ] }
             ]
       }
     , { company = "Neolab-Nsk"
@@ -354,23 +231,6 @@ commercialExperience =
             [ { name = "Responsibilities"
               , tags = [ "Engineering", "testing" ]
               }
-
-            -- , { name = "Frontend", tags = [ "TypeScript", "React", "Redux", "Saga", "RxJS", "FP-TS" ] }
-            -- , { name = "Backend"
-            --   , tags =
-            --         [ "TypeScript"
-            --         , "Node"
-            --         , "Redux"
-            --         , "Saga"
-            --         , "RxJS"
-            --         , "Redis"
-            --         , "Lua"
-            --         , "Mongo"
-            --         , "PostgreSQL"
-            --         , "Clickhouse"
-            --         , "Docker"
-            --         ]
-            --   }
             ]
       }
     , { company = "SocialSweet Inc"
@@ -386,8 +246,6 @@ commercialExperience =
             [ { name = "Responsibilities"
               , tags = [ "Engineering", "testing", "code review" ]
               }
-
-            -- , { name = "Frontend", tags = [ "TypeScript", "Angular", "RxJS" ] }
             ]
       }
     , { company = "Allmax"
@@ -409,19 +267,6 @@ commercialExperience =
             [ { name = "Responsibilities"
               , tags = [ "Mentoring", "engineering", "testing", "code review" ]
               }
-
-            -- , { name = "Frontend"
-            --   , tags =
-            --         [ "JavaScript"
-            --         , "Flow"
-            --         , "React Native"
-            --         , "Redux"
-            --         , "Saga"
-            --         , "Ramda"
-            --         , "Sanctuary"
-            --         , "Socket.io"
-            --         ]
-            --   }
             ]
       }
     ]
@@ -529,38 +374,12 @@ type alias Skill =
 skills : List Skill
 skills =
     [ { icon = Nothing
-      , title = "Leadership"
-      , details =
-            [ { name = "Responsibilities"
-              , tags =
-                    [ "Team leadership"
-                    , "presenting"
-                    , "planning"
-                    , "issue resolution"
-                    , "stakeholder communication"
-                    , "providing feedback"
-                    , "release management"
-
-                    -- , "Project management"
-                    -- , "product management"
-                    -- , "risk management"
-                    -- , "schedule management"
-                    ]
-              }
-            , { name = "Values"
-              , tags = [ "Collaboration", "transparency", "accountability", "proactivity", "empathy" ]
-              }
-            , { name = "Tools"
-              , tags = [ "GitHub Projects", "Notion", "Jira", "Confluence", "Figma", "Draw.io" ]
-              }
-            ]
-      }
-    , { icon = Nothing
       , title = "Technical Expertise"
       , details =
             [ { name = "Responsibilities"
               , tags =
                     [ "Research and analysis"
+                    , "system design"
                     , "engineering"
                     , "code review"
                     , "mentorship"
@@ -568,29 +387,38 @@ skills =
                     , "running meetups and reading groups"
                     ]
               }
-            , { name = "Backend"
+
+            -- , "Rust Backend (Tokio)"
+            , { name = "Scala Backend"
               , tags =
-                    [ "Haskell (mtl)"
-                    , "Scala (ZIO, cats, Akka)"
-                    , "Rust (Tokio)"
-                    , "TypeScript"
+                    [ "Scala, ZIO, Cats, Akka, scodec, fs2, decline,zio-test, scalatest, scalacheck, zio-http, akka-http,  circe, chimney, flyway, enumeratum, Finagle" -- "Spark"
                     ]
               }
-            , { name = "Frontend"
+            , { name = "Haskell Backend"
               , tags =
-                    [ "Elm"
-                    , "TypeScript"
+                    [ "Haskell, mtl, lens, conduit, servant, postgresql-typed, haskell-to-elm, relude, hspec, QuickCheck"
+                    ]
+              }
+            , { name = "Elm Frontend"
+              , tags =
+                    [ "Elm, elm-ui, elm-charts, remotedata, elm-review, elm-test"
+                    ]
+              }
+            , { name = "TypeScript Frontend"
+              , tags =
+                    [ "TypeScript, fp-ts, io-ts, Apollo, Emotion, Jest, Redux, Saga, RxJS, socket.io, Ramda, Sanctuary"
                     , "React"
-                    , "Angular"
+                    , "SCSS"
                     , "Next.js"
+                    , "Angular"
                     ]
               }
-            , { name = "DevOps"
+            , { name = "Blockchain"
               , tags =
-                    [ "Terraform"
-                    , "Kubernetes"
-                    , "Docker"
-                    , "GitHub Actions"
+                    [ "Bitcoin"
+                    , "Ethereum"
+                    , "Cardano"
+                    , "Plutus"
                     ]
               }
             , { name = "Databases"
@@ -608,10 +436,26 @@ skills =
                     , "Kafka"
                     ]
               }
-            , { name = "Auth"
+            , { name = "Testing"
+              , tags = [ "Cypress", "K6", "Percy", "testcontainers" ]
+              }
+            , { name = "Authentication"
               , tags =
                     [ "Zitadel"
                     , "Keycloak"
+                    ]
+              }
+            , { name = "Infrastructure"
+              , tags =
+                    [ "Terraform"
+                    , "Kubernetes"
+                    , "Docker"
+                    , "Nginx"
+                    , "Airflow"
+                    , "GitHub Actions"
+                    , "GitHub Container Registry"
+                    , "GitLab CI"
+                    , "DigitalOcean"
                     ]
               }
             , { name = "Monitoring"
@@ -620,14 +464,41 @@ skills =
                     , "Loki"
                     ]
               }
-            , { name = "Testing"
-              , tags = [ "Cypress", "K6", "Percy" ]
-              }
             , { name = "API Design"
               , tags =
                     [ "REST"
                     , "GraphQL"
                     ]
+              }
+            ]
+      }
+    , { icon = Nothing
+      , title = "Communication"
+      , details =
+            [ { name = "Responsibilities"
+              , tags =
+                    [ "Team leadership"
+                    , "presenting"
+                    , "planning"
+                    , "issue resolution"
+                    , "stakeholder communication"
+                    , "providing feedback"
+                    , "release management"
+                    , "documentation"
+
+                    -- , "Project management"
+                    -- , "product management"
+                    -- , "schedule management"
+                    ]
+              }
+            , { name = "Agile software development"
+              , tags = [ "Scrum", "Shape Up" ]
+              }
+            , { name = "Tools"
+              , tags = [ "GitHub Projects", "Jira", "Confluence", "Figma", "Draw.io", "Notion", "Trello" ]
+              }
+            , { name = "Values"
+              , tags = [ "Collaboration", "transparency", "accountability", "proactivity", "empathy" ]
               }
             ]
       }

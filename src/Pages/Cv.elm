@@ -87,10 +87,10 @@ viewDesktop layout =
                 []
             , gridColumn layout
                 { widthSteps = 8 }
-                [ centerY, spacing 16 ]
-                [ paragraph TextStyle.headline.attrs [ text Data.myName ]
-                , column [ spacing 8 ]
-                    [ paragraph TextStyle.lead.attrs [ text "Software Engineer | Scala, Haskell, Elm, TypeScript" ]
+                [ centerY, spacing 32 ]
+                [ column [ spacing 16 ]
+                    [ paragraph TextStyle.headline.attrs [ text Data.myName ]
+                    , paragraph TextStyle.lead.attrs [ text "Software Engineer | Scala, Haskell, Elm, TypeScript" ]
                     ]
                 , column (spacing 10 :: TextStyle.lead2.attrs)
                     [ paragraph [] [ boldText "7", text " years of software engineering experience" ]
@@ -115,7 +115,6 @@ viewDesktop layout =
             [ gridColumn layout
                 { widthSteps = 4 }
                 [ spacing layout.grid.gutter ]
-                -- , paragraph [] [ text "Yerevan, Armenia (remote)" ]
                 [ viewSection2 layout "Contacts" <|
                     (paragraph [ width fill ]
                         [ preparedText Data.location ]
