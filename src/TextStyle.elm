@@ -1,4 +1,4 @@
-module TextStyle exposing (body, header, header2, headline, lead)
+module TextStyle exposing (body, header, header2, headline, lead, lead2)
 
 import Element.Font as Font
 import Element.Region as Region
@@ -48,6 +48,18 @@ lead =
         , fontSizePx = 20
         , fontWeight = Font.medium
         , lineHeightPx = 20
+        , letterSpacingPercent = 0
+        , region = Nothing
+        }
+
+
+lead2 : TextStyle msg
+lead2 =
+    Typography.textStyleFromFigma
+        { fontFamily = [ Font.typeface "Source Sans Pro", Font.sansSerif ]
+        , fontSizePx = 32
+        , fontWeight = Font.light
+        , lineHeightPx = 50
         , letterSpacingPercent = 0
         , region = Nothing
         }
