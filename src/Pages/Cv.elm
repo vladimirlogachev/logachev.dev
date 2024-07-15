@@ -148,7 +148,7 @@ viewSkillSet : LayoutState -> Skill -> Element msg
 viewSkillSet layout x =
     column [ width fill, spacing 20 ]
         [ paragraph (width fill :: TextStyle.header2.attrs) [ preparedText x.title ]
-        , column [ width fill, spacing 16 ] <| List.map (viewDetail layout) x.details
+        , column [ width fill, spacing 16 ] <| List.map (viewDetail layout 2) x.details
         ]
 
 
@@ -159,7 +159,7 @@ viewCommercialExperience layout x =
             [ paragraph TextStyle.header2.attrs [ preparedText x.role ]
             , gridRow layout
                 [ gridColumn layout
-                    { widthSteps = 3 }
+                    { widthSteps = 4 }
                     []
                     [ titleWithOptionalLink
                         { url = x.url
@@ -168,7 +168,7 @@ viewCommercialExperience layout x =
                     ]
                 , gridColumn
                     layout
-                    { widthSteps = 9 }
+                    { widthSteps = 8 }
                     [ alignRight, width fill ]
                     [ paragraph [ Font.color Color.detail ]
                         [ preparedText (showDate x.startDate ++ " — " ++ showEndDate x.endDate) ]
@@ -177,7 +177,7 @@ viewCommercialExperience layout x =
             ]
 
         -- , column [ width fill, spacing 10 ] <| List.map (\line -> paragraph [] [ preparedText line ]) x.roleDescription
-        , column [ width fill, spacing 16 ] <| List.map (viewDetail layout) x.details
+        , column [ width fill, spacing 16 ] <| List.map (viewDetail layout 4) x.details
         ]
 
 
@@ -206,10 +206,10 @@ viewProject x =
 -- , column [ width fill, spacing 10 ] <| List.map (\line -> paragraph [] [ preparedText line ]) x.roleDescription
 
 
-viewDetail : LayoutState -> Detail -> Element msg
-viewDetail layout x =
+viewDetail : LayoutState -> Int -> Detail -> Element msg
+viewDetail layout widthSteps x =
     gridRow layout
-        [ paragraph (alignTop :: Font.color Color.detail :: widthOfGridSteps layout 3) [ preparedText x.key ]
+        [ paragraph (alignTop :: Font.color Color.detail :: widthOfGridSteps layout widthSteps) [ preparedText x.key ]
         , paragraph [ alignTop, width fill ] [ preparedText <| x.value ]
         ]
 
