@@ -2,20 +2,17 @@ module Pages.Home_ exposing (Model, Msg, page)
 
 import Color
 import Components.Image as Image
-import Data exposing (CommercialExperience, Date, Detail, Education, EndDate(..), Project, Skill)
+import Data exposing (EndDate(..))
 import Effect
 import Element exposing (..)
-import Element.Border as Border
-import Element.Font as Font
 import ExtraColor
 import GridLayout2 exposing (..)
-import InlineStyle
 import Layouts
 import Page exposing (Page)
 import Route exposing (Route)
 import Shared
 import TextStyle
-import Typography exposing (nbsp, preparedText)
+import Typography exposing (preparedText)
 import View exposing (View)
 
 
@@ -61,8 +58,8 @@ viewMobile layout =
 viewDesktop : LayoutState -> Element msg
 viewDesktop layout =
     let
-        contactsLinkForPrint : { url : String, labelText : String, printAs : String } -> Element msg
-        contactsLinkForPrint { url, labelText, printAs } =
+        contactsLinkForPrint : { url : String, printAs : String } -> Element msg
+        contactsLinkForPrint { url, printAs } =
             newTabLink [ ExtraColor.fontColor Color.blue ] { label = preparedText printAs, url = url }
     in
     column [ spacing 60, width fill ]
@@ -81,7 +78,7 @@ viewDesktop layout =
                     , paragraph [ width fill ] [ preparedText Data.location ]
                     ]
                 , column [ spacing 16 ] (List.map contactsLinkForPrint Data.linksPrint)
-                , newTabLink [ ExtraColor.fontColor Color.blue ] { label = preparedText "Download cv", url = "https://logachev.dev/cv_vladimir_logachev.pdf" }
+                , newTabLink [ ExtraColor.fontColor Color.blue ] { label = preparedText "Download cv", url = "/cv_vladimir_logachev.pdf" }
                 ]
             ]
         ]

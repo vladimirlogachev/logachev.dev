@@ -63,8 +63,8 @@ viewMoreLink =
 viewDesktop : LayoutState -> Element msg
 viewDesktop layout =
     let
-        contactsLinkForPrint : { url : String, labelText : String, printAs : String } -> Element msg
-        contactsLinkForPrint { url, labelText, printAs } =
+        contactsLinkForPrint : { url : String, printAs : String } -> Element msg
+        contactsLinkForPrint { url, printAs } =
             newTabLink [ ExtraColor.fontColor Color.blue ] { label = preparedText printAs, url = url }
 
         boldText : String -> Element msg
@@ -93,20 +93,21 @@ viewDesktop layout =
                     , paragraph TextStyle.lead.attrs [ text "Software Engineer | Scala, Haskell, Elm, TypeScript" ]
                     ]
                 , column (spacing 10 :: TextStyle.lead2.attrs)
-                    [ paragraph [] [ boldText "7", text " years of software engineering experience" ]
+                    [ paragraph [] [ boldText "7", text " years of software engineering experience." ]
                     , paragraph []
                         [ boldText "3" -- allmax, eldis, wolf
                         , text " years in fintech, "
                         , boldText "1" -- allmax
-                        , text " year in blockchain"
+                        , text " year in blockchain."
                         ]
                     , paragraph []
-                        [ boldText "7" -- 2 neolab, 1 eldis, 2 swift, 1 tian, 1 wolf
+                        [ text "Worked on "
+                        , boldText "7" -- 2 neolab, 1 eldis, 2 swift, 1 tian, 1 wolf
                         , text " backends, "
                         , boldText "10" -- 1 sweet, 2 neolab, 1 pamir, 4 swift, 1 tian, 1 wolf
-                        , text " web apps, "
+                        , text (" web apps, and" ++ Typography.nbsp)
                         , boldText "1" -- allmax
-                        , text " mobile app"
+                        , text (Typography.nbsp ++ "mobile" ++ Typography.nbsp ++ "app.")
                         ]
                     ]
                 ]
@@ -123,10 +124,11 @@ viewDesktop layout =
                 , viewSection2 layout
                     "Specializations"
                     [ text "Software Engineering"
-                    , text "Testing"
+                    , text "Acceptance Testing"
                     , text "Load Testing"
-                    , text "Devops"
+                    , text "DevOps"
                     , text "Mentoring"
+                    , text "Team Leadership"
                     ]
                 , viewSection2 layout "Languages" [ text "English (C1)", text "Russian (native)" ]
                 ]
@@ -142,37 +144,6 @@ viewDesktop layout =
         ]
 
 
-
--- viewContactsDesktop : LayoutState -> Element msg
--- viewContactsDesktop layout =
---     let
---         contactsLinkForPrint : { url : String, labelText : String, printAs : String } -> Element msg
---         contactsLinkForPrint { url, labelText, printAs } =
---             wrappedRow [ spacing layout.grid.gutter ]
---                 [ paragraph (Font.color Color.detail :: widthOfGridSteps layout 2) [ preparedText (labelText ++ nbsp) ]
---                 , newTabLink [ ExtraColor.fontColor Color.blue ] { label = preparedText printAs, url = url }
---                 ]
---     in
---     gridRow layout
---         [ Image.view layout
---             { widthSteps = 4, heightSteps = 4 }
---             [ Border.rounded 1000, clip ]
---             Data.photo
---         , gridColumn layout
---             { widthSteps = 8 }
---             [ spacing layout.grid.gutter ]
---             [ paragraph TextStyle.headline.attrs [ preparedText Data.myName ]
---             , column [ spacing 10 ]
---                 [ gridRow layout
---                     [ paragraph (Font.color Color.detail :: widthOfGridSteps layout 2) [ preparedText "Location" ]
---                     , paragraph [ width fill ] [ preparedText Data.location ]
---                     ]
---                 , column [ width fill, spacing 10 ] <| List.map contactsLinkForPrint Data.linksPrint
---                 ]
---             ]
---         ]
-
-
 viewSkillSet : LayoutState -> Skill -> Element msg
 viewSkillSet layout x =
     column [ width fill, spacing 20 ]
@@ -186,21 +157,33 @@ viewCommercialExperience layout x =
     column [ width fill, spacing 16, InlineStyle.render [ ( "break-inside", "avoid" ) ] ]
         [ column [ width fill, spacing 10 ]
             [ paragraph TextStyle.header2.attrs [ preparedText x.role ]
-            , titleWithOptionalLink
-                { url = x.url
-                , label = paragraph TextStyle.lead.attrs [ preparedText x.company ]
-                }
-            , paragraph [ Font.color Color.detail ]
-                [ preparedText (showDate x.startDate ++ " — " ++ showEndDate x.endDate) ]
+            , gridRow layout
+                [ gridColumn layout
+                    { widthSteps = 3 }
+                    []
+                    [ titleWithOptionalLink
+                        { url = x.url
+                        , label = paragraph TextStyle.lead.attrs [ preparedText x.company ]
+                        }
+                    ]
+                , gridColumn
+                    layout
+                    { widthSteps = 9 }
+                    [ alignRight, width fill ]
+                    [ paragraph [ Font.color Color.detail ]
+                        [ preparedText (showDate x.startDate ++ " — " ++ showEndDate x.endDate) ]
+                    ]
+                ]
             ]
-        , column [ width fill, spacing 10 ] <| List.map (\line -> paragraph [] [ preparedText line ]) x.roleDescription
-        , column [ width fill, spacing 10 ] <| List.map (viewDetail layout) x.details
+
+        -- , column [ width fill, spacing 10 ] <| List.map (\line -> paragraph [] [ preparedText line ]) x.roleDescription
+        , column [ width fill, spacing 16 ] <| List.map (viewDetail layout) x.details
         ]
 
 
 viewEducation : LayoutState -> Education -> Element msg
 viewEducation layout x =
-    column [ spacing 10 ]
+    column [ spacing 10, InlineStyle.render [ ( "break-inside", "avoid" ) ] ]
         [ titleWithOptionalLink
             { url = x.url
             , label = paragraph TextStyle.header2.attrs [ preparedText x.title ]
@@ -211,22 +194,23 @@ viewEducation layout x =
 
 viewProject : LayoutState -> Project -> Element msg
 viewProject layout x =
-    column [ spacing 16 ]
+    column [ spacing 16, InlineStyle.render [ ( "break-inside", "avoid" ) ] ]
         [ titleWithOptionalLink { url = x.url, label = paragraph TextStyle.header2.attrs [ preparedText x.title ] }
         , paragraph [] [ preparedText x.description ]
-        , paragraph [ Font.color Color.detail ] [ preparedText <| String.join ", " <| x.tags ]
+        , paragraph [ Font.color Color.detail ] [ preparedText <| x.tech ]
         ]
 
 
 
 -- Reusable helpers
+-- , column [ width fill, spacing 10 ] <| List.map (\line -> paragraph [] [ preparedText line ]) x.roleDescription
 
 
 viewDetail : LayoutState -> Detail -> Element msg
 viewDetail layout x =
     gridRow layout
-        [ paragraph (alignTop :: Font.color Color.detail :: widthOfGridSteps layout 2) [ preparedText x.name ]
-        , paragraph [ alignTop, width fill ] [ preparedText <| String.join ", " <| x.tags ]
+        [ paragraph (alignTop :: Font.color Color.detail :: widthOfGridSteps layout 3) [ preparedText x.key ]
+        , paragraph [ alignTop, width fill ] [ preparedText <| x.value ]
         ]
 
 
@@ -295,8 +279,3 @@ titleWithOptionalLink { url, label } =
 
         Nothing ->
             label
-
-
-externalLink : { url : String, labelText : String } -> Element msg
-externalLink { url, labelText } =
-    newTabLink [] { label = paragraph [ ExtraColor.fontColor Color.blue ] [ preparedText labelText ], url = url }
