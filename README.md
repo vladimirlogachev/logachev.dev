@@ -22,6 +22,7 @@ npx chrome-headless-render-pdf \
   --window-size 1600,1200 \
   --paper-width 8.3 \
   --paper-height 11.7 \
+  --include-background \
   --pdf static/cv_vladimir_logachev.pdf
 ```
 
