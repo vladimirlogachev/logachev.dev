@@ -47,18 +47,6 @@ view { layout } =
     }
 
 
-viewMoreLink : Element msg
-viewMoreLink =
-    paragraph []
-        [ text "More contributions are listed on "
-        , newTabLink []
-            { label = el [ ExtraColor.fontColor Color.blue ] (text "my GitHub profile")
-            , url = "https://github.com/vladimirlogachev/"
-            }
-        , text "."
-        ]
-
-
 viewDesktop : LayoutState -> Element msg
 viewDesktop layout =
     let
@@ -140,7 +128,32 @@ viewDesktop layout =
             ]
         , viewSection layout "Experience" (List.map (viewCommercialExperience layout) Data.commercialExperience)
         , viewSection layout "Education" (List.map viewEducation Data.education)
-        , viewSection layout "Open Source Contributions" (List.map viewProject Data.contributions ++ [ viewMoreLink ])
+        , viewSection layout "Open Source Contributions" (List.map viewProject Data.contributions ++ [ viewGitHubLink ])
+        , viewTelegramLink
+        ]
+
+
+viewGitHubLink : Element msg
+viewGitHubLink =
+    paragraph []
+        [ text "Visit "
+        , newTabLink []
+            { label = el [ ExtraColor.fontColor Color.blue ] (text "my GitHub profile")
+            , url = "https://github.com/vladimirlogachev/"
+            }
+        , text " to see the full list of my public repositories."
+        ]
+
+
+viewTelegramLink : Element msg
+viewTelegramLink =
+    paragraph []
+        [ text "Let's have a chat on Telegram "
+        , newTabLink []
+            { label = el [ ExtraColor.fontColor Color.blue ] (text "@VladimirLogachev")
+            , url = "https://t.me/vladimirlogachev/"
+            }
+        , text "!"
         ]
 
 
