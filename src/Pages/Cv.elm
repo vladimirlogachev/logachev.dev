@@ -9,14 +9,13 @@ import Element.Border as Border
 import Element.Font as Font
 import ExtraColor
 import GridLayout2 exposing (..)
-import Html.Attributes
 import InlineStyle
 import Layouts
 import Page exposing (Page)
 import Route exposing (Route)
 import Shared
 import TextStyle
-import Typography exposing (nbsp, preparedText)
+import Typography exposing (preparedText)
 import View exposing (View)
 
 
@@ -117,12 +116,12 @@ viewDesktop layout =
             [ gridColumn layout
                 { widthSteps = 4 }
                 [ spacing layout.grid.gutter ]
-                [ viewSection2 layout "Contacts" <|
+                [ viewSidebarSection "Contacts" <|
                     (paragraph [ width fill ]
                         [ preparedText Data.location ]
                         :: List.map showLink Data.linksPrint
                     )
-                , viewSection2 layout
+                , viewSidebarSection
                     "Specializations"
                     [ text "Software Engineering"
                     , text "Acceptance Testing"
@@ -131,7 +130,7 @@ viewDesktop layout =
                     , text "Mentoring"
                     , text "Team Leadership"
                     ]
-                , viewSection2 layout "Languages" [ text "English (C1)", text "Russian (native)" ]
+                , viewSidebarSection "Languages" [ text "English (C1)", text "Russian (native)" ]
                 ]
             , gridColumn layout
                 { widthSteps = 8 }
@@ -140,8 +139,8 @@ viewDesktop layout =
                 ]
             ]
         , viewSection layout "Experience" (List.map (viewCommercialExperience layout) Data.commercialExperience)
-        , viewSection layout "Education" (List.map (viewEducation layout) Data.education)
-        , viewSection layout "Open Source Contributions" (List.map (viewProject layout) Data.contributions ++ [ viewMoreLink ])
+        , viewSection layout "Education" (List.map viewEducation Data.education)
+        , viewSection layout "Open Source Contributions" (List.map viewProject Data.contributions ++ [ viewMoreLink ])
         ]
 
 
@@ -182,8 +181,8 @@ viewCommercialExperience layout x =
         ]
 
 
-viewEducation : LayoutState -> Education -> Element msg
-viewEducation layout x =
+viewEducation : Education -> Element msg
+viewEducation x =
     column [ spacing 10, InlineStyle.render [ ( "break-inside", "avoid" ) ] ]
         [ titleWithOptionalLink
             { url = x.url
@@ -193,8 +192,8 @@ viewEducation layout x =
         ]
 
 
-viewProject : LayoutState -> Project -> Element msg
-viewProject layout x =
+viewProject : Project -> Element msg
+viewProject x =
     column [ spacing 16, InlineStyle.render [ ( "break-inside", "avoid" ) ] ]
         [ titleWithOptionalLink { url = x.url, label = paragraph TextStyle.header2.attrs [ preparedText x.title ] }
         , paragraph [] [ preparedText x.description ]
@@ -238,8 +237,8 @@ viewSection layout title elements =
 {-| Works as long as mobile and desktop have the same text styles.
 If they become different, the whole helper better be removed.
 -}
-viewSection2 : LayoutState -> String -> List (Element msg) -> Element msg
-viewSection2 layout title elements =
+viewSidebarSection : String -> List (Element msg) -> Element msg
+viewSidebarSection title elements =
     case elements of
         h :: t ->
             column [ spacing 16 ]

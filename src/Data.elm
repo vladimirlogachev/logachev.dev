@@ -6,7 +6,6 @@ module Data exposing
     , EndDate(..)
     , PrintLink
     , Project
-    , ScreenLink
     , Skill
     , commercialExperience
     , contributions
@@ -47,10 +46,6 @@ photoHome =
 location : String
 location =
     "Yerevan, Armenia"
-
-
-type alias ScreenLink =
-    { labelText : String, url : String }
 
 
 type alias PrintLink =
