@@ -2,9 +2,10 @@ module Pages.Home_ exposing (Model, Msg, page)
 
 import Color
 import Components.Image as Image
-import Data exposing (EndDate(..))
+import Data
 import Effect
 import Element exposing (..)
+import Element.Border as Border
 import ExtraColor
 import GridLayout2 exposing (..)
 import Layouts
@@ -42,7 +43,7 @@ view { layout } =
     , element =
         case layout.screenClass of
             MobileScreen ->
-                viewDesktop layout
+                viewMobile layout
 
             DesktopScreen ->
                 viewDesktop layout
@@ -51,17 +52,17 @@ view { layout } =
 
 viewMobile : LayoutState -> Element msg
 viewMobile layout =
-    column [ spacing 60, width fill ]
-        [ text "no mobile" ]
+    column [ spacing layout.grid.gutter, width fill ]
+        [ Image.view layout
+            { widthSteps = 2, heightSteps = 2 }
+            [ Border.rounded 1000, clip ]
+            Data.photo
+        , textSection layout
+        ]
 
 
 viewDesktop : LayoutState -> Element msg
 viewDesktop layout =
-    let
-        contactsLinkForPrint : { url : String, printAs : String } -> Element msg
-        contactsLinkForPrint { url, printAs } =
-            newTabLink [ ExtraColor.fontColor Color.blue ] { label = preparedText printAs, url = url }
-    in
     column [ spacing 60, width fill ]
         [ gridRow layout
             [ gridColumn layout
@@ -69,16 +70,26 @@ viewDesktop layout =
                 [ spacing layout.grid.gutter ]
                 [ Image.view layout { widthSteps = 6, heightSteps = 10 } [ clip ] Data.photoHome
                 ]
-            , gridColumn layout
-                { widthSteps = 6 }
-                [ centerY, spacing 48 ]
-                [ column [ spacing 16 ]
-                    [ paragraph TextStyle.headline.attrs [ text Data.myName ]
-                    , paragraph TextStyle.lead.attrs [ text "Software Engineer | Scala, Haskell, Elm, TypeScript" ]
-                    , paragraph [ width fill ] [ preparedText Data.location ]
-                    ]
-                , column [ spacing 16 ] (List.map contactsLinkForPrint Data.linksPrint)
-                , newTabLink [ ExtraColor.fontColor Color.blue ] { label = preparedText "Download cv", url = "/cv_vladimir_logachev.pdf" }
-                ]
+            , textSection layout
             ]
+        ]
+
+
+textSection : LayoutState -> Element msg
+textSection layout =
+    let
+        showLink : { url : String, printAs : String } -> Element msg
+        showLink { url, printAs } =
+            newTabLink [ ExtraColor.fontColor Color.blue ] { label = preparedText printAs, url = url }
+    in
+    gridColumn layout
+        { widthSteps = 6 }
+        [ centerY, spacing <| layout.grid.gutter * 2 ]
+        [ column [ spacing 16 ]
+            [ paragraph TextStyle.headline.attrs [ text Data.myName ]
+            , paragraph TextStyle.lead.attrs [ text "Software Engineer | Scala, Haskell, Elm, TypeScript" ]
+            , paragraph [ width fill ] [ preparedText Data.location ]
+            ]
+        , column [ spacing 16 ] (List.map showLink Data.linksPrint)
+        , newTabLink [ ExtraColor.fontColor Color.blue ] { label = preparedText "Download cv", url = "/cv_vladimir_logachev.pdf" }
         ]

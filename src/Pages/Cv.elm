@@ -63,8 +63,8 @@ viewMoreLink =
 viewDesktop : LayoutState -> Element msg
 viewDesktop layout =
     let
-        contactsLinkForPrint : { url : String, printAs : String } -> Element msg
-        contactsLinkForPrint { url, printAs } =
+        showLink : { url : String, printAs : String } -> Element msg
+        showLink { url, printAs } =
             newTabLink [ ExtraColor.fontColor Color.blue ] { label = preparedText printAs, url = url }
 
         boldText : String -> Element msg
@@ -93,12 +93,13 @@ viewDesktop layout =
                     , paragraph TextStyle.lead.attrs [ text "Software Engineer | Scala, Haskell, Elm, TypeScript" ]
                     ]
                 , column (spacing 10 :: TextStyle.lead2.attrs)
-                    [ paragraph [] [ boldText "7", text " years of software engineering experience." ]
+                    [ paragraph []
+                        [ boldText "7"
+                        , text " years of software engineering experience, "
+                        ]
                     , paragraph []
                         [ boldText "3" -- allmax, eldis, wolf
-                        , text " years in fintech, "
-                        , boldText "1" -- allmax
-                        , text " year in blockchain."
+                        , text " years in fintech."
                         ]
                     , paragraph []
                         [ text "Worked on "
@@ -119,7 +120,7 @@ viewDesktop layout =
                 [ viewSection2 layout "Contacts" <|
                     (paragraph [ width fill ]
                         [ preparedText Data.location ]
-                        :: List.map contactsLinkForPrint Data.linksPrint
+                        :: List.map showLink Data.linksPrint
                     )
                 , viewSection2 layout
                     "Specializations"
