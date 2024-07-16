@@ -193,10 +193,10 @@ commercialExperience =
               , value = "Engineering, code review"
               }
             , { key = "Key achievements"
-              , value = """I developed data pipelines using platform tools. I also organized a weekly book reading club."""
+              , value = """I developed data pipelines using platform tools (near real-time), set up monitoring and alerting systems to ensure the reliability and availability. Improved coding standards for a Python codebase, improved the documentation. I also organized a weekly book reading club."""
               }
             , { key = "Results"
-              , value = """Data pipelines were set up."""
+              , value = """Empowered business teams with reliable and timely data, leading to more informed and effective decision-making."""
               }
             ]
       }
@@ -233,10 +233,10 @@ commercialExperience =
               , value = "Engineering, code review, devops"
               }
             , { key = "Key achievements"
-              , value = """Helped to develop an Elm application, to set up development tooling and a build scripts, to set up aggressive caching, and suggested performance improvements for loading of large amounts of the elevation data, which was the major blocker for the project."""
+              , value = """Helped the project team in various ways: to develop an Elm application, set up development tooling, develop build scripts, improve documentation, set up aggressive caching for the client, and suggested performance improvements for loading of large amounts of the elevation data, which was the major blocker for the project."""
               }
             , { key = "Results"
-              , value = """A web application was developed and available for users."""
+              , value = """A web application was developed and available for users. The combination of its features positioned the application as a unique offering in the market."""
               }
             ]
       }
@@ -246,8 +246,8 @@ commercialExperience =
       , endDate = EndedOn <| Date 5 2023
       , url = Just "https://www.swiftinvention.com"
       , details =
-            [ { key = "Projects"
-              , value = "1. An application for internal users in the compliance industry. 2. Corporate learning software tailored to reduce operational risk for high-performance teams."
+            [ { key = "Project"
+              , value = "Swift Invention is an outsourcing company, And I was involved in 2 projects: 1. An application for internal users in the compliance industry. 2. Corporate learning software tailored to reduce operational risk for high-performance teams."
               }
             , { key = "Responsibilities"
               , value = "Leading, mentoring, technical interviews, engineering, testing, code review"
@@ -256,7 +256,7 @@ commercialExperience =
               , value = """As a team lead, I managed two projects, overseeing the implementation of new features, writing tests, and addressing bugs. Additionally, I mentored new developers, predominantly with a Java background, to familiarize them with Scala. I also organized and led a weekly Scala book reading club."""
               }
             , { key = "Results"
-              , value = """A web application was developed, and new developers were onboarded."""
+              , value = """A web application was developed and is used by users. Team efficiency was improved through effective mentoring, resulting in timely delivery of projects."""
               }
             ]
       }
@@ -283,10 +283,10 @@ commercialExperience =
               , value = "Mentoring, engineering, testing, code review"
               }
             , { key = "Key achievements"
-              , value = """I developed a web application that employs server-side rendering and implemented comprehensive unit test coverage. I containerized the application using Docker and established continuous integration (CI). Additionally, I provided mentorship to the second frontend developer who joined the team later."""
+              , value = """I developed a web application that employs server-side rendering and implemented comprehensive unit test coverage. I containerized the application using Docker and established continuous integration (CI). Additionally, I provided mentorship to the second frontend developer who joined the team later. Also I organized and led a weekly reading club."""
               }
             , { key = "Results"
-              , value = """A web application was developed."""
+              , value = """Developed a web application, improved operational efficiency, improved the team's capacity and expertise."""
               }
             ]
       }
@@ -303,10 +303,10 @@ commercialExperience =
               , value = "Engineering, testing."
               }
             , { key = "Key achievements"
-              , value = """I developed a declarative decoder for the internal binary document format, ensuring comprehensive test coverage, including property-based testing, and streaming (for expectedly large files)."""
+              , value = """I developed a declarative decoder for the internal binary document format, ensuring comprehensive test coverage, including property-based testing, and streaming (for expectedly large files). Effectively collaborated with other teams to ensure the correctness of the Scala implementation."""
               }
             , { key = "Results"
-              , value = """The Scala implementation of the binary document format was successfully integrated into a new larger project."""
+              , value = """The Scala implementation of the binary document format was successfully integrated into a new larger project, expanding the company's technological capabilities."""
               }
             ]
       }
@@ -323,10 +323,10 @@ commercialExperience =
               , value = "Engineering, testing."
               }
             , { key = "Key achievements"
-              , value = """I implemented new functionality in existing web applications, addressed defects, and developed new applications and microservices, ensuring coverage with both unit tests and integration tests."""
+              , value = """I implemented new functionality in existing web applications, addressed defects, and developed new applications and microservices, ensuring coverage with unit and integration tests."""
               }
             , { key = "Results"
-              , value = """New web application, and reliable tests for other applications."""
+              , value = """Contributed to the successful delivery of projects and achieving business objectives. Comprehensive testing and defect resolution resulted in more stable and reliable applications, maintenance costs."""
               }
             ]
       }
@@ -343,10 +343,10 @@ commercialExperience =
               , value = "Engineering, testing, code review"
               }
             , { key = "Key achievements"
-              , value = """In my role, I focused on tasks related to front-end business logic. I actively contributed to enhancing code quality by covering existing code with unit tests and fine-tuning them. This effort resulted in the successful integration of tests into the CI pipeline, effectively preventing defects associated with unsuccessful Git branch mergers in the extensive codebase."""
+              , value = """I focused on tasks related to front-end business logic. I actively contributed to enhancing code quality by covering existing code with unit tests and fine-tuning them. This effort resulted in the successful integration of tests into the CI pipeline, effectively preventing defects associated with unsuccessful Git branch mergers in the extensive codebase. Also I shared knowledge and best practices with the team, contributing to the overall improvement of the development process."""
               }
             , { key = "Results"
-              , value = """Well-established CI/CD process."""
+              , value = """Improved operational efficiency, reduced manual effort and errors, increased the reliability, enhanced user satisfaction, boosted team productivity."""
               }
             ]
       }
@@ -368,7 +368,7 @@ commercialExperience =
             Furthermore, these modifications allowed for the seamless enabling and disabling of support for individual cryptocurrencies, coupled with the implementation of comprehensive unit testing. Also, within the company, I conducted several presentations on functional programming, and helped new developers to onboard."""
               }
             , { key = "Results"
-              , value = """The application's stability improved significantly, crashes gone."""
+              , value = """Improved stability, reduced crashes, enhanced user satisfaction, improved development efficiency."""
               }
             ]
       }
