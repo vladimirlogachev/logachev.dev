@@ -146,7 +146,7 @@ skills =
               -- , "schedule management"
               }
             , { key = "Agile software development"
-              , value = "Scrum, Canban, Shape Up"
+              , value = "Scrum, Kanban, Shape Up"
               }
             , { key = "Tools"
               , value = "GitHub Projects, Jira, Confluence, Figma, Draw.io, Notion, Trello"
