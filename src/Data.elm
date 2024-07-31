@@ -96,7 +96,7 @@ skills =
 
             -- , "Rust Backend (Tokio)"
             , { key = "Scala Backend"
-              , value = "Scala, ZIO, Cats, Akka, scodec, fs2, decline,zio-test, scalatest, scalacheck, zio-http, akka-http,  circe, chimney, flyway, enumeratum, Finagle"
+              , value = "Scala, ZIO, Cats, Akka, scodec, fs2, decline, zio-test, scalatest, scalacheck, zio-http, akka-http,  circe, chimney, flyway, enumeratum, Finagle"
 
               -- "Spark"
               }
