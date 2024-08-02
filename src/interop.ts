@@ -8,6 +8,7 @@ export const flags = ({ env }) => {
 };
 
 export const onReady = ({ app, env }) => {
+  // Note: Reset scroll to page top when navigating between SPA pages (otherwise there will be some weird scroll jumps)
   app.ports.urlChanged.subscribe((val) => {
     window.scrollTo(0, 0);
   });
